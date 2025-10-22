@@ -1,7 +1,7 @@
 # 👋 Hi, I'm Victor MICHELON
 
-🎓 I'm a third year engineering student at ESILV Paris specialized in **Applied Mathematics, Physics, and Computer Science**.  
-🤖 Passionate about **Machine Learning** and **Data Science**.
+I'm a third year engineering student at ESILV Paris specialized in **Applied Mathematics, Physics, and Computer Science**.  
+Passionate about **Machine Learning** and **Data Science**.
 
 ---
 
@@ -9,7 +9,7 @@
 
 | Project | Description | Tech Stack |
 |----------|--------------|-------------|
-| [🌊 **Tsunami Prediction**](https://github.com/victor-martin/ml-tsunami-prediction) | Predicting tsunami potential from seismic data. Achieved **F1-score 90%**, **Recall 95%**. | Python, scikit-learn, pandas |
+| [🌊 **Tsunami Prediction**](https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model)| Predicting tsunami potential from seismic data. Achieved **F1-score 90%**, **Recall 95%**. | Python, scikit-learn, pandas, Geopandas, Matplotlib, Seaborn |
 
 ---
 
@@ -24,14 +24,14 @@
 ## 🧩 Tech Stack
 - **Languages:** Python, C#, SQL  
 - **Libraries:** scikit-learn, pandas, matplotlib, seaborn, XGBoost  
-- **Tools:** Jupyter, Kaggle, Git, Rider  
-- **Platforms:** Kaggle, GitHub Pages, Streamlit
+- **Tools:** Jupyter, Kaggle, Git, Rider, VIsual Studio 
+- **Platforms:** Kaggle
 
 ---
 
 ## 📫 Contact
-- 📧 Email: your.email@example.com  
+- 📧 Email: victormichelon2005@gmail.com
 - 💼 [LinkedIn]()  
-- 🌐 [Portfolio]()
+- 🌐 [Portfolio](https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/)
 
 ---
