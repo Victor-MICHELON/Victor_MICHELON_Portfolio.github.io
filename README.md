@@ -10,6 +10,7 @@ Passionate about **Machine Learning** and **Data Science**.
 | Project | Description | Tech Stack |
 |----------|--------------|-------------|
 | [🌊 **Tsunami Prediction**](https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model)| Predicting tsunami potential from seismic data. Achieved **F1-score 90%**, **Recall 95%**. | Python, scikit-learn, pandas, Geopandas, Matplotlib, Seaborn |
+| [🧬​ **Brain Tumor Detection**](https://github.com/Victor-MICHELON/Brain_Tumor_Classification)| Brain Tumor MRI Classification (Computer Vision): Custom CNN vs. Transfer Learning & Grad-CAM (XAI) | Tensorflow, Keras, Scikit-Learn, EfficientNetB0, Grad-CAM |
 
 ---
 
