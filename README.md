@@ -24,9 +24,8 @@ Passionate about **Machine Learning** and **Data Science**.
 
 ## 🧩 Tech Stack
 - **Languages:** Python, C#, SQL  
-- **Libraries:** scikit-learn, pandas, matplotlib, seaborn, XGBoost  
-- **Tools:** Jupyter, Kaggle, Git, Rider, VIsual Studio 
-- **Platforms:** Kaggle
+- **Libraries:** scikit-learn, pandas, TensorFlow, Keras, matplotlib, seaborn
+- **Tools:** Jupyter, Kaggle, Git, Rider, Visual Studio
 
 ---
 
