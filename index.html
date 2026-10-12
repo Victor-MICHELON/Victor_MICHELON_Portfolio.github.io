@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Victor Michelon, Portfolio | GenAI and Machine Learning</title>
+<meta name="description" content="Portfolio of Victor Michelon, engineering student at ESILV Paris, working on GenAI and machine learning. Six projects with their results, limits and code.">
+<meta property="og:title" content="Victor Michelon, Portfolio | GenAI and Machine Learning">
+<meta property="og:description" content="Six GenAI and machine learning projects with their results, limits and code: a Parkinson's score model, a movie recommender, MRI classification with Grad-CAM and more.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f2f4f8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232442e0'/%3E%3Cpath d='M7 9l5 14 4-9 4 9 5-14' fill='none' stroke='%23fff' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#projects">Skip to projects</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="mark" href="#top">Victor Michelon</a>
+    <nav aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Portfolio</p>
+      <h1>Victor Michelon</h1>
+      <p class="field">GenAI and Machine Learning</p>
+      <p class="lede">Engineering student at ESILV Paris, in applied mathematics and computer science. I build machine learning systems and check them honestly. Below are six projects, each with its results, its limits and its code.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn" href="#contact">Contact me</a>
+        <a class="plain" href="https://github.com/Victor-MICHELON">GitHub profile</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <h2 id="projects-h">Projects</h2>
+      <p class="sub">Four larger pieces of work, then two smaller ones. Each one says what is solid and what is not.</p>
+
+      <div class="projects-list">
+
+        <article class="project project-feature">
+          <div>
+            <h3>Predicting the unbiased Parkinson's motor score</h3>
+            <p class="when">Bobathon ESILV with IBM and Probabl, October 2026</p>
+            <p>For each patient visit, estimate the true OFF motor score (MDS-UPDRS) from noisy ON and OFF measurements, rater effects and many missing values. The training set has 44,590 visits from 5,576 patients.</p>
+            <p>I ran it as a controlled lab, and the chart below plots every run I logged. Every idea was a separate experiment, judged against a reference run fold by fold, and a change only counted when its gain was larger than the spread between folds. A hook locked the raw data and the cross-validation folds so no result could drift.</p>
+          </div>
+          <div class="aside">
+            <p class="flag"><strong>Limits.</strong> The data is synthetic and the scores are cross-validated on the training set. The official Kaggle submission was made separately, and I do not claim a leaderboard rank here.</p>
+            <p class="stack">Python, scikit-learn (HistGradientBoosting), pandas, Claude Code agents for ideas and leakage review</p>
+            <div class="links"><a href="https://github.com/Victor-MICHELON/Hackathon-IBMxProbabl">Code and experiment log</a></div>
+          </div>
+          <figure class="runs visual-wide" aria-label="Error across the runs of the Parkinson's hackathon">
+        <div class="runs-frame" id="runs-chart"></div>
+        <ul class="legend">
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#2442e0"/></svg>Better than its reference run</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="4.2" fill="#f2f4f8" stroke="#53607a" stroke-width="1.6"/></svg>Within noise</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#f0452b"/></svg>Lowest error</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M0 7h14" stroke="#2442e0" stroke-width="3"/></svg>Best so far</li>
+        </ul>
+        <figcaption>All 30 logged runs: the baseline, 28 experiments and one blend, scored with 5-fold cross-validation that keeps each patient's visits together. The error goes from 16.51 to 2.78. Of the 29 runs compared with a reference run, 19 improved on it (the blend included) and 10 stayed within noise. The data is synthetic.</figcaption>
+        <details class="data">
+          <summary>Show the numbers behind the chart</summary>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th scope="col">Run</th><th scope="col" class="num">RMSE</th><th scope="col">Verdict against its reference</th></tr></thead>
+              <tbody>
+                <tr><td>e000_dummy</td><td class="num">16.506</td><td>Baseline</td></tr>
+                <tr><td>e001_hgb_raw</td><td class="num">7.581</td><td>Better than its reference</td></tr>
+                <tr><td>e002_hgb_basic_context</td><td class="num">4.581</td><td>Better than its reference</td></tr>
+                <tr><td>e003_rater_scale</td><td class="num">4.271</td><td>Better than its reference</td></tr>
+                <tr><td>e004_drug_amplitude</td><td class="num">4.069</td><td>Better than its reference</td></tr>
+                <tr><td>e005_drug_amplitude_noes</td><td class="num">4.058</td><td>Within noise</td></tr>
+                <tr><td>e006_harmonized_score</td><td class="num">3.583</td><td>Better than its reference</td></tr>
+                <tr><td>e007_hier_traj</td><td class="num">3.550</td><td>Better than its reference</td></tr>
+                <tr><td>e008_hier_traj_offset</td><td class="num">3.550</td><td>Within noise</td></tr>
+                <tr><td>b001_hier_A_B</td><td class="num">3.511</td><td>Better than its reference</td></tr>
+                <tr><td>e009_traj_v2</td><td class="num">3.527</td><td>Better than its reference</td></tr>
+                <tr><td>e010_traj_v2_proj</td><td class="num">3.465</td><td>Better than its reference</td></tr>
+                <tr><td>e011_traj_v2_proj_w05</td><td class="num">3.465</td><td>Within noise</td></tr>
+                <tr><td>e012a_traj_meancal</td><td class="num">3.458</td><td>Within noise</td></tr>
+                <tr><td>e012_traj_skew</td><td class="num">3.226</td><td>Better than its reference</td></tr>
+                <tr><td>e013b_skew_offset</td><td class="num">3.207</td><td>Within noise</td></tr>
+                <tr><td>e013c_skew_plain_offset_avg</td><td class="num">3.195</td><td>Within noise</td></tr>
+                <tr><td>e014_skew_bag</td><td class="num">3.226</td><td>Within noise</td></tr>
+                <tr><td>e015_temporal_fe</td><td class="num">4.074</td><td>Better than its reference</td></tr>
+                <tr><td>e017_skew_temporal_delta</td><td class="num">3.072</td><td>Better than its reference</td></tr>
+                <tr><td>e016_temporal_delta</td><td class="num">3.867</td><td>Better than its reference</td></tr>
+                <tr><td>e019_long_surp_shape</td><td class="num">2.812</td><td>Better than its reference</td></tr>
+                <tr><td>e018_skew_temporal_delta_hgbv2</td><td class="num">3.011</td><td>Better than its reference</td></tr>
+                <tr><td>e019a_long_surp</td><td class="num">2.963</td><td>Better than its reference</td></tr>
+                <tr><td>e019b_long_shape</td><td class="num">2.871</td><td>Better than its reference</td></tr>
+                <tr><td>e020_off_miss_freq</td><td class="num">2.810</td><td>Within noise</td></tr>
+                <tr><td>e022_cubic_traj</td><td class="num">2.786</td><td>Better than its reference</td></tr>
+                <tr><td>e022b_cubic_traj_quad</td><td class="num">2.778</td><td>Better than its reference</td></tr>
+                <tr><td>e022c_cubic_cov</td><td class="num">2.790</td><td>Within noise</td></tr>
+                <tr><td>e022d_cubic_wprior</td><td class="num">2.777</td><td>Within noise</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </figure>
+        </article>
+
+        <article class="project">
+          <div>
+            <h3>CineMatch, a hybrid movie recommender</h3>
+            <p class="when">Streamlit app, 2025 to 2026</p>
+            <p>Pick a film and get four similar ones. Plots are turned into sentence embeddings (all-MiniLM-L6-v2), then combined with keyword, genre, cast and director similarity, release context and a collaborative signal.</p>
+            <p>The weights adapt to the film: horror leans on tone, non-English films on country of origin, blockbusters on audience data. A radar chart shows the weights behind each result, so you can see why a film was suggested. Films with no audience data fall back to content signals.</p>
+            <p class="flag"><strong>Limits.</strong> I did not measure recommendation quality against ground truth, so there is no accuracy figure. The adaptive weights are rules I set by hand.</p>
+            <p class="stack">Python, sentence-transformers, scikit-learn, Plotly, Streamlit, TMDB data</p>
+            <div class="links"><a href="https://github.com/Victor-MICHELON/CineMatch-recommender">Code on GitHub</a></div>
+          </div>
+          <div class="visual shots">
+            <img src="assets/img/cinematch-2.webp" width="1400" height="592" loading="lazy" alt="CineMatch results page: four recommended films with their similarity scores">
+            <div class="two">
+              <img src="assets/img/cinematch-1.webp" width="1400" height="563" loading="lazy" alt="CineMatch search page with a film selected">
+              <img src="assets/img/cinematch-3.webp" width="1400" height="623" loading="lazy" alt="CineMatch radar chart showing how much each signal counted for a recommendation">
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div>
+            <h3>Brain tumor classification with Grad-CAM</h3>
+            <p class="when">Deep learning on MRI, December 2025</p>
+            <p>Four classes: glioma, meningioma, pituitary tumor and no tumor. I trained a small CNN from scratch as a baseline, then fine-tuned EfficientNetB0. Grad-CAM overlays show which part of the scan drove each prediction.</p>
+            <p>On the 1,311 held-out scans, the fine-tuned model reaches 97.8% accuracy against 92.1% for the baseline. Its weakest class is meningioma, with a recall of 0.94.</p>
+            <p class="flag"><strong>Limits.</strong> One public dataset, one split. Clinical scans from other hospitals would likely score lower, and I have not tested that.</p>
+            <p class="stack">Python, TensorFlow, Keras, scikit-learn</p>
+            <div class="links"><a href="https://github.com/Victor-MICHELON/Brain_Tumor_Classification">Notebook on GitHub</a></div>
+          </div>
+          <div class="visual">
+            <div class="cams">
+              <figure><img src="assets/img/gradcam-glioma.webp" width="236" height="291" loading="lazy" alt="Grad-CAM heat map on a glioma scan, correctly predicted"><figcaption>Glioma</figcaption></figure>
+              <figure><img src="assets/img/gradcam-meningioma.webp" width="252" height="320" loading="lazy" alt="Grad-CAM heat map on a meningioma scan"><figcaption>Meningioma</figcaption></figure>
+              <figure><img src="assets/img/gradcam-pituitary.webp" width="420" height="478" loading="lazy" alt="Grad-CAM heat map on a pituitary tumor scan"><figcaption>Pituitary</figcaption></figure>
+              <figure><img src="assets/img/gradcam-no-tumor.webp" width="420" height="524" loading="lazy" alt="Grad-CAM heat map on a scan with no tumor"><figcaption>No tumor</figcaption></figure>
+            </div>
+            <div class="pair">
+              <div><span class="big">92.1%</span><span class="cap">Custom CNN, test accuracy</span></div>
+              <div class="win"><span class="big">97.8%</span><span class="cap">EfficientNetB0 fine-tuned, test accuracy</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div>
+            <h3>Tsunami risk from earthquake data</h3>
+            <p class="when">Classification on 449 events, October 2025</p>
+            <p>Can the seismic profile of an earthquake say whether it caused a tsunami? I compared eight models with repeated stratified cross-validation, and gradient boosting won.</p>
+            <p>Two decisions matter most. Every record before 2012 was a negative case, so the year alone would have leaked the answer, and I removed those rows. I also added a physical feature, the distance from the epicenter to the nearest tectonic plate boundary, computed with GeoPandas.</p>
+            <p class="flag"><strong>Limits.</strong> The hold-out set has only 90 events, 61 of them tsunamis. A model that always answered "tsunami" would reach a tsunami F1 of 0.81 on that split, so read 0.90 with that in mind. Recall on non-tsunami events is 0.66.</p>
+            <p class="stack">Python, scikit-learn, GeoPandas, Shapely, Seaborn</p>
+            <div class="links"><a href="https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model">Notebook on GitHub</a></div>
+          </div>
+          <figure class="visual">
+            <table class="mini">
+              <caption class="sr-only" style="position:absolute;left:-9999px">Hold-out results by class</caption>
+              <thead><tr><th scope="col">Hold-out, 90 events</th><th scope="col">Precision</th><th scope="col">Recall</th><th scope="col">F1</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Tsunami (61)</th><td>0.85</td><td>0.95</td><td>0.90</td></tr>
+                <tr><th scope="row">No tsunami (29)</th><td>0.86</td><td>0.66</td><td>0.75</td></tr>
+              </tbody>
+            </table>
+            <figcaption>Gradient boosting after tuning. ROC-AUC on the same hold-out set: 0.90. Cross-validated F1 for tsunami events: 0.90 across the training folds.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="minor">
+        <article>
+          <h3>Alterdune, a turn-based RPG in C++</h3>
+          <p>A C++17 battle game where you can fight a monster or spare it. So far there is an abstract Entity class, Player and Monster subclasses, CSV files describing the monsters and items, and a Makefile to build it.</p>
+          <p><strong>Status.</strong> Work in progress. The battle loop is not written yet, and the CSV files are not read by the code yet.</p>
+          <p><a href="https://github.com/Victor-MICHELON/Alterdune">Code on GitHub</a></p>
+        </article>
+        <article>
+          <h3>Graph algorithms in C#</h3>
+          <p>First deliverable of a team project with Bertrand M. Adjacency matrix and list, breadth-first and depth-first search, connectivity and cycle detection, and a drawing of the graph, tested on Zachary's karate club network. Five xUnit tests cover the core methods.</p>
+          <p><a href="https://github.com/BertrandM78/LivinParis_Rendu1">Code on GitHub, hosted by my teammate</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <h2 id="about-h">About</h2>
+      <div class="about">
+        <div>
+          <p>I study at ESILV in Paris, where I split my time between applied mathematics and software. What I care about is whether a model's answer can be trusted: that its validation is honest, its failures are known, and a person can see why it said what it said.</p>
+          <p>That is why the projects above show cross-validation protocols, a baseline to beat, Grad-CAM heat maps and a radar of weights. So far my work covers classical machine learning, deep learning, sentence embeddings and agent-assisted workflows with Claude Code. I am now exploring transformer architectures and MLOps practices.</p>
+        </div>
+        <dl class="skills">
+          <dt>Languages</dt><dd>Python, C#, C++, SQL</dd>
+          <dt>Machine learning</dt><dd>scikit-learn, TensorFlow, Keras, Hugging Face</dd>
+          <dt>Data</dt><dd>pandas, GeoPandas, Plotly, Streamlit</dd>
+          <dt>Tools</dt><dd>Git, Jupyter, JetBrains Rider, Claude Code</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Contact</h2>
+      <p class="sub">I am open to opportunities in data science and machine learning, and to collaborations.</p>
+      <a class="mail" href="mailto:victormichelon2005@gmail.com">victormichelon2005@gmail.com</a>
+      <p class="other"><a href="https://github.com/Victor-MICHELON">GitHub profile</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Victor Michelon, 2026</span>
+    <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io">Source of this site</a>
+  </div>
+</footer>
+
+<script type="application/json" id="runs-data">[{"id":"e000_dummy","rmse":16.506,"verdict":"baseline"},{"id":"e001_hgb_raw","rmse":7.581,"verdict":"GAIN"},{"id":"e002_hgb_basic_context","rmse":4.581,"verdict":"GAIN"},{"id":"e003_rater_scale","rmse":4.271,"verdict":"GAIN"},{"id":"e004_drug_amplitude","rmse":4.069,"verdict":"GAIN"},{"id":"e005_drug_amplitude_noes","rmse":4.058,"verdict":"NOISE"},{"id":"e006_harmonized_score","rmse":3.583,"verdict":"GAIN"},{"id":"e007_hier_traj","rmse":3.55,"verdict":"GAIN"},{"id":"e008_hier_traj_offset","rmse":3.55,"verdict":"NOISE"},{"id":"b001_hier_A_B","rmse":3.511,"verdict":"GAIN"},{"id":"e009_traj_v2","rmse":3.527,"verdict":"GAIN"},{"id":"e010_traj_v2_proj","rmse":3.465,"verdict":"GAIN"},{"id":"e011_traj_v2_proj_w05","rmse":3.465,"verdict":"NOISE"},{"id":"e012a_traj_meancal","rmse":3.458,"verdict":"NOISE"},{"id":"e012_traj_skew","rmse":3.226,"verdict":"GAIN"},{"id":"e013b_skew_offset","rmse":3.207,"verdict":"NOISE"},{"id":"e013c_skew_plain_offset_avg","rmse":3.195,"verdict":"NOISE"},{"id":"e014_skew_bag","rmse":3.226,"verdict":"NOISE"},{"id":"e015_temporal_fe","rmse":4.074,"verdict":"GAIN"},{"id":"e017_skew_temporal_delta","rmse":3.072,"verdict":"GAIN"},{"id":"e016_temporal_delta","rmse":3.867,"verdict":"GAIN"},{"id":"e019_long_surp_shape","rmse":2.812,"verdict":"GAIN"},{"id":"e018_skew_temporal_delta_hgbv2","rmse":3.011,"verdict":"GAIN"},{"id":"e019a_long_surp","rmse":2.963,"verdict":"GAIN"},{"id":"e019b_long_shape","rmse":2.871,"verdict":"GAIN"},{"id":"e020_off_miss_freq","rmse":2.81,"verdict":"NOISE"},{"id":"e022_cubic_traj","rmse":2.786,"verdict":"GAIN"},{"id":"e022b_cubic_traj_quad","rmse":2.778,"verdict":"GAIN"},{"id":"e022c_cubic_cov","rmse":2.79,"verdict":"NOISE"},{"id":"e022d_cubic_wprior","rmse":2.777,"verdict":"NOISE"}]</script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
