@@ -2,12 +2,12 @@
 
 Source of my portfolio site: [victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io](https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/)
 
-A static site with four machine learning case studies, each with its method, its results and its limits, and two smaller projects. The home page lists them as cards; each case study has its own page with charts drawn from the real results.
+A static site with four machine learning case studies, each with its method, its results and its limits. The home page lists them as cards; each case study has its own page with charts drawn from the real results.
 
 ## Structure
 
 ```
-index.html               the home page: hero, project cards, other work, about, contact
+index.html               the home page: hero, project cards, about, contact
 projects/*.html          one case study per project (parkinson, cinematch, brain-tumor, tsunami)
 projects/_template.html  starting point for a new case study (not published: Jekyll skips "_" files)
 404.html                 page shown for any missing URL (absolute paths)

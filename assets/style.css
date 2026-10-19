@@ -57,7 +57,7 @@ code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); 
 .site-head .wrap {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 24px;
   flex-wrap: wrap;
 }

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recovering the true OFF score in Parkinson’s disease | Victor Michelon</title>
-<meta name="description" content="Bobathon ESILV × Probabl × IBM: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
+<title>Predicting Parkinson’s disease motor scores from noisy clinical data | Victor Michelon</title>
+<meta name="description" content="Hackathon IBM x Probabl: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
 <link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/parkinson.html">
-<meta property="og:title" content="Recovering the true OFF score in Parkinson’s disease | Victor Michelon">
-<meta property="og:description" content="Bobathon ESILV × Probabl × IBM: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
+<meta property="og:title" content="Predicting Parkinson’s disease motor scores from noisy clinical data | Victor Michelon">
+<meta property="og:description" content="Hackathon IBM x Probabl: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/parkinson.html">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/parkinson.png">
@@ -30,7 +30,6 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="mark" href="../index.html">Victor Michelon</a>
     <nav aria-label="Main">
       <a href="../index.html#projects">Projects</a>
       <a href="../index.html#about">About</a>
@@ -47,12 +46,11 @@
   <header class="case-head">
     <div class="wrap">
       <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
-      <p class="kicker">Bobathon ESILV × Probabl × IBM · Kaggle competition · October 2026</p>
-      <h1>Recovering the true OFF score in Parkinson’s disease</h1>
+      <p class="kicker">Hackathon IBM x Probabl · Kaggle competition · 7th of 295 · October 2026</p>
+      <h1>Predicting Parkinson’s disease motor scores from noisy clinical data</h1>
       <p class="lede">Predict, for every patient visit, the motor score a patient would have without active medication, from noisy and often missing measurements. I ran it as a controlled lab: one locked evaluation protocol, one file per hypothesis, every run logged. The submitted blend of five models brings the cross-validated error from 16.51 to 2.51, on synthetic data.</p>
       <ul class="kpis">
-        <li><span class="big">2.51</span><span class="cap">RMSE of the submitted blend, cross-validated by patient</span></li>
-        <li><span class="big">−85%</span><span class="cap">error against a constant prediction (16.51)</span></li>
+        <li><span class="big">−85%</span><span class="cap">prediction error with our model, against a constant mean prediction (RMSE 16.51 → 2.51, cross-validated by patient)</span></li>
         <li><span class="big">61</span><span class="cap">runs logged under the same protocol</span></li>
         <li><span class="big">44,590</span><span class="cap">training visits from 5,576 patients</span></li>
       </ul>
