@@ -11,7 +11,15 @@
   var W = 1000, H = 440;
   var m = { l: 52, r: 24, t: 22, b: 36 };
   var iw = W - m.l - m.r, ih = H - m.t - m.b;
-  var yMin = 2.5, yMax = 18;
+  var yMin = 2.3, yMax = 18;
+  var SUBMITTED = "b006_seq4_gruref";
+  var VERDICTS = {
+    GAIN: "better than its reference",
+    NOISE: "within noise of its reference",
+    WORSE: "worse than its reference",
+    NONE: "no reference run",
+    baseline: "baseline"
+  };
   var lnSpan = Math.log(yMax) - Math.log(yMin);
 
   function x(i) { return m.l + (i * iw) / (runs.length - 1); }
@@ -26,9 +34,9 @@
 
   var svg = el("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-labelledby": "runs-title runs-desc" });
   var t = el("title", { id: "runs-title" }, svg);
-  t.textContent = "Cross-validated error across 30 logged runs";
+  t.textContent = "Cross-validated error across " + runs.length + " logged runs";
   var d = el("desc", { id: "runs-desc" }, svg);
-  d.textContent = "Error falls from 16.51 for a baseline that predicts the mean to 2.78 for the best run. The same numbers are in the table below the chart.";
+  d.textContent = "Error falls from " + fmt(runs[0].rmse) + " for a baseline that predicts the mean to " + fmt(runs[runs.length - 1].rmse) + " for the submitted blend of five models. The same numbers are in the table below the chart.";
 
   // grid + y axis
   [3, 5, 10, 16].forEach(function (v) {
@@ -39,7 +47,7 @@
   var yl = el("text", { x: m.l, y: 12, class: "axis-label" }, svg);
   yl.textContent = "RMSE, log scale (lower is better)";
   var xl = el("text", { x: W - m.r, y: H - 8, "text-anchor": "end", class: "axis-label" }, svg);
-  xl.textContent = "Runs in the order they were logged, 7 to 12 October 2026";
+  xl.textContent = "Runs in the order they were logged, 7 to 14 October 2026";
 
   // running best (step line)
   var best = [], b = Infinity;
@@ -58,10 +66,12 @@
     e007_hier_traj: "Per-patient trajectories",
     e012_traj_skew: "Skewed noise model",
     e019_long_surp_shape: "Surprise and shape features",
-    e022d_cubic_wprior: "Cubic trajectories"
+    e023_seq_nn: "Sequence networks per patient",
+    b006_seq4_gruref: "Submitted blend of five models"
   };
   var minIdx = 0;
   runs.forEach(function (r, i) { if (r.rmse < runs[minIdx].rmse) minIdx = i; });
+  runs.forEach(function (r, i) { if (r.id === SUBMITTED) minIdx = i; });
 
   var annGroup = el("g", {}, svg);
   var row = 0;
@@ -85,7 +95,11 @@
   tip.setAttribute("aria-hidden", "true");
   var dots = el("g", {}, svg);
   runs.forEach(function (r, i) {
-    var cls = r.verdict === "GAIN" ? "dot-gain" : r.verdict === "NOISE" ? "dot-noise" : "dot-base";
+    var cx = x(i), cy = y(r.rmse);
+    if (r.verdict === "WORSE" && i !== minIdx) {
+      el("path", { d: "M" + (cx - 4) + " " + (cy - 4) + "l8 8M" + (cx + 4) + " " + (cy - 4) + "l-8 8", class: "cross" }, dots);
+    }
+    var cls = r.verdict === "GAIN" ? "dot-gain" : r.verdict === "NOISE" ? "dot-noise" : r.verdict === "WORSE" ? "dot-hit" : "dot-base";
     if (i === minIdx) {
       el("circle", { cx: x(i), cy: y(r.rmse), r: 10, class: "halo" }, dots);
       cls = "dot-min";
@@ -101,7 +115,8 @@
 
   function show(i) {
     var r = runs[i];
-    var verdict = r.verdict === "GAIN" ? "better than its reference" : r.verdict === "NOISE" ? "within noise of its reference" : "baseline";
+    var verdict = VERDICTS[r.verdict] || "";
+    if (r.id === SUBMITTED) verdict += ", submitted model";
     tip.innerHTML = "<b>" + r.id + "</b><br>RMSE " + r.rmse.toFixed(3) + ", " + verdict;
     var box = svg.getBoundingClientRect();
     var fbox = frame.getBoundingClientRect();

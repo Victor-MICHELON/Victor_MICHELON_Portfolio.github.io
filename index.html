@@ -53,14 +53,14 @@
 
         <article class="project project-feature">
           <div>
-            <h3>Predicting the unbiased Parkinson's motor score</h3>
-            <p class="when">Bobathon ESILV with IBM and Probabl, October 2026</p>
-            <p>For each patient visit, estimate the true OFF motor score (MDS-UPDRS) from noisy ON and OFF measurements, rater effects and many missing values. The training set has 44,590 visits from 5,576 patients.</p>
-            <p>I ran it as a controlled lab, and the chart below plots every run I logged. Every idea was a separate experiment, judged against a reference run fold by fold, and a change only counted when its gain was larger than the spread between folds. A hook locked the raw data and the cross-validation folds so no result could drift.</p>
+            <h3>Recovering the true OFF score in Parkinson's disease</h3>
+            <p class="when">Bobathon ESILV with Probabl and IBM, October 2026</p>
+            <p>For each patient visit, predict the debiased OFF motor score (MDS-UPDRS) from the observed ON and OFF measurements, the levodopa dose, the time since intake and the patient's history. The synthetic training set has 44,590 visits from 5,576 patients, with many missing values: the OFF score is missing in 42% of visits, the dose in 37%.</p>
+            <p>I ran it as a controlled lab driven by Bob, and the chart below plots every run I logged. Every idea was a separate experiment, scored under one locked protocol (5 folds grouped by patient) and compared fold by fold with a reference run; a gain smaller than its spread across folds counted as noise. What worked: modelling the generating process (drug response curve, per-patient amplitude, per-rater scale), a latent trajectory per patient, sequence networks over each patient's visits, and an NNLS blend of five decorrelated models. The error fell from 16.51 to 2.51, an 85% reduction.</p>
           </div>
           <div class="aside">
-            <p class="flag"><strong>Limits.</strong> The data is synthetic and the scores are cross-validated on the training set. The official Kaggle submission was made separately, and I do not claim a leaderboard rank here.</p>
-            <p class="stack">Python, scikit-learn (HistGradientBoosting), pandas, Claude Code agents for ideas and leakage review</p>
+            <p class="flag"><strong>Limits.</strong> The data is synthetic and the scores are out-of-fold cross-validation, grouped by patient. The public leaderboard was only used to check that it tracked cross-validation, and I do not claim a rank here. Several ideas brought no gain above noise: fine per-rater bias, per-patient stacking, pseudo-labeling, heavy network tuning.</p>
+            <p class="stack">Python, scikit-learn and LightGBM gradient boosting, PyTorch (BiGRU, Transformer), pandas, skore, Bob agents for brainstorming, experiments and leakage review</p>
             <div class="links"><a href="https://github.com/Victor-MICHELON/Hackathon-IBMxProbabl">Code and experiment log</a></div>
           </div>
           <figure class="runs visual-wide" aria-label="Error across the runs of the Parkinson's hackathon">
@@ -68,10 +68,12 @@
         <ul class="legend">
           <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#2442e0"/></svg>Better than its reference run</li>
           <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="4.2" fill="#f2f4f8" stroke="#53607a" stroke-width="1.6"/></svg>Within noise</li>
-          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#f0452b"/></svg>Lowest error</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="#53607a" stroke-width="2" stroke-linecap="round"/></svg>Worse than its reference run</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#0f1b2d"/></svg>Baseline, or no reference run</li>
+          <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#f0452b"/></svg>Submitted model</li>
           <li><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M0 7h14" stroke="#2442e0" stroke-width="3"/></svg>Best so far</li>
         </ul>
-        <figcaption>All 30 logged runs: the baseline, 28 experiments and one blend, scored with 5-fold cross-validation that keeps each patient's visits together. The error goes from 16.51 to 2.78. Of the 29 runs compared with a reference run, 19 improved on it (the blend included) and 10 stayed within noise. The data is synthetic.</figcaption>
+        <figcaption>All 61 logged runs up to the submitted model, experiments and blends, scored with 5-fold cross-validation that keeps each patient's visits together. The error goes from 16.51 for the mean to 2.51 for the submitted blend of five models. Of the 58 runs compared with a reference run, 29 improved on it, 21 stayed within noise and 8 were worse. The data is synthetic.</figcaption>
         <details class="data">
           <summary>Show the numbers behind the chart</summary>
           <div class="table-scroll">
@@ -108,6 +110,37 @@
                 <tr><td>e022b_cubic_traj_quad</td><td class="num">2.778</td><td>Better than its reference</td></tr>
                 <tr><td>e022c_cubic_cov</td><td class="num">2.790</td><td>Within noise</td></tr>
                 <tr><td>e022d_cubic_wprior</td><td class="num">2.777</td><td>Within noise</td></tr>
+                <tr><td>e023_seq_nn</td><td class="num">2.610</td><td>Better than its reference</td></tr>
+                <tr><td>b002_seq_e022b</td><td class="num">2.579</td><td>Better than its reference</td></tr>
+                <tr><td>e023_quality_noise</td><td class="num">2.785</td><td>Within noise</td></tr>
+                <tr><td>e024_mlp_bag</td><td class="num">2.841</td><td>Within noise</td></tr>
+                <tr><td>b002_e022b_mlp</td><td class="num">2.727</td><td>No reference run</td></tr>
+                <tr><td>e025_gru_raw</td><td class="num">2.803</td><td>Within noise</td></tr>
+                <tr><td>b003_e022b_mlp_gru</td><td class="num">2.618</td><td>Better than its reference</td></tr>
+                <tr><td>e026_transformer_raw</td><td class="num">2.968</td><td>Worse than its reference</td></tr>
+                <tr><td>e025s_gru_raw_seed100</td><td class="num">2.809</td><td>Within noise</td></tr>
+                <tr><td>e024_ap_pairs_notsi</td><td class="num">2.766</td><td>Within noise</td></tr>
+                <tr><td>e025t_gru_raw_tdt</td><td class="num">2.808</td><td>Within noise</td></tr>
+                <tr><td>e025u_gru_raw_tnone</td><td class="num">2.849</td><td>Worse than its reference</td></tr>
+                <tr><td>e025_seq_offset</td><td class="num">2.603</td><td>Within noise</td></tr>
+                <tr><td>e026_seq_amortized</td><td class="num">2.853</td><td>Worse than its reference</td></tr>
+                <tr><td>b003_seq4</td><td class="num">2.541</td><td>Better than its reference</td></tr>
+                <tr><td>b003a_no_offset</td><td class="num">2.563</td><td>Worse than its reference</td></tr>
+                <tr><td>b003b_no_amort</td><td class="num">2.550</td><td>Worse than its reference</td></tr>
+                <tr><td>e027_rule_post</td><td class="num">2.761</td><td>Better than its reference</td></tr>
+                <tr><td>b004_seq4_rule</td><td class="num">2.539</td><td>Better than its reference</td></tr>
+                <tr><td>b004b_seq4_plus_rule</td><td class="num">2.539</td><td>Within noise</td></tr>
+                <tr><td>e028_v0_template</td><td class="num">2.785</td><td>Worse than its reference</td></tr>
+                <tr><td>b004c_seq4_plus_v0</td><td class="num">2.541</td><td>Worse than its reference</td></tr>
+                <tr><td>e029_latent_prior</td><td class="num">2.786</td><td>Within noise</td></tr>
+                <tr><td>b004d_seq4_plus_latent</td><td class="num">2.541</td><td>Worse than its reference</td></tr>
+                <tr><td>e030_seq_nn_full</td><td class="num">2.602</td><td>Better than its reference</td></tr>
+                <tr><td>e031_seq_offset_full</td><td class="num">2.595</td><td>Within noise</td></tr>
+                <tr><td>e032_seq_amortized_full</td><td class="num">2.811</td><td>Better than its reference</td></tr>
+                <tr><td>b005_seq4_full</td><td class="num">2.530</td><td>Within noise</td></tr>
+                <tr><td>e033_gru_raw_ref</td><td class="num">2.808</td><td>No reference run</td></tr>
+                <tr><td>e034_gru_simpre</td><td class="num">2.748</td><td>Better than its reference</td></tr>
+                <tr><td>b006_seq4_gruref</td><td class="num">2.510</td><td>Better than its reference</td></tr>
               </tbody>
             </table>
           </div>
@@ -119,11 +152,11 @@
           <div>
             <h3>CineMatch, a hybrid movie recommender</h3>
             <p class="when">Streamlit app, 2025 to 2026</p>
-            <p>Pick a film and get four similar ones. Plots are turned into sentence embeddings (all-MiniLM-L6-v2), then combined with keyword, genre, cast and director similarity, release context and a collaborative signal.</p>
-            <p>The weights adapt to the film: horror leans on tone, non-English films on country of origin, blockbusters on audience data. A radar chart shows the weights behind each result, so you can see why a film was suggested. Films with no audience data fall back to content signals.</p>
-            <p class="flag"><strong>Limits.</strong> I did not measure recommendation quality against ground truth, so there is no accuracy figure. The adaptive weights are rules I set by hand.</p>
-            <p class="stack">Python, sentence-transformers, scikit-learn, Plotly, Streamlit, TMDB data</p>
-            <div class="links"><a href="https://github.com/Victor-MICHELON/CineMatch-recommender">Code on GitHub</a></div>
+            <p>Pick a film and get similar ones, with the reasons. Eight similarity signals are blended: plot embeddings (Sentence-BERT, all-MiniLM-L6-v2), keywords, mood, genres, cast and director, origin, popularity and era, and an audience signal from MovieLens ratings.</p>
+            <p>The weights adapt to the source film through simple, readable rules: horror leans on mood, animation and sequels on topics and audience. 43% of the 6,203 films have no audience data, so their audience weight goes to the content signals instead of being wasted. A radar chart shows the exact weights behind each result. Everything is pre-computed, so a query is a weighted sum of eight matrix rows, about 0.2 ms on a laptop, and the engine is separate from the UI and unit-tested.</p>
+            <p class="flag"><strong>Limits.</strong> There is no offline evaluation yet, so quality is judged by inspection; precision@k and NDCG on held-out MovieLens ratings come next. Two weighting rules, for non-English and very popular films, are inactive because the shipped data lacks their columns, and the scripts behind two of the eight signals are not in the repository yet.</p>
+            <p class="stack">Python, sentence-transformers, NumPy, pandas, Plotly, Streamlit, TMDB and MovieLens data</p>
+            <div class="links"><a href="https://cinematch-reco.streamlit.app/">Live demo</a><a href="https://github.com/Victor-MICHELON/CineMatch-recommender">Code on GitHub</a></div>
           </div>
           <div class="visual shots">
             <img src="assets/img/cinematch-2.webp" width="1400" height="592" loading="lazy" alt="CineMatch results page: four recommended films with their similarity scores">
@@ -138,11 +171,11 @@
           <div>
             <h3>Brain tumor classification with Grad-CAM</h3>
             <p class="when">Deep learning on MRI, December 2025</p>
-            <p>Four classes: glioma, meningioma, pituitary tumor and no tumor. I trained a small CNN from scratch as a baseline, then fine-tuned EfficientNetB0. Grad-CAM overlays show which part of the scan drove each prediction.</p>
-            <p>On the 1,311 held-out scans, the fine-tuned model reaches 97.8% accuracy against 92.1% for the baseline. Its weakest class is meningioma, with a recall of 0.94.</p>
-            <p class="flag"><strong>Limits.</strong> One public dataset, one split. Clinical scans from other hospitals would likely score lower, and I have not tested that.</p>
-            <p class="stack">Python, TensorFlow, Keras, scikit-learn</p>
-            <div class="links"><a href="https://github.com/Victor-MICHELON/Brain_Tumor_Classification">Notebook on GitHub</a></div>
+            <p>Four classes: glioma, meningioma, pituitary tumor and no tumor, with 5,712 MRI scans for training and 1,311 for testing. A CNN trained from scratch is the baseline for a fine-tuned EfficientNetB0 pretrained on ImageNet. Grad-CAM overlays show which part of the scan drove each prediction.</p>
+            <p>On the held-out test set, the fine-tuned model reaches 97.8% accuracy (macro F1 0.98) against 92.1% (0.92) for the baseline, and the recall on its weakest class, meningioma, rises from 0.79 to 0.94. A reproducible <code>src/</code> package goes further: near-duplicate detection by perceptual hash for a leak-free split, the same training budget for both models, bootstrap confidence intervals, calibration, and a quantitative check of Grad-CAM against the tumor masks.</p>
+            <p class="flag"><strong>Limits.</strong> Validation accuracy (99.9%) is well above test accuracy (97.8%), a sign of possible train and validation leakage. The <code>src/</code> pipeline measures it but has not been run on the real data yet, so the figures still come from the notebook. One seed (about ±0.8 point on accuracy), no external validation set, and the Grad-CAM maps are qualitative evidence only. This is an educational project, not a diagnostic tool.</p>
+            <p class="stack">Python, TensorFlow, Keras (EfficientNetB0), scikit-learn, Grad-CAM implemented by hand</p>
+            <div class="links"><a href="https://github.com/Victor-MICHELON/Brain_Tumor_Classification">Code and notebook on GitHub</a></div>
           </div>
           <div class="visual">
             <div class="cams">
@@ -161,11 +194,11 @@
         <article class="project">
           <div>
             <h3>Tsunami risk from earthquake data</h3>
-            <p class="when">Classification on 449 events, October 2025</p>
-            <p>Can the seismic profile of an earthquake say whether it caused a tsunami? I compared eight models with repeated stratified cross-validation, and gradient boosting won.</p>
-            <p>Two decisions matter most. Every record before 2012 was a negative case, so the year alone would have leaked the answer, and I removed those rows. I also added a physical feature, the distance from the epicenter to the nearest tectonic plate boundary, computed with GeoPandas.</p>
-            <p class="flag"><strong>Limits.</strong> The hold-out set has only 90 events, 61 of them tsunamis. A model that always answered "tsunami" would reach a tsunami F1 of 0.81 on that split, so read 0.90 with that in mind. Recall on non-tsunami events is 0.66.</p>
-            <p class="stack">Python, scikit-learn, GeoPandas, Shapely, Seaborn</p>
+            <p class="when">Classification on 782 earthquakes, October 2025</p>
+            <p>Can the seismic profile of an earthquake alone say whether it will cause a tsunami? The dataset has 782 significant earthquakes from 2001 to 2022, with 13 seismic attributes. I compared eight models with repeated stratified cross-validation (10 folds, 3 repeats) inside leak-proof pipelines, tuned the two best, and gradient boosting won.</p>
+            <p>Two decisions matter most. Every record before 2012 was a negative case, so the year alone would have leaked the answer: I removed those rows, which leaves 449 events. I also added a physical feature, the distance from the epicenter to the nearest tectonic plate boundary, computed with GeoPandas. The model is tuned for recall, because missing a real tsunami costs far more than a false alarm: it detects 95% of tsunamis, with an F1 of 0.90 in line with cross-validation (0.905).</p>
+            <p class="flag"><strong>Limits.</strong> The hold-out set has only 90 events, 61 of them tsunamis. A model that always answered "tsunami" would reach a tsunami F1 of 0.81 on that split, so read 0.90 with that in mind. Recall on non-tsunami events is 0.66, the price of the recall-first choice.</p>
+            <p class="stack">Python, scikit-learn (Pipeline, GridSearchCV), GeoPandas, Shapely, pyproj, Seaborn</p>
             <div class="links"><a href="https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model">Notebook on GitHub</a></div>
           </div>
           <figure class="visual">
@@ -204,7 +237,7 @@
       <div class="about">
         <div>
           <p>I study at ESILV in Paris, where I split my time between applied mathematics and software. What I care about is whether a model's answer can be trusted: that its validation is honest, its failures are known, and a person can see why it said what it said.</p>
-          <p>That is why the projects above show cross-validation protocols, a baseline to beat, Grad-CAM heat maps and a radar of weights. So far my work covers classical machine learning, deep learning, sentence embeddings and agent-assisted workflows with Claude Code. I am now exploring transformer architectures and MLOps practices.</p>
+          <p>That is why the projects above show cross-validation protocols, a baseline to beat, Grad-CAM heat maps and a radar of weights. So far my work covers classical machine learning, deep learning, sentence embeddings and agent-assisted workflows with Bob and Claude Code. I am now exploring transformer architectures and MLOps practices.</p>
         </div>
         <dl class="skills">
           <dt>Languages</dt><dd>Python, C#, C++, SQL</dd>
@@ -233,7 +266,7 @@
   </div>
 </footer>
 
-<script type="application/json" id="runs-data">[{"id":"e000_dummy","rmse":16.506,"verdict":"baseline"},{"id":"e001_hgb_raw","rmse":7.581,"verdict":"GAIN"},{"id":"e002_hgb_basic_context","rmse":4.581,"verdict":"GAIN"},{"id":"e003_rater_scale","rmse":4.271,"verdict":"GAIN"},{"id":"e004_drug_amplitude","rmse":4.069,"verdict":"GAIN"},{"id":"e005_drug_amplitude_noes","rmse":4.058,"verdict":"NOISE"},{"id":"e006_harmonized_score","rmse":3.583,"verdict":"GAIN"},{"id":"e007_hier_traj","rmse":3.55,"verdict":"GAIN"},{"id":"e008_hier_traj_offset","rmse":3.55,"verdict":"NOISE"},{"id":"b001_hier_A_B","rmse":3.511,"verdict":"GAIN"},{"id":"e009_traj_v2","rmse":3.527,"verdict":"GAIN"},{"id":"e010_traj_v2_proj","rmse":3.465,"verdict":"GAIN"},{"id":"e011_traj_v2_proj_w05","rmse":3.465,"verdict":"NOISE"},{"id":"e012a_traj_meancal","rmse":3.458,"verdict":"NOISE"},{"id":"e012_traj_skew","rmse":3.226,"verdict":"GAIN"},{"id":"e013b_skew_offset","rmse":3.207,"verdict":"NOISE"},{"id":"e013c_skew_plain_offset_avg","rmse":3.195,"verdict":"NOISE"},{"id":"e014_skew_bag","rmse":3.226,"verdict":"NOISE"},{"id":"e015_temporal_fe","rmse":4.074,"verdict":"GAIN"},{"id":"e017_skew_temporal_delta","rmse":3.072,"verdict":"GAIN"},{"id":"e016_temporal_delta","rmse":3.867,"verdict":"GAIN"},{"id":"e019_long_surp_shape","rmse":2.812,"verdict":"GAIN"},{"id":"e018_skew_temporal_delta_hgbv2","rmse":3.011,"verdict":"GAIN"},{"id":"e019a_long_surp","rmse":2.963,"verdict":"GAIN"},{"id":"e019b_long_shape","rmse":2.871,"verdict":"GAIN"},{"id":"e020_off_miss_freq","rmse":2.81,"verdict":"NOISE"},{"id":"e022_cubic_traj","rmse":2.786,"verdict":"GAIN"},{"id":"e022b_cubic_traj_quad","rmse":2.778,"verdict":"GAIN"},{"id":"e022c_cubic_cov","rmse":2.79,"verdict":"NOISE"},{"id":"e022d_cubic_wprior","rmse":2.777,"verdict":"NOISE"}]</script>
+<script type="application/json" id="runs-data">[{"id":"e000_dummy","rmse":16.506,"verdict":"baseline"},{"id":"e001_hgb_raw","rmse":7.581,"verdict":"GAIN"},{"id":"e002_hgb_basic_context","rmse":4.581,"verdict":"GAIN"},{"id":"e003_rater_scale","rmse":4.271,"verdict":"GAIN"},{"id":"e004_drug_amplitude","rmse":4.069,"verdict":"GAIN"},{"id":"e005_drug_amplitude_noes","rmse":4.058,"verdict":"NOISE"},{"id":"e006_harmonized_score","rmse":3.583,"verdict":"GAIN"},{"id":"e007_hier_traj","rmse":3.55,"verdict":"GAIN"},{"id":"e008_hier_traj_offset","rmse":3.55,"verdict":"NOISE"},{"id":"b001_hier_A_B","rmse":3.511,"verdict":"GAIN"},{"id":"e009_traj_v2","rmse":3.527,"verdict":"GAIN"},{"id":"e010_traj_v2_proj","rmse":3.465,"verdict":"GAIN"},{"id":"e011_traj_v2_proj_w05","rmse":3.465,"verdict":"NOISE"},{"id":"e012a_traj_meancal","rmse":3.458,"verdict":"NOISE"},{"id":"e012_traj_skew","rmse":3.226,"verdict":"GAIN"},{"id":"e013b_skew_offset","rmse":3.207,"verdict":"NOISE"},{"id":"e013c_skew_plain_offset_avg","rmse":3.195,"verdict":"NOISE"},{"id":"e014_skew_bag","rmse":3.226,"verdict":"NOISE"},{"id":"e015_temporal_fe","rmse":4.074,"verdict":"GAIN"},{"id":"e017_skew_temporal_delta","rmse":3.072,"verdict":"GAIN"},{"id":"e016_temporal_delta","rmse":3.867,"verdict":"GAIN"},{"id":"e019_long_surp_shape","rmse":2.812,"verdict":"GAIN"},{"id":"e018_skew_temporal_delta_hgbv2","rmse":3.011,"verdict":"GAIN"},{"id":"e019a_long_surp","rmse":2.963,"verdict":"GAIN"},{"id":"e019b_long_shape","rmse":2.871,"verdict":"GAIN"},{"id":"e020_off_miss_freq","rmse":2.81,"verdict":"NOISE"},{"id":"e022_cubic_traj","rmse":2.786,"verdict":"GAIN"},{"id":"e022b_cubic_traj_quad","rmse":2.778,"verdict":"GAIN"},{"id":"e022c_cubic_cov","rmse":2.79,"verdict":"NOISE"},{"id":"e022d_cubic_wprior","rmse":2.777,"verdict":"NOISE"},{"id":"e023_seq_nn","rmse":2.61,"verdict":"GAIN"},{"id":"b002_seq_e022b","rmse":2.579,"verdict":"GAIN"},{"id":"e023_quality_noise","rmse":2.785,"verdict":"NOISE"},{"id":"e024_mlp_bag","rmse":2.841,"verdict":"NOISE"},{"id":"b002_e022b_mlp","rmse":2.727,"verdict":"NONE"},{"id":"e025_gru_raw","rmse":2.803,"verdict":"NOISE"},{"id":"b003_e022b_mlp_gru","rmse":2.618,"verdict":"GAIN"},{"id":"e026_transformer_raw","rmse":2.968,"verdict":"WORSE"},{"id":"e025s_gru_raw_seed100","rmse":2.809,"verdict":"NOISE"},{"id":"e024_ap_pairs_notsi","rmse":2.766,"verdict":"NOISE"},{"id":"e025t_gru_raw_tdt","rmse":2.808,"verdict":"NOISE"},{"id":"e025u_gru_raw_tnone","rmse":2.849,"verdict":"WORSE"},{"id":"e025_seq_offset","rmse":2.603,"verdict":"NOISE"},{"id":"e026_seq_amortized","rmse":2.853,"verdict":"WORSE"},{"id":"b003_seq4","rmse":2.541,"verdict":"GAIN"},{"id":"b003a_no_offset","rmse":2.563,"verdict":"WORSE"},{"id":"b003b_no_amort","rmse":2.55,"verdict":"WORSE"},{"id":"e027_rule_post","rmse":2.761,"verdict":"GAIN"},{"id":"b004_seq4_rule","rmse":2.539,"verdict":"GAIN"},{"id":"b004b_seq4_plus_rule","rmse":2.539,"verdict":"NOISE"},{"id":"e028_v0_template","rmse":2.785,"verdict":"WORSE"},{"id":"b004c_seq4_plus_v0","rmse":2.541,"verdict":"WORSE"},{"id":"e029_latent_prior","rmse":2.786,"verdict":"NOISE"},{"id":"b004d_seq4_plus_latent","rmse":2.541,"verdict":"WORSE"},{"id":"e030_seq_nn_full","rmse":2.602,"verdict":"GAIN"},{"id":"e031_seq_offset_full","rmse":2.595,"verdict":"NOISE"},{"id":"e032_seq_amortized_full","rmse":2.811,"verdict":"GAIN"},{"id":"b005_seq4_full","rmse":2.53,"verdict":"NOISE"},{"id":"e033_gru_raw_ref","rmse":2.808,"verdict":"NONE"},{"id":"e034_gru_simpre","rmse":2.748,"verdict":"GAIN"},{"id":"b006_seq4_gruref","rmse":2.51,"verdict":"GAIN"}]</script>
 <script src="assets/app.js" defer></script>
 </body>
 </html>

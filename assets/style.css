@@ -146,6 +146,8 @@ a:hover { color: var(--ink); text-decoration-thickness: 2px; }
 .runs .dot-noise { fill: var(--ground); stroke: var(--muted); stroke-width: 1.6; }
 .runs .dot-base { fill: var(--ink); }
 .runs .dot-min { fill: var(--heat); }
+.runs .dot-hit { fill: transparent; }
+.runs .cross { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; pointer-events: none; }
 .runs .halo { fill: none; stroke: var(--heat); stroke-width: 1.5; opacity: 0.55; }
 
 .tip {
