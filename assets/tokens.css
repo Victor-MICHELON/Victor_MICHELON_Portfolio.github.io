@@ -1,0 +1,75 @@
+/* design tokens: every color, font and spacing value used by the site */
+:root {
+  color-scheme: light;
+  --ground: #f2f4f8;
+  --panel: #e8ecf4;
+  --ink: #0f1b2d;
+  --muted: #53607a;
+  --rule: #d2d9e5;
+  --cobalt: #2442e0;
+  --cobalt-deep: #1a33b8;
+  --on-cobalt: #ffffff;
+  --heat: #f0452b;
+  --code-bg: #e3e8f1;
+  --chart-muted: #7f8798; /* de-emphasized series, such as a baseline */
+
+  /* one accent per project, used for its card and its case study */
+  --acc-parkinson: #2442e0;
+  --acc-cinematch: #c42b52;
+  --acc-brain: #08706a;
+  --acc-tsunami: #0565a3;
+  --accent: var(--cobalt);
+
+  --gutter: clamp(20px, 5vw, 56px);
+  --measure: 62ch;
+  --radius: 6px;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --text: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0c1220;
+    --panel: #151d2e;
+    --ink: #e6ebf4;
+    --muted: #9aa5ba;
+    --rule: #263149;
+    --cobalt: #7088ff;
+    --cobalt-deep: #a3b3ff;
+    --on-cobalt: #0c1220;
+    --heat: #ff6b52;
+    --code-bg: #182235;
+    --chart-muted: #6b7790;
+    --acc-parkinson: #7088ff;
+    --acc-cinematch: #ff7d9c;
+    --acc-brain: #3fcfbd;
+    --acc-tsunami: #55b9f2;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0c1220;
+  --panel: #151d2e;
+  --ink: #e6ebf4;
+  --muted: #9aa5ba;
+  --rule: #263149;
+  --cobalt: #7088ff;
+  --cobalt-deep: #a3b3ff;
+  --on-cobalt: #0c1220;
+  --heat: #ff6b52;
+  --code-bg: #182235;
+  --chart-muted: #6b7790;
+  --acc-parkinson: #7088ff;
+  --acc-cinematch: #ff7d9c;
+  --acc-brain: #3fcfbd;
+  --acc-tsunami: #55b9f2;
+}
+
+/* pages and cards pick their accent with data-project */
+[data-project="parkinson"] { --accent: var(--acc-parkinson); }
+[data-project="cinematch"] { --accent: var(--acc-cinematch); }
+[data-project="brain"] { --accent: var(--acc-brain); }
+[data-project="tsunami"] { --accent: var(--acc-tsunami); }

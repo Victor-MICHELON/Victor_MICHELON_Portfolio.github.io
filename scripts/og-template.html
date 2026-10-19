@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- Social preview template. Render each page at 1200x630, for example:
+     chrome --headless --window-size=1200,630 --screenshot=assets/img/og/parkinson.png "file://$PWD/scripts/og-template.html#parkinson" -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{background:#f2f4f8;color:#0f1b2d;font-family:"Bricolage Grotesque",sans-serif;display:grid;grid-template-columns:1fr 330px;gap:56px;padding:70px 76px;box-sizing:border-box;border-top:14px solid var(--a)}
+.kicker{font-weight:600;font-size:26px;color:var(--a);margin:0 0 22px}
+h1{font-weight:800;font-size:68px;line-height:1.02;letter-spacing:-.03em;margin:0}
+.name{position:absolute;left:76px;bottom:60px;font-weight:600;font-size:26px;color:#53607a}
+.fig{align-self:center;background:#e8ecf4;border-top:8px solid var(--a);border-radius:0 0 10px 10px;padding:30px 30px 34px}
+.big{font-weight:800;font-size:92px;letter-spacing:-.04em;line-height:1;color:var(--a)}
+.cap{font-weight:600;font-size:24px;color:#53607a;margin-top:12px;line-height:1.25}
+</style></head><body>
+<div><p class="kicker" id="k"></p><h1 id="t"></h1></div>
+<div class="fig"><div class="big" id="b"></div><div class="cap" id="c"></div></div>
+<div class="name">Victor Michelon · GenAI and Machine Learning</div>
+<script>
+var D={
+ home:["#2442e0","Portfolio","Machine learning models, with the evidence behind them","4","case studies with their method, results and limits"],
+ parkinson:["#2442e0","Bobathon ESILV × Probabl × IBM","Recovering the true OFF score in Parkinson’s disease","−85%","error, cross-validated by patient (16.51 → 2.51)"],
+ cinematch:["#c42b52","Streamlit app","CineMatch, an explainable hybrid recommender","8","similarity signals blended per film, with a radar that explains it"],
+ "brain-tumor":["#08706a","Deep learning on MRI","Brain tumor MRI classification with Grad-CAM","97.8%","test accuracy, against 92.1% for a CNN baseline"],
+ tsunami:["#0565a3","Classification on seismic data","Tsunami risk from seismic data","95%","of tsunamis detected on the hold-out set"]};
+var d=D[location.hash.slice(1)];document.body.style.setProperty("--a",d[0]);
+k.textContent=d[1];t.textContent=d[2];b.textContent=d[3];c.textContent=d[4];
+</script></body></html>

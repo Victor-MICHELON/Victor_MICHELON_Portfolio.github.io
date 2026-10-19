@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recovering the true OFF score in Parkinson’s disease | Victor Michelon</title>
+<meta name="description" content="Bobathon ESILV × Probabl × IBM: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
+<link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/parkinson.html">
+<meta property="og:title" content="Recovering the true OFF score in Parkinson’s disease | Victor Michelon">
+<meta property="og:description" content="Bobathon ESILV × Probabl × IBM: predicting the debiased MDS-UPDRS motor score. 61 runs under one locked patient-grouped protocol, sequence networks and an NNLS blend bring the error from 16.51 to 2.51.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/parkinson.html">
+<meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/parkinson.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2f4f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232442e0'/%3E%3Cpath d='M7 9l5 14 4-9 4 9 5-14' fill='none' stroke='%23fff' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/project.css">
+</head>
+<body data-project="parkinson">
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="mark" href="../index.html">Victor Michelon</a>
+    <nav aria-label="Main">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <header class="case-head">
+    <div class="wrap">
+      <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> All projects</a>
+      <p class="kicker">Bobathon ESILV × Probabl × IBM · Kaggle competition · October 2026</p>
+      <h1>Recovering the true OFF score in Parkinson’s disease</h1>
+      <p class="lede">Predict, for every patient visit, the motor score a patient would have without active medication, from noisy and often missing measurements. I ran it as a controlled lab: one locked evaluation protocol, one file per hypothesis, every run logged. The submitted blend of five models brings the cross-validated error from 16.51 to 2.51, on synthetic data.</p>
+      <ul class="kpis">
+        <li><span class="big">2.51</span><span class="cap">RMSE of the submitted blend, cross-validated by patient</span></li>
+        <li><span class="big">−85%</span><span class="cap">error against a constant prediction (16.51)</span></li>
+        <li><span class="big">61</span><span class="cap">runs logged under the same protocol</span></li>
+        <li><span class="big">44,590</span><span class="cap">training visits from 5,576 patients</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/Victor-MICHELON/Hackathon-IBMxProbabl">Code and experiment log</a>
+        <a class="btn" href="https://www.kaggle.com/competitions/bobathon-esilv/">Kaggle competition</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap case-layout" id="content">
+    <nav class="toc" aria-label="On this page">
+      <p>On this page</p>
+      <ol>
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#data">The data</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#limits">Limits</a></li>
+        <li><a href="#reproduce">Reproduce</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <section id="problem" aria-labelledby="problem-h">
+        <h2 id="problem-h">The problem</h2>
+        <p>In Parkinson’s disease, the MDS-UPDRS motor score depends heavily on <strong>levodopa</strong>. The <strong>OFF</strong> score, measured without active medication, says the most about the disease itself, but it is rarely measured, often noisy, and it depends on the rater and on the time since the last dose.</p>
+        <p>The task: for each visit, predict the <strong>true OFF score</strong> (the debiased <code>target</code>) from the observed ON and OFF measurements, the levodopa dose, the time since intake and the patient’s history.</p>
+        <ul>
+          <li><strong>Metric:</strong> RMSE at the visit level.</li>
+          <li><strong>Hold-out:</strong> by patient, so no patient appears in both train and test.</li>
+        </ul>
+      </section>
+
+      <section id="data" aria-labelledby="data-h">
+        <h2 id="data-h">The data</h2>
+        <p>The data is synthetic: 44,590 visits from 5,576 patients for training, 11,013 visits from 1,395 patients for testing. Most columns have holes, and the most useful ones are missing the most often.</p>
+        <figure>
+          <div class="chart" data-chart="bars" data-src="missing-data"></div>
+          <figcaption>Share of training visits where each input is missing.</figcaption>
+        </figure>
+        <script type="application/json" id="missing-data">{"format": "pct0", "max": 1, "valueName": "Missing in", "items": [
+          {"label": "Time since intake, OFF", "value": 0.79},
+          {"label": "OFF score", "value": 0.42},
+          {"label": "Levodopa dose (LEDD)", "value": 0.37},
+          {"label": "ON score", "value": 0.30}]}</script>
+        <div class="callout">
+          <span class="label">Note</span>
+          <p>The test set contains every visit of each test patient. Previous and next visits, per-patient averages and sequence models are therefore legitimate inputs: they never touch the <code>target</code>.</p>
+        </div>
+      </section>
+
+      <section id="approach" aria-labelledby="approach-h">
+        <h2 id="approach-h">Approach</h2>
+        <p>The repository is a <strong>Bob + skore</strong> project that goes from idea to submission. Bob drives the whole chain, with one evaluation protocol so that every run is comparable, and submits the best one.</p>
+        <figure>
+          <ol class="flow" aria-label="Experiment pipeline">
+            <li><span class="box"><b>Brainstorm</b><small>analyst agents</small></span></li>
+            <li><span class="box"><b>IDEAS.md</b><small>prioritized backlog</small></span></li>
+            <li><span class="box"><b>Leak review</b><small>leak-reviewer agent</small></span></li>
+            <li><span class="box"><b>Experiment</b><small>one eNNN file</small></span></li>
+            <li><span class="box is-key"><b>cv.py</b><small>locked protocol</small></span></li>
+            <li><span class="box"><b>LOG.md · results.csv</b><small>every run</small></span></li>
+            <li><span class="box"><b>NNLS blend</b><small>out-of-fold</small></span></li>
+            <li><span class="box"><b>submit.py</b><small>skore report + CSV</small></span></li>
+            <li><span class="box"><b>Kaggle</b></span></li>
+          </ol>
+          <figcaption>From an idea to a submission. Every hypothesis goes through the same locked evaluation before it can count.</figcaption>
+        </figure>
+        <h3>Rules that kept the results honest</h3>
+        <ol class="steps">
+          <li><strong>Paired decision rule.</strong> Each run is compared fold by fold with a reference run. A gain with |Δ| smaller than std(Δ) is noise; a gain below about 0.02 RMSE is logged but does not justify a more complex submitted model.</li>
+          <li><strong>No leakage.</strong> Anything learned from the <code>target</code> (drug response curves, rater bias, encodings, stacking, scalers) is fitted inside <code>fit_predict</code>, on the training folds only, and splits are never made at the visit level.</li>
+          <li><strong>No tuning on the leaderboard.</strong> The public leaderboard was only used to check that it moved with cross-validation.</li>
+          <li><strong>A critic before costly runs.</strong> A <code>leak-reviewer</code> agent reads each expensive hypothesis before it runs.</li>
+        </ol>
+      </section>
+
+      <section id="implementation" aria-labelledby="implementation-h">
+        <h2 id="implementation-h">Implementation</h2>
+        <ul class="cards">
+          <li><strong>Locked protocol</strong><p><code>lab/cv.py</code> scores every run with the same 5 <code>GroupKFold</code> folds by patient, stored in <code>lab/folds.csv</code>, and reports the out-of-fold RMSE.</p></li>
+          <li><strong>One hypothesis, one file</strong><p>Each experiment is a file <code>lab/experiments/eNNN_*.py</code> exposing <code>fit_predict</code>, <code>DESCRIPTION</code> and <code>FEATURES</code>.</p></li>
+          <li><strong>Automatic log</strong><p><code>results.csv</code> and <code>LOG.md</code> record every run with its reference, its paired delta and a verdict: gain, noise or worse.</p></li>
+          <li><strong>Agents and skills</strong><p>Bob agents (<code>analyst</code>, <code>experimenter</code>, <code>leak-reviewer</code>) and skills (<code>/cv</code>, <code>/idea</code>, <code>/review</code>, <code>/submit</code>…) with guardrails.</p></li>
+        </ul>
+        <h3>What worked</h3>
+        <ol class="steps">
+          <li><strong>Modelling the generating process</strong> rather than piling up features: the drug’s pharmacodynamic curve, an amplitude per patient, a scale per rater.</li>
+          <li><strong>A latent trajectory per patient</strong>, hierarchical then cubic, estimated by MAP with a skew-normal noise per measurement source. It gives the boosting model an excellent prior.</li>
+          <li><strong>Using the sequence of visits:</strong> lags, leads and sequence networks (BiGRU, Transformer) over each patient’s visits.</li>
+          <li><strong>Blending decorrelated models</strong> (boosting on the trajectory, sequence networks, a GRU on raw inputs) with non-negative least squares on out-of-fold predictions.</li>
+        </ol>
+      </section>
+
+      <section id="results" aria-labelledby="results-h">
+        <h2 id="results-h">Results</h2>
+        <figure class="runs" aria-label="Error across the runs of the Parkinson's hackathon">
+          <div class="runs-frame" id="runs-chart"></div>
+          <ul class="legend">
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle class="dot-gain" cx="7" cy="7" r="5"/></svg>Better than its reference run</li>
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle class="dot-noise" cx="7" cy="7" r="4.2"/></svg>Within noise</li>
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><path class="cross" d="M3 3l8 8M11 3l-8 8"/></svg>Worse than its reference run</li>
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle class="dot-base" cx="7" cy="7" r="5"/></svg>Baseline, or no reference run</li>
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle class="dot-min" cx="7" cy="7" r="5"/></svg>Submitted model</li>
+            <li><svg viewBox="0 0 14 14" aria-hidden="true"><path class="best" d="M0 7h14"/></svg>Best so far</li>
+          </ul>
+          <figcaption>All 61 logged runs up to the submitted model, experiments and blends, scored with 5-fold cross-validation that keeps each patient’s visits together. Of the 58 runs compared with a reference run, 29 improved on it, 21 stayed within noise and 8 were worse. Hover a point for its name.</figcaption>
+          <details class="data">
+            <summary>Show the numbers behind the chart</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">Run</th><th scope="col" class="num">RMSE</th><th scope="col">Verdict against its reference</th></tr></thead>
+                <tbody>
+                <tr><td>e000_dummy</td><td class="num">16.506</td><td>Baseline</td></tr>
+                <tr><td>e001_hgb_raw</td><td class="num">7.581</td><td>Better than its reference</td></tr>
+                <tr><td>e002_hgb_basic_context</td><td class="num">4.581</td><td>Better than its reference</td></tr>
+                <tr><td>e003_rater_scale</td><td class="num">4.271</td><td>Better than its reference</td></tr>
+                <tr><td>e004_drug_amplitude</td><td class="num">4.069</td><td>Better than its reference</td></tr>
+                <tr><td>e005_drug_amplitude_noes</td><td class="num">4.058</td><td>Within noise</td></tr>
+                <tr><td>e006_harmonized_score</td><td class="num">3.583</td><td>Better than its reference</td></tr>
+                <tr><td>e007_hier_traj</td><td class="num">3.550</td><td>Better than its reference</td></tr>
+                <tr><td>e008_hier_traj_offset</td><td class="num">3.550</td><td>Within noise</td></tr>
+                <tr><td>b001_hier_A_B</td><td class="num">3.511</td><td>Better than its reference</td></tr>
+                <tr><td>e009_traj_v2</td><td class="num">3.527</td><td>Better than its reference</td></tr>
+                <tr><td>e010_traj_v2_proj</td><td class="num">3.465</td><td>Better than its reference</td></tr>
+                <tr><td>e011_traj_v2_proj_w05</td><td class="num">3.465</td><td>Within noise</td></tr>
+                <tr><td>e012a_traj_meancal</td><td class="num">3.458</td><td>Within noise</td></tr>
+                <tr><td>e012_traj_skew</td><td class="num">3.226</td><td>Better than its reference</td></tr>
+                <tr><td>e013b_skew_offset</td><td class="num">3.207</td><td>Within noise</td></tr>
+                <tr><td>e013c_skew_plain_offset_avg</td><td class="num">3.195</td><td>Within noise</td></tr>
+                <tr><td>e014_skew_bag</td><td class="num">3.226</td><td>Within noise</td></tr>
+                <tr><td>e015_temporal_fe</td><td class="num">4.074</td><td>Better than its reference</td></tr>
+                <tr><td>e017_skew_temporal_delta</td><td class="num">3.072</td><td>Better than its reference</td></tr>
+                <tr><td>e016_temporal_delta</td><td class="num">3.867</td><td>Better than its reference</td></tr>
+                <tr><td>e019_long_surp_shape</td><td class="num">2.812</td><td>Better than its reference</td></tr>
+                <tr><td>e018_skew_temporal_delta_hgbv2</td><td class="num">3.011</td><td>Better than its reference</td></tr>
+                <tr><td>e019a_long_surp</td><td class="num">2.963</td><td>Better than its reference</td></tr>
+                <tr><td>e019b_long_shape</td><td class="num">2.871</td><td>Better than its reference</td></tr>
+                <tr><td>e020_off_miss_freq</td><td class="num">2.810</td><td>Within noise</td></tr>
+                <tr><td>e022_cubic_traj</td><td class="num">2.786</td><td>Better than its reference</td></tr>
+                <tr><td>e022b_cubic_traj_quad</td><td class="num">2.778</td><td>Better than its reference</td></tr>
+                <tr><td>e022c_cubic_cov</td><td class="num">2.790</td><td>Within noise</td></tr>
+                <tr><td>e022d_cubic_wprior</td><td class="num">2.777</td><td>Within noise</td></tr>
+                <tr><td>e023_seq_nn</td><td class="num">2.610</td><td>Better than its reference</td></tr>
+                <tr><td>b002_seq_e022b</td><td class="num">2.579</td><td>Better than its reference</td></tr>
+                <tr><td>e023_quality_noise</td><td class="num">2.785</td><td>Within noise</td></tr>
+                <tr><td>e024_mlp_bag</td><td class="num">2.841</td><td>Within noise</td></tr>
+                <tr><td>b002_e022b_mlp</td><td class="num">2.727</td><td>No reference run</td></tr>
+                <tr><td>e025_gru_raw</td><td class="num">2.803</td><td>Within noise</td></tr>
+                <tr><td>b003_e022b_mlp_gru</td><td class="num">2.618</td><td>Better than its reference</td></tr>
+                <tr><td>e026_transformer_raw</td><td class="num">2.968</td><td>Worse than its reference</td></tr>
+                <tr><td>e025s_gru_raw_seed100</td><td class="num">2.809</td><td>Within noise</td></tr>
+                <tr><td>e024_ap_pairs_notsi</td><td class="num">2.766</td><td>Within noise</td></tr>
+                <tr><td>e025t_gru_raw_tdt</td><td class="num">2.808</td><td>Within noise</td></tr>
+                <tr><td>e025u_gru_raw_tnone</td><td class="num">2.849</td><td>Worse than its reference</td></tr>
+                <tr><td>e025_seq_offset</td><td class="num">2.603</td><td>Within noise</td></tr>
+                <tr><td>e026_seq_amortized</td><td class="num">2.853</td><td>Worse than its reference</td></tr>
+                <tr><td>b003_seq4</td><td class="num">2.541</td><td>Better than its reference</td></tr>
+                <tr><td>b003a_no_offset</td><td class="num">2.563</td><td>Worse than its reference</td></tr>
+                <tr><td>b003b_no_amort</td><td class="num">2.550</td><td>Worse than its reference</td></tr>
+                <tr><td>e027_rule_post</td><td class="num">2.761</td><td>Better than its reference</td></tr>
+                <tr><td>b004_seq4_rule</td><td class="num">2.539</td><td>Better than its reference</td></tr>
+                <tr><td>b004b_seq4_plus_rule</td><td class="num">2.539</td><td>Within noise</td></tr>
+                <tr><td>e028_v0_template</td><td class="num">2.785</td><td>Worse than its reference</td></tr>
+                <tr><td>b004c_seq4_plus_v0</td><td class="num">2.541</td><td>Worse than its reference</td></tr>
+                <tr><td>e029_latent_prior</td><td class="num">2.786</td><td>Within noise</td></tr>
+                <tr><td>b004d_seq4_plus_latent</td><td class="num">2.541</td><td>Worse than its reference</td></tr>
+                <tr><td>e030_seq_nn_full</td><td class="num">2.602</td><td>Better than its reference</td></tr>
+                <tr><td>e031_seq_offset_full</td><td class="num">2.595</td><td>Within noise</td></tr>
+                <tr><td>e032_seq_amortized_full</td><td class="num">2.811</td><td>Better than its reference</td></tr>
+                <tr><td>b005_seq4_full</td><td class="num">2.530</td><td>Within noise</td></tr>
+                <tr><td>e033_gru_raw_ref</td><td class="num">2.808</td><td>No reference run</td></tr>
+                <tr><td>e034_gru_simpre</td><td class="num">2.748</td><td>Better than its reference</td></tr>
+                <tr><td>b006_seq4_gruref</td><td class="num">2.510</td><td>Better than its reference</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+        </figure>
+        <script type="application/json" id="runs-data">[{"id":"e000_dummy","rmse":16.506,"verdict":"baseline"},{"id":"e001_hgb_raw","rmse":7.581,"verdict":"GAIN"},{"id":"e002_hgb_basic_context","rmse":4.581,"verdict":"GAIN"},{"id":"e003_rater_scale","rmse":4.271,"verdict":"GAIN"},{"id":"e004_drug_amplitude","rmse":4.069,"verdict":"GAIN"},{"id":"e005_drug_amplitude_noes","rmse":4.058,"verdict":"NOISE"},{"id":"e006_harmonized_score","rmse":3.583,"verdict":"GAIN"},{"id":"e007_hier_traj","rmse":3.55,"verdict":"GAIN"},{"id":"e008_hier_traj_offset","rmse":3.55,"verdict":"NOISE"},{"id":"b001_hier_A_B","rmse":3.511,"verdict":"GAIN"},{"id":"e009_traj_v2","rmse":3.527,"verdict":"GAIN"},{"id":"e010_traj_v2_proj","rmse":3.465,"verdict":"GAIN"},{"id":"e011_traj_v2_proj_w05","rmse":3.465,"verdict":"NOISE"},{"id":"e012a_traj_meancal","rmse":3.458,"verdict":"NOISE"},{"id":"e012_traj_skew","rmse":3.226,"verdict":"GAIN"},{"id":"e013b_skew_offset","rmse":3.207,"verdict":"NOISE"},{"id":"e013c_skew_plain_offset_avg","rmse":3.195,"verdict":"NOISE"},{"id":"e014_skew_bag","rmse":3.226,"verdict":"NOISE"},{"id":"e015_temporal_fe","rmse":4.074,"verdict":"GAIN"},{"id":"e017_skew_temporal_delta","rmse":3.072,"verdict":"GAIN"},{"id":"e016_temporal_delta","rmse":3.867,"verdict":"GAIN"},{"id":"e019_long_surp_shape","rmse":2.812,"verdict":"GAIN"},{"id":"e018_skew_temporal_delta_hgbv2","rmse":3.011,"verdict":"GAIN"},{"id":"e019a_long_surp","rmse":2.963,"verdict":"GAIN"},{"id":"e019b_long_shape","rmse":2.871,"verdict":"GAIN"},{"id":"e020_off_miss_freq","rmse":2.81,"verdict":"NOISE"},{"id":"e022_cubic_traj","rmse":2.786,"verdict":"GAIN"},{"id":"e022b_cubic_traj_quad","rmse":2.778,"verdict":"GAIN"},{"id":"e022c_cubic_cov","rmse":2.79,"verdict":"NOISE"},{"id":"e022d_cubic_wprior","rmse":2.777,"verdict":"NOISE"},{"id":"e023_seq_nn","rmse":2.61,"verdict":"GAIN"},{"id":"b002_seq_e022b","rmse":2.579,"verdict":"GAIN"},{"id":"e023_quality_noise","rmse":2.785,"verdict":"NOISE"},{"id":"e024_mlp_bag","rmse":2.841,"verdict":"NOISE"},{"id":"b002_e022b_mlp","rmse":2.727,"verdict":"NONE"},{"id":"e025_gru_raw","rmse":2.803,"verdict":"NOISE"},{"id":"b003_e022b_mlp_gru","rmse":2.618,"verdict":"GAIN"},{"id":"e026_transformer_raw","rmse":2.968,"verdict":"WORSE"},{"id":"e025s_gru_raw_seed100","rmse":2.809,"verdict":"NOISE"},{"id":"e024_ap_pairs_notsi","rmse":2.766,"verdict":"NOISE"},{"id":"e025t_gru_raw_tdt","rmse":2.808,"verdict":"NOISE"},{"id":"e025u_gru_raw_tnone","rmse":2.849,"verdict":"WORSE"},{"id":"e025_seq_offset","rmse":2.603,"verdict":"NOISE"},{"id":"e026_seq_amortized","rmse":2.853,"verdict":"WORSE"},{"id":"b003_seq4","rmse":2.541,"verdict":"GAIN"},{"id":"b003a_no_offset","rmse":2.563,"verdict":"WORSE"},{"id":"b003b_no_amort","rmse":2.55,"verdict":"WORSE"},{"id":"e027_rule_post","rmse":2.761,"verdict":"GAIN"},{"id":"b004_seq4_rule","rmse":2.539,"verdict":"GAIN"},{"id":"b004b_seq4_plus_rule","rmse":2.539,"verdict":"NOISE"},{"id":"e028_v0_template","rmse":2.785,"verdict":"WORSE"},{"id":"b004c_seq4_plus_v0","rmse":2.541,"verdict":"WORSE"},{"id":"e029_latent_prior","rmse":2.786,"verdict":"NOISE"},{"id":"b004d_seq4_plus_latent","rmse":2.541,"verdict":"WORSE"},{"id":"e030_seq_nn_full","rmse":2.602,"verdict":"GAIN"},{"id":"e031_seq_offset_full","rmse":2.595,"verdict":"NOISE"},{"id":"e032_seq_amortized_full","rmse":2.811,"verdict":"GAIN"},{"id":"b005_seq4_full","rmse":2.53,"verdict":"NOISE"},{"id":"e033_gru_raw_ref","rmse":2.808,"verdict":"NONE"},{"id":"e034_gru_simpre","rmse":2.748,"verdict":"GAIN"},{"id":"b006_seq4_gruref","rmse":2.51,"verdict":"GAIN"}]</script>
+
+        <h3>The steps that mattered</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Step</th><th scope="col">Run</th><th scope="col" class="num">RMSE</th></tr></thead>
+            <tbody>
+              <tr><td>Constant prediction (mean)</td><td><code>e000_dummy</code></td><td class="num">16.51</td></tr>
+              <tr><td>Gradient boosting on raw columns, native missing values</td><td><code>e001_hgb_raw</code></td><td class="num">7.58</td></tr>
+              <tr><td>+ patient context: previous and next visit, averages</td><td><code>e002_hgb_basic_context</code></td><td class="num">4.58</td></tr>
+              <tr><td>+ rater factor and drug amplitude per patient</td><td><code>e004_drug_amplitude</code></td><td class="num">4.07</td></tr>
+              <tr><td>+ harmonized score and hierarchical trajectory per patient</td><td><code>e007_hier_traj</code></td><td class="num">3.55</td></tr>
+              <tr><td>+ MAP trajectory with skew-normal noise per measurement source</td><td><code>e012_traj_skew</code></td><td class="num">3.23</td></tr>
+              <tr><td>+ temporal features, delta target</td><td><code>e017_skew_temporal_delta</code></td><td class="num">3.07</td></tr>
+              <tr><td>+ surprises and curve shape per patient</td><td><code>e019_long_surp_shape</code></td><td class="num">2.81</td></tr>
+              <tr><td>+ hierarchical cubic trajectory</td><td><code>e022b_cubic_traj_quad</code></td><td class="num">2.78</td></tr>
+              <tr><td>Sequence networks per patient (BiGRU, Transformer)</td><td><code>e023_seq_nn</code></td><td class="num">2.61</td></tr>
+              <tr><td>NNLS blend of 4 models</td><td><code>b003_seq4</code></td><td class="num">2.541</td></tr>
+              <tr><td><strong>NNLS blend of 5 models (+ GRU on raw inputs)</strong></td><td><code>b006_seq4_gruref</code></td><td class="num"><strong>2.510</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Inside the submitted blend</h3>
+        <figure>
+          <div class="chart" data-chart="bars" data-src="blend-data"></div>
+          <figcaption>Weights of the five models in <code>b006_seq4_gruref</code>, fitted by non-negative least squares on out-of-fold predictions. Sequence networks carry most of the blend; the boosting model on the cubic trajectory adds a small decorrelated share.</figcaption>
+        </figure>
+        <script type="application/json" id="blend-data">{"format": "dec2", "max": 0.4, "valueName": "Weight", "items": [
+          {"label": "Sequence networks, offset target (e031)", "value": 0.36},
+          {"label": "Sequence networks (e030)", "value": 0.26},
+          {"label": "BiGRU on raw inputs (e033)", "value": 0.21},
+          {"label": "Amortized Transformer (e032)", "value": 0.10},
+          {"label": "Boosting on cubic trajectory (e022b)", "value": 0.07}]}</script>
+      </section>
+
+      <section id="limits" aria-labelledby="limits-h">
+        <h2 id="limits-h">Limits</h2>
+        <div class="callout callout-limit">
+          <span class="label">Limits</span>
+          <p>The data is synthetic, built for teaching. The scores are out-of-fold cross-validation, grouped by patient; I do not claim a leaderboard rank here.</p>
+        </div>
+        <h3>What did not help</h3>
+        <p>Several directions were explored and dropped for lack of a gain above noise: fine per-rater bias, per-patient stacking, pseudo-labeling, heavy network tuning, an MLP alone, an “amortized” Transformer alone. The findings are documented in <code>lab/eda/</code> and <code>lab/IDEAS.md</code>.</p>
+      </section>
+
+      <section id="reproduce" aria-labelledby="reproduce-h">
+        <h2 id="reproduce-h">Reproduce</h2>
+        <div class="code"><pre><code>python3 -m venv .venv &amp;&amp; .venv/bin/pip install -r requirements.txt -r lab/requirements.txt
+
+# quick test on one fold (not logged)
+.venv/bin/python lab/cv.py lab/experiments/e002_hgb_basic_context.py --folds 0
+
+# full run: 5 folds + test predictions, logged in results.csv / LOG.md
+.venv/bin/python lab/cv.py lab/experiments/e022b_cubic_traj_quad.py --test --ref e002_hgb_basic_context
+
+# out-of-fold NNLS blend
+.venv/bin/python lab/blend.py e023_seq_nn e022b_cubic_traj_quad e025_seq_offset e026_seq_amortized --name b003_seq4
+
+# submission: EstimatorReport on Skore Hub + submissions/&lt;key&gt;.csv
+.venv/bin/python lab/submit.py b006_seq4_gruref --key b006_seq4_gruref</code></pre></div>
+        <p>LightGBM needs <code>brew install libomp</code> on macOS (otherwise <code>HistGradientBoostingRegressor</code> is used); the networks use PyTorch. The Kaggle data goes in <code>data/</code>, read-only.</p>
+        <p class="stack">Python, scikit-learn and LightGBM gradient boosting, PyTorch (BiGRU, Transformer), pandas, skore, Bob</p>
+      </section>
+    </article>
+  </div>
+
+  <nav class="case-nav" aria-label="Other projects">
+    <div class="wrap">
+      <a class="prev" href="tsunami.html"><span class="dir">← Previous project</span><span class="name">Tsunami risk</span></a>
+      <a class="next" href="cinematch.html"><span class="dir">Next project →</span><span class="name">CineMatch recommender</span></a>
+    </div>
+  </nav>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Victor Michelon, 2026</span>
+    <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io">Source of this site</a>
+  </div>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+<script src="../assets/project.js" defer></script>
+<script src="../assets/app.js" defer></script>
+<script src="../assets/charts.js" defer></script>
+</body>
+</html>
