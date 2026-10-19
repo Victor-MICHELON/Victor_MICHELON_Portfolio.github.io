@@ -97,6 +97,26 @@ code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); 
   :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
 }
 
+/* EN/FR switch, next to the theme switch */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 4px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.lang-toggle:hover { border-color: var(--ink); }
+.lang-toggle span { padding: 4px 8px; border-radius: 999px; }
+.lang-toggle span.on { background: var(--ink); color: var(--ground); }
+
 /* hero */
 .hero { padding-top: clamp(40px, 7vw, 96px); padding-bottom: clamp(8px, 2vw, 24px); }
 .hero .kicker {
@@ -178,6 +198,13 @@ code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); 
 .map-key span::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 6px; border-radius: 50%; vertical-align: 0; }
 .map-key .k-tsu::before { background: #2f9be6; }
 .map-key .k-no::before { background: #8a96ad; }
+.l1-split { display: flex; flex-direction: column; justify-content: center; gap: 14px; height: 100%; padding: 0 clamp(16px, 5%, 40px); font-family: var(--display); }
+.l1-split .bar-row { display: flex; height: 54px; border-radius: var(--radius); overflow: hidden; }
+.l1-split .bar-row span { display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.15rem; }
+.l1-split .s-home { background: #2f7d4f; }
+.l1-split .s-draw { background: #5b6578; }
+.l1-split .s-away { background: #b8402f; }
+.l1-split .legend { display: flex; justify-content: space-between; margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--muted); }
 .cams-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; height: 100%; }
 .cams-strip img { width: 100%; height: 100%; object-fit: cover; }
 .spark { display: block; width: 100%; height: 100%; }

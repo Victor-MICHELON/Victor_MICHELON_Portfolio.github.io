@@ -1,4 +1,4 @@
-// shared by every page: the light/dark switch, and blocks that fade in as they scroll into view
+// shared by every page: the light/dark switch (the EN/FR one lives in i18n.js), and blocks that fade in as they scroll into view
 (function () {
   "use strict";
 
@@ -12,8 +12,10 @@
 
   function label(btn) {
     var next = current() === "dark" ? "light" : "dark";
-    btn.setAttribute("aria-label", "Switch to " + next + " theme");
-    btn.title = "Switch to " + next + " theme";
+    var L = window.SITE_LANG ? window.SITE_LANG.labels() : { theme: function (n) { return "Switch to " + n + " theme"; }, light: "light", dark: "dark" };
+    var text = L.theme(L[next]);
+    btn.setAttribute("aria-label", text);
+    btn.title = text;
   }
 
   var buttons = document.querySelectorAll(".theme-toggle");
@@ -26,6 +28,8 @@
       Array.prototype.forEach.call(buttons, label);
     });
   });
+
+  document.addEventListener("langchange", function () { Array.prototype.forEach.call(buttons, label); });
 
   if (dark && dark.addEventListener) {
     dark.addEventListener("change", function () { Array.prototype.forEach.call(buttons, label); });

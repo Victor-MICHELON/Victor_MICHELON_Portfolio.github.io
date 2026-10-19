@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="l1.title">Ligue 1 match prediction | Victor Michelon</title>
+<meta name="description" content="A leak-free machine learning pipeline that predicts every Ligue 1 result of the 2025-2026 season from squad values, club hierarchy, recent form, head-to-head and in-game events: 48% accuracy in cross-validation against 34% for a random baseline.">
+<link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/ligue1.html">
+<meta property="og:title" content="Ligue 1 match prediction | Victor Michelon">
+<meta property="og:description" content="A leak-free machine learning pipeline that predicts every Ligue 1 result of the 2025-2026 season: 48% accuracy in cross-validation against 34% for a random baseline.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/ligue1.html">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#f2f4f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232442e0'/%3E%3Cpath d='M7 9l5 14 4-9 4 9 5-14' fill='none' stroke='%23fff' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/project.css">
+</head>
+<body data-project="ligue1">
+<a class="skip" href="#content" data-i18n="c.skip">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <nav aria-label="Main">
+      <a href="../index.html#projects" data-i18n="c.projects">Projects</a>
+      <a href="../index.html#about" data-i18n="c.about">About</a>
+      <a href="../index.html#contact" data-i18n="c.contact">Contact</a>
+      <button class="lang-toggle" type="button" aria-label="Switch language"><span data-lang="en">EN</span><span data-lang="fr">FR</span></button>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <header class="case-head">
+    <div class="wrap">
+      <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> <span data-i18n="c.all">All projects</span></a>
+      <p class="kicker" data-i18n="l1.kicker">Course project with Maël Paget · May 2026</p>
+      <h1 data-i18n="l1.h1">Predicting Ligue 1 results, season 2025-2026</h1>
+      <p class="lede" data-i18n="l1.lede">Predict the outcome of every Ligue 1 match of the 2025-2026 season (home win, draw or away win) before it is played. I built a leak-free pipeline that turns squad values, club hierarchy, recent form, head-to-head and in-game events into 23 features, then compared three models. The best one reaches 48.0% accuracy in cross-validation, against 34.1% for a random baseline.</p>
+      <ul class="kpis">
+        <li><span class="big">48.0%</span><span class="cap" data-i18n="l1.k1">cross-validated accuracy of the gradient boosting model, on three possible outcomes</span></li>
+        <li><span class="big">+14 pts</span><span class="cap" data-i18n="l1.k2">over a baseline that guesses at random with the historical class frequencies (34.1%)</span></li>
+        <li><span class="big">4,691</span><span class="cap" data-i18n="l1.k3">historical matches used for training, seasons 2012 to 2024</span></li>
+        <li><span class="big">233</span><span class="cap" data-i18n="l1.k4">matches of the 2025-2026 season predicted</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-primary" href="../assets/files/Notebook_ProjetLigue1_VictorMICHELON_MaelPAGET.ipynb" download data-i18n="l1.dl1">Download the notebook</a>
+        <a class="btn" href="../assets/files/predictions_2025_2026.csv" download data-i18n="l1.dl2">Predictions (CSV)</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap case-layout" id="content">
+    <nav class="toc" aria-label="On this page" data-i18n-aria="c.toc">
+      <p data-i18n="c.onpage">On this page</p>
+      <ol>
+        <li><a href="#problem" data-i18n="l1.t1">The problem</a></li>
+        <li><a href="#data" data-i18n="l1.t2">The data</a></li>
+        <li><a href="#approach" data-i18n="l1.t3">Approach</a></li>
+        <li><a href="#results" data-i18n="l1.t4">Results</a></li>
+        <li><a href="#limits" data-i18n="l1.t5">Limits</a></li>
+        <li><a href="#reproduce" data-i18n="l1.t6">Reproduce</a></li>
+      </ol>
+    </nav>
+
+    <article class="prose">
+      <section id="problem" aria-labelledby="problem-h">
+        <h2 id="problem-h" data-i18n="l1.t1">The problem</h2>
+        <p data-i18n="l1.p1">A three-class classification: <strong>1</strong> for a home win, <strong>0</strong> for a draw, <strong>−1</strong> for an away win. The whole 2025-2026 season has to be predicted at once, so no match can use information from the matches played before it in that season: only what was known when the history ends.</p>
+        <p data-i18n="l1.p2">The real difficulty is the time series. A pipeline that lets a rolling statistic see the match it is meant to predict would look great and predict nothing, so every feature is built to avoid data leakage.</p>
+      </section>
+
+      <section id="data" aria-labelledby="data-h">
+        <h2 id="data-h" data-i18n="l1.t2">The data</h2>
+        <p data-i18n="l1.p3">Domestic league matches from 2012 to 2024, yearly player market values taken before each season, and in-game events (goals, assists, cards). The exploratory analysis tested five hypotheses, and each one shaped a feature:</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col" data-i18n="l1.th1">Question</th><th scope="col" data-i18n="l1.th2">What the data shows</th><th scope="col" data-i18n="l1.th3">Decision</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="l1.r1a">Does playing at home matter?</td><td data-i18n="l1.r1b">44% home wins, 26% draws, 30% away wins</td><td data-i18n="l1.r1c">Balanced class weights, more weight on recent seasons</td></tr>
+              <tr><td data-i18n="l1.r2a">Does squad value predict the result?</td><td data-i18n="l1.r2b">Home win rate is 63% when the home squad is worth over 2× the visitor, and 24% under 0.5×</td><td data-i18n="l1.r2c">Log of the value ratio, to tame PSG’s outlier values</td></tr>
+              <tr><td data-i18n="l1.r3a">Does the ranking gap matter?</td><td data-i18n="l1.r3b">Home win rate climbs from 8% to 85% across the gap range, but the current ranking is unknown for a future season</td><td data-i18n="l1.r3c">Gap between the historical average final positions</td></tr>
+              <tr><td data-i18n="l1.r4a">Does recent form matter?</td><td data-i18n="l1.r4b">58% home wins after 13 to 15 points in 5 matches, 32% after 3 points or fewer</td><td data-i18n="l1.r4c">Home/away form and win-rate momentum over 5 matches</td></tr>
+              <tr><td data-i18n="l1.r5a">Does club status matter?</td><td data-i18n="l1.r5b">PSG wins 76% of its home matches, the bulk of the league sits between 35% and 45%</td><td data-i18n="l1.r5c">Cumulative win rate (target encoding), head-to-head</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <span class="label" data-i18n="l1.cl1">Complementary signals</span>
+          <p data-i18n="l1.cl1p">Ranking, finances and form are weakly correlated with each other, and none of them correlates with the result above 0.4. There is no miracle variable: the prediction comes from combining them, which suits ensemble models.</p>
+        </div>
+      </section>
+
+      <section id="approach" aria-labelledby="approach-h">
+        <h2 id="approach-h" data-i18n="l1.t3">Approach</h2>
+        <figure>
+          <ol class="flow" aria-label="Modelling pipeline" data-i18n-aria="l1.flow">
+            <li><span class="box"><b>EDA</b><small data-i18n="l1.f1">5 hypotheses</small></span></li>
+            <li><span class="box is-key"><b data-i18n="l1.f2b">Features</b><small data-i18n="l1.f2">23, leak-free</small></span></li>
+            <li><span class="box"><b data-i18n="l1.f3b">Time weights</b><small>0.75<sup>age</sup></small></span></li>
+            <li><span class="box"><b data-i18n="l1.f4b">3 models</b><small data-i18n="l1.f4">5-fold CV</small></span></li>
+            <li><span class="box"><b>2025-2026</b><small data-i18n="l1.f5">233 predictions</small></span></li>
+          </ol>
+        </figure>
+        <ol class="steps">
+          <li data-i18n="l1.s1"><strong>Build the context before kick-off.</strong> Squad value (total, average, log ratio), historical position gap, win-rate target encoding, home/away form over the last 5 matches, momentum, head-to-head goal difference, and rolling averages of assists, yellow cards, penalties and headers.</li>
+          <li data-i18n="l1.s2"><strong>Shift every rolling statistic.</strong> Form, momentum, head-to-head and target encoding only use matches strictly before the one being described.</li>
+          <li data-i18n="l1.s3"><strong>Weight the seasons.</strong> Each match gets the weight 0.75<sup>(latest season − its season)</sup>, normalised to a mean of 1, because recent seasons describe today’s Ligue 1 better.</li>
+          <li data-i18n="l1.s4"><strong>Compare three models</strong> in scikit-learn pipelines with median imputation: a random forest, a gradient boosting and a logistic regression, against a stratified random baseline.</li>
+          <li data-i18n="l1.s5"><strong>Predict 2025-2026</strong> from the latest known state of each club: last form and momentum, last squad value, last win rate, last head-to-head.</li>
+        </ol>
+        <h3 data-i18n="l1.h31">Features, by family</h3>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col" data-i18n="l1.fh1">Family</th><th scope="col" data-i18n="l1.fh2">Features</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="l1.fa1">Structure and finances</td><td data-i18n="l1.fb1"><code>log_diff_squad_value</code>, <code>diff_squad_avg</code>, <code>h_squad_total</code>, <code>diff_hist_position</code>, <code>home_club_winrate_enc</code></td></tr>
+              <tr><td data-i18n="l1.fa2">Sporting dynamics</td><td data-i18n="l1.fb2"><code>diff_form_pts</code>, <code>diff_momentum_last5</code>, <code>h2h_goal_diff</code>, <code>h2h_home_winrate</code></td></tr>
+              <tr><td data-i18n="l1.fa3">Game profile</td><td data-i18n="l1.fb3"><code>h_roll_n_assists_5</code>, <code>diff_yellow</code>, <code>h_roll_n_penalties_5</code>, <code>h_roll_n_headers_5</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="results" aria-labelledby="results-h">
+        <h2 id="results-h" data-i18n="l1.t4">Results</h2>
+        <figure>
+          <div class="chart" data-chart="bars" data-src="models-data"></div>
+          <figcaption data-i18n="l1.cap1">Mean accuracy over 5 folds with temporal sample weights. All three models beat the random baseline by 12 to 14 points; gradient boosting and random forest are within a point of each other.</figcaption>
+        </figure>
+        <script type="application/json" id="models-data">{"format": "pct1", "max": 0.6, "valueName": "Accuracy", "items": [
+          {"label": "Gradient Boosting", "value": 0.480, "note": "std 0.007 · +13.9 pts"},
+          {"label": "Random Forest", "value": 0.479, "muted": true, "note": "std 0.020 · +13.8 pts"},
+          {"label": "Logistic Regression", "value": 0.461, "muted": true, "note": "std 0.019 · +12.0 pts"},
+          {"label": "Random baseline", "value": 0.341, "muted": true, "note": "std 0.007"}]}</script>
+        <p data-i18n="l1.p4">Gradient boosting was kept: it has the highest mean and by far the most stable score across folds. The importance plot in the notebook puts the financial indicators first, then the club’s historical status, with recent form and game profile as adjustment variables: structural strength weighs more than short-term dynamics.</p>
+        <h3 data-i18n="l1.h32">The 2025-2026 predictions</h3>
+        <p data-i18n="l1.p5">The model predicts 92 home wins, 76 away wins and 65 draws over the 233 matches, so it does not fall back on always picking the home team. Its average confidence is about 51%, with most predictions between 35% and 50% and a long tail up to 90% for extreme mismatches, such as a top club against a bottom-table side.</p>
+      </section>
+
+      <section id="limits" aria-labelledby="limits-h">
+        <h2 id="limits-h" data-i18n="l1.t5">Limits</h2>
+        <div class="callout callout-limit">
+          <span class="label" data-i18n="l1.cl2">Not scored yet</span>
+          <p data-i18n="l1.cl2p">The 2025-2026 predictions are not compared with actual results anywhere in the notebook. The 48% is a cross-validation figure on the historical data, not a measured score on the predicted season.</p>
+        </div>
+        <ul>
+          <li data-i18n="l1.li1"><strong>The cross-validation is not strictly forward in time.</strong> <code>StratifiedKFold(shuffle=False)</code> keeps matches in order inside the folds, but the early folds are predicted by models trained on later seasons. A walk-forward split would be the honest test.</li>
+          <li data-i18n="l1.li2"><strong>The historical position is a mild leak.</strong> The average final rank is computed over all seasons, including the one a training match belongs to.</li>
+          <li data-i18n="l1.li3"><strong>The 2025-2026 context is frozen.</strong> Form, momentum and win rates are the last known values and are not updated as the season goes on. A club with no history, such as a promoted one, falls back on the median imputation.</li>
+          <li data-i18n="l1.li4"><strong>Class balancing is inconsistent.</strong> The random forest and the logistic regression use balanced class weights, the selected gradient boosting does not.</li>
+          <li data-i18n="l1.li5"><strong>No outside reference.</strong> There is no comparison with bookmaker odds, the usual yardstick for football forecasts, and draws remain the hardest outcome to call.</li>
+        </ul>
+      </section>
+
+      <section id="reproduce" aria-labelledby="reproduce-h">
+        <h2 id="reproduce-h" data-i18n="l1.t6">Reproduce</h2>
+        <p data-i18n="l1.p6">The notebook and the predictions are published here. The input files (<code>matchs_2013_2024.csv</code>, <code>match_2025.csv</code>, <code>player_valuation_before_season.csv</code>, <code>game_events_before2025.csv</code>, <code>sample_results.csv</code>) are not included, so the notebook cannot be re-run from this site alone.</p>
+        <div class="code"><pre><code>pip install pandas numpy scikit-learn matplotlib seaborn
+jupyter notebook Notebook_ProjetLigue1_VictorMICHELON_MaelPAGET.ipynb</code></pre></div>
+        <p class="stack">Python, pandas, NumPy, scikit-learn (Pipeline, RandomForest, GradientBoosting, LogisticRegression, cross_validate), Matplotlib, Seaborn</p>
+      </section>
+    </article>
+  </div>
+
+  <nav class="case-nav" aria-label="Other projects" data-i18n-aria="c.others">
+    <div class="wrap">
+      <a class="prev" href="tsunami.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name">Tsunami risk</span></a>
+      <a class="next" href="parkinson.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name">Predicting Parkinson’s motor scores</span></a>
+    </div>
+  </nav>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>Victor Michelon, 2026</span>
+    <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io" data-i18n="c.source">Source of this site</a>
+  </div>
+</footer>
+
+<script src="../assets/i18n.js" defer></script>
+<script src="../assets/site.js" defer></script>
+<script src="../assets/project.js" defer></script>
+<script src="../assets/charts.js" defer></script>
+</body>
+</html>

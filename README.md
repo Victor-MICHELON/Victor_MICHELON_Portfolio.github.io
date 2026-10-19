@@ -2,23 +2,25 @@
 
 Source of my portfolio site: [victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io](https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/)
 
-A static site with four machine learning case studies, each with its method, its results and its limits. The home page lists them as cards; each case study has its own page with charts drawn from the real results.
+A static site with five machine learning case studies, each with its method, its results and its limits. The home page lists them as cards; each case study has its own page with charts drawn from the real results.
 
 ## Structure
 
 ```
 index.html               the home page: hero, project cards, about, contact
-projects/*.html          one case study per project (parkinson, cinematch, brain-tumor, tsunami)
+projects/*.html          one case study per project (parkinson, cinematch, brain-tumor, tsunami, ligue1)
 projects/_template.html  starting point for a new case study (not published: Jekyll skips "_" files)
 404.html                 page shown for any missing URL (absolute paths)
-sitemap.xml              the five pages, for Google Search Console
+sitemap.xml              the six pages, for Google Search Console
 assets/tokens.css        colors, fonts and spacing, light and dark themes, one accent per project
 assets/style.css         base styles and home page components
 assets/project.css       case study components: key figures, table of contents, callouts, steps, code blocks
+assets/i18n.js           EN/FR switch: French strings keyed by data-i18n, choice kept in localStorage
 assets/site.js           light/dark switch and fade-in on scroll, on every page
 assets/app.js            Parkinson page: draws the run chart from the runs-data JSON, with a tooltip
 assets/charts.js         case study charts (bars, grouped bars, radar) drawn from JSON blocks in the page
 assets/project.js        case study pages: current section in the table of contents, copy buttons
+assets/files/            the Ligue 1 notebook and its predictions (downloads)
 assets/img/              screenshots (WebP, with smaller variants), the Tsunami map (SVG)
 assets/img/og/           1200×630 social preview images, one per page
 scripts/                 one-off generators: build_tsunami_map.py, og-template.html

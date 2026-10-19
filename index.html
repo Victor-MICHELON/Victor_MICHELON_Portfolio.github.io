@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Victor Michelon, Portfolio | IA &amp; Data Science</title>
-<meta name="description" content="Portfolio of Victor Michelon, engineering-management student at ESILV Paris, specialised in AI and data science. Four machine learning case studies with their method, results and limits.">
+<title data-i18n="h.title">Victor Michelon, Portfolio | AI and Data Science</title>
+<meta name="description" content="Portfolio of Victor Michelon, Data Science &amp; AI Engineering student at ESILV Paris. Five machine learning case studies with their method, results and limits.">
 <meta property="og:title" content="Victor Michelon, Portfolio | IA &amp; Data Science">
-<meta property="og:description" content="Four machine learning case studies with their method, results and limits: a Parkinson's score model, an explainable movie recommender, MRI classification with Grad-CAM and tsunami risk prediction.">
+<meta property="og:description" content="Five machine learning case studies with their method, results and limits: a Parkinson's score model, an explainable movie recommender, MRI classification with Grad-CAM, tsunami risk prediction and Ligue 1 match prediction.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/home.png">
@@ -25,14 +25,15 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<a class="skip" href="#projects">Skip to projects</a>
+<a class="skip" href="#projects" data-i18n="c.skipProjects">Skip to projects</a>
 
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#projects" data-i18n="c.projects">Projects</a>
+      <a href="#about" data-i18n="c.about">About</a>
+      <a href="#contact" data-i18n="c.contact">Contact</a>
+      <button class="lang-toggle" type="button" aria-label="Switch language"><span data-lang="en">EN</span><span data-lang="fr">FR</span></button>
       <button class="theme-toggle" type="button" aria-label="Switch theme">
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
@@ -44,66 +45,77 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="kicker">Portfolio</p>
+      <p class="kicker" data-i18n="h.kicker">Portfolio</p>
       <h1>Victor Michelon</h1>
-      <p class="field">Ingénieur-Manager · IA &amp; Data Science</p>
-      <p class="lede" lang="fr">Étudiant en double diplôme Ingénieur-Manager à l’ESILV, spécialisé en IA &amp; Data Science. Première expérience concrète de mise en production IA lors d’un stage AI Engineer, où j’ai conçu et industrialisé un pipeline multi-agents IA sur AWS pour le support client. En parallèle, je suis étudiant-chercheur sur la compression et l’évaluation de modèles d’IA compacts. Je développe ainsi un profil hybride, combinant cette double expertise technique à une vision business, que je souhaite approfondir en AI Engineering, Data Science ou Conseil en IA.</p>
+      <p class="field" data-i18n="h.field">Data Science &amp; AI Engineering student</p>
+      <p class="lede" data-i18n="h.lede">Engineering student specializing in Data Science &amp; AI, passionate about building agentic AI systems, Machine Learning and Deep Learning models. From LLMs built from scratch to multi-agent pipelines deployed on AWS, I turn ideas into working projects.</p>
       <div class="actions">
-        <a class="btn btn-primary" href="#projects">View projects</a>
-        <a class="btn" href="#contact">Contact me</a>
-        <a class="plain" href="https://github.com/Victor-MICHELON">GitHub profile</a>
+        <a class="btn btn-primary" href="#projects" data-i18n="h.btn1">View projects</a>
+        <a class="btn" href="#contact" data-i18n="h.btn2">Contact me</a>
+        <a class="plain" href="https://github.com/Victor-MICHELON" data-i18n="h.gh">GitHub profile</a>
       </div>
     </div>
   </section>
 
   <section class="section" id="projects" aria-labelledby="projects-h">
     <div class="wrap">
-      <h2 id="projects-h">Projects</h2>
-      <p class="sub">Four case studies, each with its method, its results and its limits. Open one to read the details.</p>
+      <h2 id="projects-h" data-i18n="c.projects">Projects</h2>
+      <p class="sub" data-i18n="h.sub">Five case studies, each with its method, its results and its limits. Open one to read the details.</p>
 
       <div class="cards-grid">
         <article class="card" data-project="parkinson">
           <div class="card-media"><img src="assets/img/ibm-probabl-800.jpg" srcset="assets/img/ibm-probabl-800.jpg 800w, assets/img/ibm-probabl.jpg 1376w" sizes="(min-width: 860px) 540px, 100vw" width="1376" height="768" loading="lazy" alt="IBM and Probabl logos"></div>
           <div class="card-body">
-            <p class="card-meta">Hackathon IBM x Probabl · 7th of 295 · October 2026</p>
-            <h3><a class="card-link" href="projects/parkinson.html">Predicting Parkinson’s disease motor scores from noisy clinical data</a></h3>
-            <p>Predict a patient’s motor score, corrected for measurement bias, from noisy ON and OFF measurements, rater effects and heavy missingness. Run as a controlled lab of 61 experiments under one locked, patient-grouped protocol, ending in a blend of boosting and sequence networks.</p>
-            <p class="card-figure"><span class="big">−85%</span><span class="cap">prediction error with our model, against a constant mean prediction (cross-validated by patient)</span></p>
+            <p class="card-meta" data-i18n="h.c1.meta">Hackathon IBM x Probabl · 7th of 295 · October 2026</p>
+            <h3><a class="card-link" href="projects/parkinson.html" data-i18n="h.c1.h">Predicting Parkinson’s disease motor scores from noisy clinical data</a></h3>
+            <p data-i18n="h.c1.p">Predict a patient’s motor score, corrected for measurement bias, from noisy ON and OFF measurements, rater effects and heavy missingness. Run as a controlled lab of 61 experiments under one locked, patient-grouped protocol, ending in a blend of boosting and sequence networks.</p>
+            <p class="card-figure"><span class="big">−85%</span><span class="cap" data-i18n="h.c1.cap">prediction error with our model, against a constant mean prediction (cross-validated by patient)</span></p>
             <ul class="tags" aria-label="Stack"><li>PyTorch</li><li>LightGBM</li><li>scikit-learn</li><li>skore</li></ul>
-            <p class="card-foot"><span class="card-cta">Read the case study <span aria-hidden="true">→</span></span></p>
+            <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="cinematch">
           <div class="card-media"><img src="assets/img/cinematch-2-800.webp" srcset="assets/img/cinematch-2-800.webp 800w, assets/img/cinematch-2.webp 1400w" sizes="(min-width: 860px) 540px, 100vw" width="1400" height="592" loading="lazy" alt=""></div>
           <div class="card-body">
-            <p class="card-meta">Streamlit app · 2025 to 2026</p>
-            <h3><a class="card-link" href="projects/cinematch.html">CineMatch, an explainable hybrid recommender</a></h3>
-            <p>Eight similarity signals, from plot embeddings to audience ratings, blended with weights that adapt to each film. A radar chart shows why each film was suggested, and pre-computed matrices answer a query in about 0.2 ms.</p>
-            <p class="card-figure"><span class="big">8 signals</span><span class="cap">blended per film, over a catalogue of 6,203 films</span></p>
+            <p class="card-meta" data-i18n="h.c2.meta">Streamlit app · 2025 to 2026</p>
+            <h3><a class="card-link" href="projects/cinematch.html" data-i18n="h.c2.h">CineMatch, an explainable hybrid recommender</a></h3>
+            <p data-i18n="h.c2.p">Eight similarity signals, from plot embeddings to audience ratings, blended with weights that adapt to each film. A radar chart shows why each film was suggested, and pre-computed matrices answer a query in about 0.2 ms.</p>
+            <p class="card-figure"><span class="big" data-i18n="h.c2.big">8 signals</span><span class="cap" data-i18n="h.c2.cap">blended per film, over a catalogue of 6,203 films</span></p>
             <ul class="tags" aria-label="Stack"><li>Sentence-BERT</li><li>NumPy</li><li>Streamlit</li><li>Plotly</li></ul>
-            <p class="card-foot"><span class="card-cta">Read the case study <span aria-hidden="true">→</span></span><a class="card-extra" href="https://cinematch-reco.streamlit.app/">Live demo</a></p>
+            <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span><a class="card-extra" href="https://cinematch-reco.streamlit.app/" data-i18n="c.demo">Live demo</a></p>
           </div>
         </article>
         <article class="card" data-project="brain">
           <div class="card-media"><div class="cams-strip"><img src="assets/img/gradcam-glioma.webp" width="236" height="291" loading="lazy" alt=""><img src="assets/img/gradcam-meningioma.webp" width="252" height="320" loading="lazy" alt=""><img src="assets/img/gradcam-pituitary-240.webp" width="240" height="273" loading="lazy" alt=""><img src="assets/img/gradcam-no-tumor-240.webp" width="240" height="299" loading="lazy" alt=""></div></div>
           <div class="card-body">
-            <p class="card-meta">Deep learning on MRI · December 2025</p>
-            <h3><a class="card-link" href="projects/brain-tumor.html">Brain tumor MRI classification with Grad-CAM</a></h3>
-            <p>Four-class MRI classifier: a CNN baseline against a fine-tuned EfficientNetB0, with Grad-CAM to see what the model looks at, and a reproducible pipeline that hunts near-duplicate leaks between splits.</p>
-            <p class="card-figure"><span class="big">97.8%</span><span class="cap">test accuracy on 1,311 scans, against 92.1% for the CNN baseline</span></p>
+            <p class="card-meta" data-i18n="h.c3.meta">Deep learning on MRI · December 2025</p>
+            <h3><a class="card-link" href="projects/brain-tumor.html" data-i18n="h.c3.h">Brain tumor MRI classification with Grad-CAM</a></h3>
+            <p data-i18n="h.c3.p">Four-class MRI classifier: a CNN baseline against a fine-tuned EfficientNetB0, with Grad-CAM to see what the model looks at, and a reproducible pipeline that hunts near-duplicate leaks between splits.</p>
+            <p class="card-figure"><span class="big">97.8%</span><span class="cap" data-i18n="h.c3.cap">test accuracy on 1,311 scans, against 92.1% for the CNN baseline</span></p>
             <ul class="tags" aria-label="Stack"><li>TensorFlow</li><li>Keras</li><li>EfficientNetB0</li><li>Grad-CAM</li></ul>
-            <p class="card-foot"><span class="card-cta">Read the case study <span aria-hidden="true">→</span></span></p>
+            <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="tsunami">
-          <div class="card-media"><img src="assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt=""><p class="map-key" aria-hidden="true"><span class="k-tsu">Tsunami</span><span class="k-no">No tsunami</span></p></div>
+          <div class="card-media"><img src="assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt=""><p class="map-key" aria-hidden="true"><span class="k-tsu" data-i18n="h.k.tsu">Tsunami</span><span class="k-no" data-i18n="h.k.no">No tsunami</span></p></div>
           <div class="card-body">
-            <p class="card-meta">Classification on seismic data · October 2025</p>
-            <h3><a class="card-link" href="projects/tsunami.html">Tsunami risk from seismic data</a></h3>
-            <p>Can an earthquake’s seismic profile alone flag tsunami risk? A recall-first gradient boosting model, a temporal leak removed, and a geospatial feature: the distance to the nearest tectonic plate boundary.</p>
-            <p class="card-figure"><span class="big">95%</span><span class="cap">of tsunamis detected on the hold-out set, F1 0.90</span></p>
+            <p class="card-meta" data-i18n="h.c4.meta">Classification on seismic data · October 2025</p>
+            <h3><a class="card-link" href="projects/tsunami.html" data-i18n="h.c4.h">Tsunami risk from seismic data</a></h3>
+            <p data-i18n="h.c4.p">Can an earthquake’s seismic profile alone flag tsunami risk? A recall-first gradient boosting model, a temporal leak removed, and a geospatial feature: the distance to the nearest tectonic plate boundary.</p>
+            <p class="card-figure"><span class="big">95%</span><span class="cap" data-i18n="h.c4.cap">of tsunamis detected on the hold-out set, F1 0.90</span></p>
             <ul class="tags" aria-label="Stack"><li>scikit-learn</li><li>GeoPandas</li><li>Shapely</li></ul>
-            <p class="card-foot"><span class="card-cta">Read the case study <span aria-hidden="true">→</span></span></p>
+            <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
+          </div>
+        </article>
+        <article class="card" data-project="ligue1">
+          <div class="card-media"><div class="l1-split" role="img" aria-label="Historical Ligue 1 results: 44% home wins, 26% draws, 30% away wins"><div class="bar-row"><span class="s-home" style="flex: 44">44%</span><span class="s-draw" style="flex: 26">26%</span><span class="s-away" style="flex: 30">30%</span></div><p class="legend"><span data-i18n="h.c5.home">Home</span><span data-i18n="h.c5.draw">Draw</span><span data-i18n="h.c5.away">Away</span></p></div></div>
+          <div class="card-body">
+            <p class="card-meta" data-i18n="h.c5.meta">Course project with Maël Paget · May 2026</p>
+            <h3><a class="card-link" href="projects/ligue1.html" data-i18n="h.c5.h">Predicting Ligue 1 results, season 2025-2026</a></h3>
+            <p data-i18n="h.c5.p">Predict the outcome of every Ligue 1 match before it is played, from squad values, club hierarchy, recent form, head-to-head and in-game events, in a pipeline free of data leakage.</p>
+            <p class="card-figure"><span class="big">48.0%</span><span class="cap" data-i18n="h.c5.cap">cross-validated accuracy on three outcomes, against 34.1% for a random baseline</span></p>
+            <ul class="tags" aria-label="Stack"><li>scikit-learn</li><li>pandas</li><li>Gradient Boosting</li></ul>
+            <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
       </div>
@@ -113,18 +125,18 @@
 
   <section class="section" id="about" aria-labelledby="about-h">
     <div class="wrap">
-      <h2 id="about-h">About</h2>
+      <h2 id="about-h" data-i18n="h.aboutH">About</h2>
       <div class="about">
-        <div lang="fr">
-          <p>Étudiant Ingénieur-Manager à l’ESILV et à l’EMLV (Paris), spécialisé en IA &amp; Data Science, avec un parcours recherche : réseaux de neurones et deep learning, algorithmes d’IA, probabilités avancées. J’ai aussi passé un semestre d’échange à Kasetsart University, à Bangkok.</p>
-          <p>Chez Sewan, scale-up Cloud &amp; Télécoms, j’ai conçu et industrialisé une architecture multi-agents sur AWS (LangChain, Bedrock, AgentCore, Lambda, OpenSearch) pour le support client : environ 250 tickets traités par semaine, 75 à 80 % des articles générés publiés, déployée auprès de toutes les équipes support. Au De Vinci Research Center, je cherche le meilleur niveau de quantification d’un LLM sous contrainte de ressources, en développant un modèle from scratch avec PyTorch, dans l’objectif d’une publication scientifique.</p>
-          <p>Les projets ci-dessus montrent ma façon de travailler : une validation honnête, une baseline à battre, des échecs documentés et des modèles explicables. Je recherche un stage de 4 à 5 mois (avril à août 2027) en Data Science, AI Engineering ou conseil en IA.</p>
+        <div>
+          <p data-i18n="h.a1">Engineering-management student at ESILV and EMLV (Paris), specializing in AI &amp; Data Science, with a research track: neural networks and deep learning, AI algorithms, advanced probability. I also spent an exchange semester at Kasetsart University in Bangkok.</p>
+          <p data-i18n="h.a2">At Sewan, a Cloud &amp; Telecom scale-up, I designed and industrialized a multi-agent architecture on AWS (LangChain, Bedrock, AgentCore, Lambda, OpenSearch) for customer support: about 250 tickets handled per week, 75 to 80% of generated articles published, rolled out to all support teams. At the De Vinci Research Center, I look for the best quantization level of an LLM under resource constraints, developing a model from scratch with PyTorch, with a scientific publication as the goal.</p>
+          <p data-i18n="h.a3">The projects above show how I work: honest validation, a baseline to beat, documented failures and explainable models. I am looking for a 4 to 5 month internship (April to August 2027) in Data Science, AI Engineering or AI consulting.</p>
         </div>
         <dl class="skills">
-          <dt>Langages</dt><dd>Python, SQL, C++, C#</dd>
-          <dt>ML &amp; Data</dt><dd>PyTorch, TensorFlow, scikit-learn, LangChain, Hugging Face, Pandas</dd>
-          <dt>Cloud &amp; MLOps</dt><dd>AWS (Bedrock, AgentCore, Lambda, S3, OpenSearch, Step Functions), CI/CD, Terraform, Datadog</dd>
-          <dt>Outils</dt><dd>Git, Claude Code</dd>
+          <dt data-i18n="h.s1">Languages</dt><dd>Python, SQL, C++, C#</dd>
+          <dt data-i18n="h.s2">ML &amp; Data</dt><dd>PyTorch, TensorFlow, scikit-learn, LangChain, Hugging Face, Pandas</dd>
+          <dt data-i18n="h.s3">Cloud &amp; MLOps</dt><dd>AWS (Bedrock, AgentCore, Lambda, S3, OpenSearch, Step Functions), CI/CD, Terraform, Datadog</dd>
+          <dt data-i18n="h.s4">Tools</dt><dd>Git, Claude Code</dd>
         </dl>
       </div>
     </div>
@@ -132,10 +144,10 @@
 
   <section class="section contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <h2 id="contact-h">Contact</h2>
-      <p class="sub" lang="fr">À la recherche d’un stage de 4 à 5 mois (avril à août 2027) en Data Science, AI Engineering ou conseil en IA.</p>
+      <h2 id="contact-h" data-i18n="h.contactH">Contact</h2>
+      <p class="sub" data-i18n="h.contactSub">Looking for a 4 to 5 month internship (April to August 2027) in Data Science, AI Engineering or AI consulting.</p>
       <a class="mail" href="mailto:victormichelon2005@gmail.com">victormichelon2005@gmail.com</a>
-      <p class="other"><a href="https://www.linkedin.com/in/victor-michelon">LinkedIn</a> · <a href="https://github.com/Victor-MICHELON">GitHub profile</a></p>
+      <p class="other" data-i18n="h.other"><a href="https://www.linkedin.com/in/victor-michelon">LinkedIn</a> · <a href="https://github.com/Victor-MICHELON">GitHub profile</a></p>
     </div>
   </section>
 </main>
@@ -143,10 +155,11 @@
 <footer class="site-foot">
   <div class="wrap">
     <span>Victor Michelon, 2026</span>
-    <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io">Source of this site</a>
+    <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io" data-i18n="c.source">Source of this site</a>
   </div>
 </footer>
 
+<script src="assets/i18n.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
