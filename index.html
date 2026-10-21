@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="h.title">Victor Michelon, Portfolio | AI and Data Science</title>
-<meta name="description" content="Portfolio of Victor Michelon, Data Science &amp; AI Engineering student at ESILV Paris. Five machine learning case studies with their method, results and limits.">
-<meta property="og:title" content="Victor Michelon, Portfolio | IA &amp; Data Science">
-<meta property="og:description" content="Five machine learning case studies with their method, results and limits: a Parkinson's score model, an explainable movie recommender, MRI classification with Grad-CAM, tsunami risk prediction and Ligue 1 match prediction.">
+<title data-i18n="title">Victor Michelon, Portfolio | AI Engineering and Data Science</title>
+<meta name="description" content="Portfolio of Victor Michelon, AI Engineering and Data Science student at ESILV and EMLV. AI in production at Sewan, 7th of 295 at the IBM x Probabl hackathon, and five case studies with their method, results, limits and what sets each one apart.">
+<meta property="og:title" content="Victor Michelon, Portfolio | AI Engineering and Data Science">
+<meta property="og:description" content="AI in production at Sewan, 7th of 295 at the IBM x Probabl hackathon, and five machine learning case studies: what each one does that the usual approach does not, measured against a baseline.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/home.png">
@@ -30,6 +30,7 @@
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
+      <a href="#experience" data-i18n="c.experience">Experience</a>
       <a href="#projects" data-i18n="c.projects">Projects</a>
       <a href="#about" data-i18n="c.about">About</a>
       <a href="#contact" data-i18n="c.contact">Contact</a>
@@ -45,14 +46,41 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="kicker" data-i18n="h.kicker">Portfolio</p>
+      <p class="kicker" data-i18n="kicker">Portfolio</p>
       <h1>Victor Michelon</h1>
-      <p class="field" data-i18n="h.field">Data Science &amp; AI Engineering student</p>
-      <p class="lede" data-i18n="h.lede">Engineering student specializing in Data Science &amp; AI, passionate about building agentic AI systems, Machine Learning and Deep Learning models. From LLMs built from scratch to multi-agent pipelines deployed on AWS, I turn ideas into working projects.</p>
+      <p class="field" data-i18n="field">AI Engineering &amp; Data Science student</p>
+      <p class="lede" data-i18n="lede">Engineering and management student (ESILV × EMLV) in AI and Data Science. This summer at Sewan, I put a multi-agent pipeline on AWS into production; it handles about 250 support tickets a week. I also research LLM quantization, and with my team I finished 7th of 295 at the IBM × Probabl hackathon. I am looking for a 4 to 5 month internship from April 2027.</p>
+      <ul class="hero-figures">
+        <li><a href="#experience"><span class="big">~250</span><span class="cap" data-i18n="f1">support tickets a week handled in production by my multi-agent pipeline at Sewan</span></a></li>
+        <li><a href="projects/parkinson.html"><span class="big" data-i18n="f2b">7th / 295</span><span class="cap" data-i18n="f2">at the IBM × Probabl hackathon (top 3%), with a research lab run by AI agents</span></a></li>
+        <li><a href="#experience"><span class="big">LLM</span><span class="cap" data-i18n="f3">built from scratch in PyTorch for research on quantization, in progress</span></a></li>
+      </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="#projects" data-i18n="h.btn1">View projects</a>
-        <a class="btn" href="#contact" data-i18n="h.btn2">Contact me</a>
-        <a class="plain" href="https://github.com/Victor-MICHELON" data-i18n="h.gh">GitHub profile</a>
+        <a class="btn btn-primary" href="#projects" data-i18n="btn1">View projects</a>
+        <a class="btn" href="#contact" data-i18n="btn2">Contact me</a>
+        <a class="plain" href="https://github.com/Victor-MICHELON" data-i18n="gh">GitHub profile</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="experience-h">
+    <div class="wrap">
+      <h2 id="experience-h" data-i18n="c.experience">Experience</h2>
+      <p class="sub" data-i18n="expSub">AI that real teams use, and research in progress.</p>
+      <div class="exp-grid">
+        <article class="exp">
+          <p class="card-meta" data-i18n="e1.meta">AI Engineering internship · Sewan, Cloud &amp; Telecom scale-up · 2026</p>
+          <h3 data-i18n="e1.h">A multi-agent support assistant, in production on AWS</h3>
+          <p data-i18n="e1.p">I designed and industrialized a multi-agent architecture for customer support: agents diagnose each ticket, search the knowledge bases (RAG on OpenSearch) and draft help-center articles. Not a prototype: it ships through CI/CD with infrastructure as code, and every support team uses it.</p>
+          <p class="card-figure"><span class="big">75–80%</span><span class="cap" data-i18n="e1.cap">of the articles it generates are published, on about 250 tickets a week</span></p>
+          <ul class="tags" aria-label="Stack"><li>LangChain</li><li>Amazon Bedrock</li><li>AgentCore</li><li>Lambda</li><li>OpenSearch</li><li>Terraform</li></ul>
+        </article>
+        <article class="exp">
+          <p class="card-meta" data-i18n="e2.meta">Research track · De Vinci Research Center · in progress</p>
+          <h3 data-i18n="e2.h">How far can an LLM be compressed before it breaks?</h3>
+          <p data-i18n="e2.p">I look for the best quantization level of a language model under memory and compute constraints, the question behind running LLMs on modest hardware at a lower cost. I am writing the model from scratch in PyTorch to control every layer, with a scientific publication as the goal.</p>
+          <ul class="tags" aria-label="Stack"><li>PyTorch</li><li>LLM</li><li data-i18n="e2.t">Quantization</li></ul>
+        </article>
       </div>
     </div>
   </section>
@@ -60,60 +88,60 @@
   <section class="section" id="projects" aria-labelledby="projects-h">
     <div class="wrap">
       <h2 id="projects-h" data-i18n="c.projects">Projects</h2>
-      <p class="sub" data-i18n="h.sub">Five case studies, each with its method, its results and its limits. Open one to read the details.</p>
+      <p class="sub" data-i18n="sub">Five case studies, each with its method, its results, its limits, and what sets it apart from the usual approach.</p>
 
       <div class="cards-grid">
         <article class="card" data-project="parkinson">
           <div class="card-media"><img src="assets/img/ibm-probabl-800.jpg" srcset="assets/img/ibm-probabl-800.jpg 800w, assets/img/ibm-probabl.jpg 1376w" sizes="(min-width: 860px) 540px, 100vw" width="1376" height="768" loading="lazy" alt="IBM and Probabl logos"></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="h.c1.meta">Hackathon IBM x Probabl · 7th of 295 · October 2026</p>
-            <h3><a class="card-link" href="projects/parkinson.html" data-i18n="h.c1.h">Predicting Parkinson’s disease motor scores from noisy clinical data</a></h3>
-            <p data-i18n="h.c1.p">Predict a patient’s motor score, corrected for measurement bias, from noisy ON and OFF measurements, rater effects and heavy missingness. Run as a controlled lab of 61 experiments under one locked, patient-grouped protocol, ending in a blend of boosting and sequence networks.</p>
-            <p class="card-figure"><span class="big">−85%</span><span class="cap" data-i18n="h.c1.cap">prediction error with our model, against a constant mean prediction (cross-validated by patient)</span></p>
-            <ul class="tags" aria-label="Stack"><li>PyTorch</li><li>LightGBM</li><li>scikit-learn</li><li>skore</li></ul>
+            <p class="card-meta" data-i18n="p1.meta">IBM × Probabl hackathon · team of three · October 2026</p>
+            <h3><a class="card-link" href="projects/parkinson.html" data-i18n="p1.h">Estimating Parkinson’s motor scores from noisy clinical data</a></h3>
+            <p data-i18n="p1.p">The motor score that best tracks the disease is rarely measured, and the measurements are noisy. We ran the hackathon as a research lab driven by AI agents, with rules that keep them honest: a critic agent hunts for leaks, and a locked protocol judges every experiment the same way.</p>
+            <p class="card-figure"><span class="big" data-i18n="p1.big">7th / 295</span><span class="cap" data-i18n="p1.cap">on the Kaggle leaderboard (top 3%), after 61 experiments judged by the same protocol</span></p>
+            <ul class="tags" aria-label="Stack"><li data-i18n="p1.t">AI agents</li><li>PyTorch</li><li>LightGBM</li><li>skore</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="cinematch">
           <div class="card-media"><img src="assets/img/cinematch-2-800.webp" srcset="assets/img/cinematch-2-800.webp 800w, assets/img/cinematch-2.webp 1400w" sizes="(min-width: 860px) 540px, 100vw" width="1400" height="592" loading="lazy" alt=""></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="h.c2.meta">Streamlit app · 2025 to 2026</p>
-            <h3><a class="card-link" href="projects/cinematch.html" data-i18n="h.c2.h">CineMatch, an explainable hybrid recommender</a></h3>
-            <p data-i18n="h.c2.p">Eight similarity signals, from plot embeddings to audience ratings, blended with weights that adapt to each film. A radar chart shows why each film was suggested, and pre-computed matrices answer a query in about 0.2 ms.</p>
-            <p class="card-figure"><span class="big" data-i18n="h.c2.big">8 signals</span><span class="cap" data-i18n="h.c2.cap">blended per film, over a catalogue of 6,203 films</span></p>
-            <ul class="tags" aria-label="Stack"><li>Sentence-BERT</li><li>NumPy</li><li>Streamlit</li><li>Plotly</li></ul>
+            <p class="card-meta" data-i18n="p2.meta">Streamlit app · December 2025</p>
+            <h3><a class="card-link" href="projects/cinematch.html" data-i18n="p2.h">CineMatch, a recommender that also works on films nobody has rated</a></h3>
+            <p data-i18n="p2.p">Eight signals, from what the plot is about to who made the film, blended with weights that adapt to each film. When a film has no ratings, the engine leans on its content instead of going blind, and every suggestion says why it is there.</p>
+            <p class="card-figure"><span class="big">×5.6</span><span class="cap" data-i18n="p2.cap">more hits than collaborative filtering on films with no ratings, measured offline (tuned weights)</span></p>
+            <ul class="tags" aria-label="Stack"><li>Sentence-BERT</li><li>NumPy</li><li>Optuna</li><li>Streamlit</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span><a class="card-extra" href="https://cinematch-reco.streamlit.app/" data-i18n="c.demo">Live demo</a></p>
           </div>
         </article>
         <article class="card" data-project="brain">
           <div class="card-media"><div class="cams-strip"><img src="assets/img/gradcam-glioma.webp" width="236" height="291" loading="lazy" alt=""><img src="assets/img/gradcam-meningioma.webp" width="252" height="320" loading="lazy" alt=""><img src="assets/img/gradcam-pituitary-240.webp" width="240" height="273" loading="lazy" alt=""><img src="assets/img/gradcam-no-tumor-240.webp" width="240" height="299" loading="lazy" alt=""></div></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="h.c3.meta">Deep learning on MRI · December 2025</p>
-            <h3><a class="card-link" href="projects/brain-tumor.html" data-i18n="h.c3.h">Brain tumor MRI classification with Grad-CAM</a></h3>
-            <p data-i18n="h.c3.p">Four-class MRI classifier: a CNN baseline against a fine-tuned EfficientNetB0, with Grad-CAM to see what the model looks at, and a reproducible pipeline that hunts near-duplicate leaks between splits.</p>
-            <p class="card-figure"><span class="big">97.8%</span><span class="cap" data-i18n="h.c3.cap">test accuracy on 1,311 scans, against 92.1% for the CNN baseline</span></p>
+            <p class="card-meta" data-i18n="p3.meta">Deep learning on MRI · November 2025</p>
+            <h3><a class="card-link" href="projects/brain-tumor.html" data-i18n="p3.h">Brain tumor MRI classification with Grad-CAM</a></h3>
+            <p data-i18n="p3.p">Four classes, a CNN built from scratch against a fine-tuned EfficientNetB0. The score is not the point on its own: Grad-CAM shows which part of the scan drove each prediction, and the maps land where each type of tumor is expected.</p>
+            <p class="card-figure"><span class="big">97.8%</span><span class="cap" data-i18n="p3.cap">test accuracy, and every prediction shows the brain region behind it</span></p>
             <ul class="tags" aria-label="Stack"><li>TensorFlow</li><li>Keras</li><li>EfficientNetB0</li><li>Grad-CAM</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="tsunami">
-          <div class="card-media"><img src="assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt=""><p class="map-key" aria-hidden="true"><span class="k-tsu" data-i18n="h.k.tsu">Tsunami</span><span class="k-no" data-i18n="h.k.no">No tsunami</span></p></div>
+          <div class="card-media"><img src="assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt=""><p class="map-key" aria-hidden="true"><span class="k-tsu" data-i18n="k.tsu">Tsunami</span><span class="k-no" data-i18n="k.no">No tsunami</span></p></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="h.c4.meta">Classification on seismic data · October 2025</p>
-            <h3><a class="card-link" href="projects/tsunami.html" data-i18n="h.c4.h">Tsunami risk from seismic data</a></h3>
-            <p data-i18n="h.c4.p">Can an earthquake’s seismic profile alone flag tsunami risk? A recall-first gradient boosting model, a temporal leak removed, and a geospatial feature: the distance to the nearest tectonic plate boundary.</p>
-            <p class="card-figure"><span class="big">95%</span><span class="cap" data-i18n="h.c4.cap">of tsunamis detected on the hold-out set, F1 0.90</span></p>
+            <p class="card-meta" data-i18n="p4.meta">Classification on seismic data · October 2025</p>
+            <h3><a class="card-link" href="projects/tsunami.html" data-i18n="p4.h">Tsunami risk from seismic data</a></h3>
+            <p data-i18n="p4.p">Can an earthquake’s seismic profile alone flag a tsunami? I found and removed a leak that let the model read the answer from the year, then set the alarm threshold so that a missed tsunami weighs more than a false alarm.</p>
+            <p class="card-figure"><span class="big">58 / 61</span><span class="cap" data-i18n="p4.cap">tsunamis detected on the test set, by a model that can no longer cheat</span></p>
             <ul class="tags" aria-label="Stack"><li>scikit-learn</li><li>GeoPandas</li><li>Shapely</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="ligue1">
-          <div class="card-media"><div class="l1-split" role="img" aria-label="Historical Ligue 1 results: 44% home wins, 26% draws, 30% away wins"><div class="bar-row"><span class="s-home" style="flex: 44">44%</span><span class="s-draw" style="flex: 26">26%</span><span class="s-away" style="flex: 30">30%</span></div><p class="legend"><span data-i18n="h.c5.home">Home</span><span data-i18n="h.c5.draw">Draw</span><span data-i18n="h.c5.away">Away</span></p></div></div>
+          <div class="card-media"><div class="l1-split" role="img" aria-label="Historical Ligue 1 results: 44% home wins, 26% draws, 30% away wins" data-i18n-aria="l1.aria"><div class="bar-row"><span class="s-home" style="flex: 44">44%</span><span class="s-draw" style="flex: 26">26%</span><span class="s-away" style="flex: 30">30%</span></div><p class="legend"><span data-i18n="l1.home">Home</span><span data-i18n="l1.draw">Draw</span><span data-i18n="l1.away">Away</span></p></div></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="h.c5.meta">Course project with Maël Paget · May 2026</p>
-            <h3><a class="card-link" href="projects/ligue1.html" data-i18n="h.c5.h">Predicting Ligue 1 results, season 2025-2026</a></h3>
-            <p data-i18n="h.c5.p">Predict the outcome of every Ligue 1 match before it is played, from squad values, club hierarchy, recent form, head-to-head and in-game events, in a pipeline free of data leakage.</p>
-            <p class="card-figure"><span class="big">48.0%</span><span class="cap" data-i18n="h.c5.cap">cross-validated accuracy on three outcomes, against 34.1% for a random baseline</span></p>
+            <p class="card-meta" data-i18n="p5.meta">Course project with Maël Paget · May 2026</p>
+            <h3><a class="card-link" href="projects/ligue1.html" data-i18n="p5.h">A whole Ligue 1 season predicted before kick-off</a></h3>
+            <p data-i18n="p5.p">Every match of the 2025-2026 season predicted in August, from what was known before the first game: squad values, club hierarchy, form at the end of the last season and head-to-head records.</p>
+            <p class="card-figure"><span class="big">48%</span><span class="cap" data-i18n="p5.cap">of results called right in cross-validation, out of three possible outcomes (random guess: 34%)</span></p>
             <ul class="tags" aria-label="Stack"><li>scikit-learn</li><li>pandas</li><li>Gradient Boosting</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
@@ -125,18 +153,18 @@
 
   <section class="section" id="about" aria-labelledby="about-h">
     <div class="wrap">
-      <h2 id="about-h" data-i18n="h.aboutH">About</h2>
+      <h2 id="about-h" data-i18n="c.about">About</h2>
       <div class="about">
         <div>
-          <p data-i18n="h.a1">Engineering-management student at ESILV and EMLV (Paris), specializing in AI &amp; Data Science, with a research track: neural networks and deep learning, AI algorithms, advanced probability. I also spent an exchange semester at Kasetsart University in Bangkok.</p>
-          <p data-i18n="h.a2">At Sewan, a Cloud &amp; Telecom scale-up, I designed and industrialized a multi-agent architecture on AWS (LangChain, Bedrock, AgentCore, Lambda, OpenSearch) for customer support: about 250 tickets handled per week, 75 to 80% of generated articles published, rolled out to all support teams. At the De Vinci Research Center, I look for the best quantization level of an LLM under resource constraints, developing a model from scratch with PyTorch, with a scientific publication as the goal.</p>
-          <p data-i18n="h.a3">The projects above show how I work: honest validation, a baseline to beat, documented failures and explainable models. I am looking for a 4 to 5 month internship (April to August 2027) in Data Science, AI Engineering or AI consulting.</p>
+          <p data-i18n="a1">Engineering-management student at ESILV and EMLV (Paris), majoring in AI &amp; Data Science with a research track: neural networks and deep learning, AI algorithms, advanced probability. I also spent an exchange semester at Kasetsart University in Bangkok.</p>
+          <p data-i18n="a2">The projects show how I work: a baseline to beat, an evaluation protocol fixed before the first model, leaks hunted down rather than hoped away, failures written up, and models that can explain their answers.</p>
+          <p data-i18n="a3">I am looking for a 4 to 5 month internship (April to August 2027) in AI Engineering, Data Science or AI consulting.</p>
         </div>
         <dl class="skills">
-          <dt data-i18n="h.s1">Languages</dt><dd>Python, SQL, C++, C#</dd>
-          <dt data-i18n="h.s2">ML &amp; Data</dt><dd>PyTorch, TensorFlow, scikit-learn, LangChain, Hugging Face, Pandas</dd>
-          <dt data-i18n="h.s3">Cloud &amp; MLOps</dt><dd>AWS (Bedrock, AgentCore, Lambda, S3, OpenSearch, Step Functions), CI/CD, Terraform, Datadog</dd>
-          <dt data-i18n="h.s4">Tools</dt><dd>Git, Claude Code</dd>
+          <dt data-i18n="s1">Languages</dt><dd>Python, SQL, C++, C#</dd>
+          <dt data-i18n="s2">ML &amp; Data</dt><dd>PyTorch, TensorFlow, scikit-learn, LangChain, Hugging Face, pandas</dd>
+          <dt data-i18n="s3">Cloud &amp; MLOps</dt><dd>AWS (Bedrock, AgentCore, Lambda, S3, OpenSearch, Step Functions), CI/CD, Terraform, Datadog</dd>
+          <dt data-i18n="s4">Tools</dt><dd>Git, Claude Code</dd>
         </dl>
       </div>
     </div>
@@ -144,10 +172,10 @@
 
   <section class="section contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <h2 id="contact-h" data-i18n="h.contactH">Contact</h2>
-      <p class="sub" data-i18n="h.contactSub">Looking for a 4 to 5 month internship (April to August 2027) in Data Science, AI Engineering or AI consulting.</p>
+      <h2 id="contact-h" data-i18n="c.contact">Contact</h2>
+      <p class="sub" data-i18n="contactSub">Looking for a 4 to 5 month internship (April to August 2027) in AI Engineering, Data Science or AI consulting.</p>
       <a class="mail" href="mailto:victormichelon2005@gmail.com">victormichelon2005@gmail.com</a>
-      <p class="other" data-i18n="h.other"><a href="https://www.linkedin.com/in/victor-michelon">LinkedIn</a> · <a href="https://github.com/Victor-MICHELON">GitHub profile</a></p>
+      <p class="other" data-i18n="other"><a href="https://www.linkedin.com/in/victor-michelon">LinkedIn</a> · <a href="https://github.com/Victor-MICHELON">GitHub profile</a></p>
     </div>
   </section>
 </main>
@@ -159,6 +187,71 @@
   </div>
 </footer>
 
+<script>
+window.I18N_FR = {
+  "title": `Victor Michelon, Portfolio | AI Engineering et Data Science`,
+  "kicker": `Portfolio`,
+  "field": `Étudiant en AI Engineering &amp; Data Science`,
+  "lede": `Étudiant ingénieur-manager (ESILV × EMLV) en IA et Data Science. Cet été, chez Sewan, j’ai mis en production un pipeline multi-agents sur AWS qui traite environ 250 tickets de support par semaine. Je fais aussi de la recherche sur la quantification des LLM, et j’ai fini 7e sur 295 avec mon équipe au hackathon IBM × Probabl. Je cherche un stage de 4 à 5 mois à partir d’avril 2027.`,
+  "f1": `tickets de support par semaine traités en production par mon pipeline multi-agents chez Sewan`,
+  "f2b": `7e / 295`,
+  "f2": `au hackathon IBM × Probabl (top 3 %), avec un labo de recherche piloté par des agents IA`,
+  "f3": `écrit from scratch en PyTorch pour une recherche sur la quantification, en cours`,
+  "btn1": `Voir les projets`,
+  "btn2": `Me contacter`,
+  "gh": `Profil GitHub`,
+
+  "expSub": `De l’IA utilisée par de vraies équipes, et une recherche en cours.`,
+  "e1.meta": `Stage AI Engineering · Sewan, scale-up Cloud &amp; Télécoms · 2026`,
+  "e1.h": `Un assistant de support multi-agents, en production sur AWS`,
+  "e1.p": `J’ai conçu et industrialisé une architecture multi-agents pour le support client : des agents diagnostiquent chaque ticket, cherchent dans les bases de connaissances (RAG sur OpenSearch) et rédigent des articles d’aide. Pas un prototype : il est livré par CI/CD avec de l’infrastructure as code, et toutes les équipes support l’utilisent.`,
+  "e1.cap": `des articles qu’il génère sont publiés, sur environ 250 tickets par semaine`,
+  "e2.meta": `Parcours recherche · De Vinci Research Center · en cours`,
+  "e2.h": `Jusqu’où compresser un LLM avant qu’il ne casse ?`,
+  "e2.p": `Je cherche le meilleur niveau de quantification d’un modèle de langage sous contrainte de mémoire et de calcul : c’est la question qui permet de faire tourner des LLM sur du matériel modeste, à moindre coût. J’écris le modèle from scratch en PyTorch pour contrôler chaque couche, dans l’objectif d’une publication scientifique.`,
+  "e2.t": `Quantification`,
+
+  "sub": `Cinq études de cas, chacune avec sa méthode, ses résultats, ses limites, et ce qui la distingue de l’approche classique.`,
+  "p1.meta": `Hackathon IBM × Probabl · équipe de trois · octobre 2026`,
+  "p1.h": `Estimer les scores moteurs de la maladie de Parkinson à partir de données cliniques bruitées`,
+  "p1.p": `Le score moteur qui suit le mieux la maladie est rarement mesuré, et les mesures sont bruitées. Nous avons mené le hackathon comme un labo de recherche piloté par des agents IA, avec des règles qui les empêchent de se tromper eux-mêmes : un agent critique traque les fuites, et un protocole verrouillé juge chaque expérience de la même façon.`,
+  "p1.big": `7e / 295`,
+  "p1.cap": `au classement Kaggle (top 3 %), après 61 expériences jugées par le même protocole`,
+  "p1.t": `Agents IA`,
+  "p2.meta": `Application Streamlit · décembre 2025`,
+  "p2.h": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés`,
+  "p2.p": `Huit signaux, du sens du synopsis à l’équipe qui a fait le film, combinés avec des poids qui s’adaptent à chaque film. Quand un film n’a aucune note, le moteur s’appuie sur son contenu au lieu de tourner à vide, et chaque suggestion dit pourquoi elle est là.`,
+  "p2.cap": `de recommandations pertinentes par rapport au filtrage collaboratif sur les films sans note, mesuré hors ligne (poids optimisés)`,
+  "p3.meta": `Deep learning sur IRM · novembre 2025`,
+  "p3.h": `Classification d’IRM cérébrales avec Grad-CAM`,
+  "p3.p": `Quatre classes, un CNN construit from scratch face à un EfficientNetB0 affiné. Le score ne suffit pas : Grad-CAM montre quelle partie de l’image a décidé chaque prédiction, et les cartes tombent là où chaque type de tumeur est attendu.`,
+  "p3.cap": `de précision sur le test, et chaque prédiction montre la zone du cerveau qui l’a décidée`,
+  "p4.meta": `Classification sur données sismiques · octobre 2025`,
+  "p4.h": `Risque de tsunami à partir de données sismiques`,
+  "p4.p": `Le profil sismique d’un séisme suffit-il à signaler un tsunami ? J’ai trouvé et retiré une fuite qui permettait au modèle de lire la réponse dans l’année, puis réglé le seuil d’alerte pour qu’un tsunami manqué pèse plus qu’une fausse alerte.`,
+  "p4.cap": `tsunamis détectés sur le jeu de test, par un modèle qui ne peut plus tricher`,
+  "k.tsu": `Tsunami`,
+  "k.no": `Pas de tsunami`,
+  "p5.meta": `Projet de cours avec Maël Paget · mai 2026`,
+  "p5.h": `Toute une saison de Ligue 1 prédite avant le coup d’envoi`,
+  "p5.p": `Chaque match de la saison 2025-2026 prédit en août, à partir de ce qui était connu avant la première journée : valeur des effectifs, hiérarchie des clubs, forme en fin de saison précédente et confrontations directes.`,
+  "p5.cap": `de bons pronostics en validation croisée, sur trois issues possibles (au hasard : 34 %)`,
+  "l1.aria": `Résultats historiques en Ligue 1 : 44 % de victoires à domicile, 26 % de nuls, 30 % de victoires à l’extérieur`,
+  "l1.home": `Domicile`,
+  "l1.draw": `Nul`,
+  "l1.away": `Extérieur`,
+
+  "a1": `Étudiant ingénieur-manager à l’ESILV et à l’EMLV (Paris), majeure IA &amp; Data Science avec un parcours recherche : réseaux de neurones et deep learning, algorithmes d’IA, probabilités avancées. J’ai aussi passé un semestre d’échange à Kasetsart University, à Bangkok.`,
+  "a2": `Les projets montrent ma façon de travailler : une baseline à battre, un protocole d’évaluation fixé avant le premier modèle, des fuites traquées plutôt qu’ignorées, des échecs documentés, et des modèles capables d’expliquer leurs réponses.`,
+  "a3": `Je recherche un stage de 4 à 5 mois (avril à août 2027) en AI Engineering, Data Science ou conseil en IA.`,
+  "s1": `Langages`,
+  "s2": `ML &amp; Data`,
+  "s3": `Cloud &amp; MLOps`,
+  "s4": `Outils`,
+  "contactSub": `À la recherche d’un stage de 4 à 5 mois (avril à août 2027) en AI Engineering, Data Science ou conseil en IA.`,
+  "other": `<a href="https://www.linkedin.com/in/victor-michelon">LinkedIn</a> · <a href="https://github.com/Victor-MICHELON">Profil GitHub</a>`
+};
+</script>
 <script src="assets/i18n.js" defer></script>
 <script src="assets/site.js" defer></script>
 </body>

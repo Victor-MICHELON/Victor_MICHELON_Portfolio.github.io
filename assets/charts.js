@@ -1,9 +1,31 @@
 // small charts for the case study pages, drawn from JSON blocks in the page
 // <div class="chart" data-chart="bars|grouped|radar" data-src="<id of a JSON script>"></div>
+// A spec may hold an "fr" object: its fields replace the English ones when the page is in French
+// (arrays are merged item by item). Charts are redrawn when the language changes.
 (function () {
   "use strict";
 
   var NS = "http://www.w3.org/2000/svg";
+  var WORDS = {
+    en: { value: "Value", weight: "Weight", base: "base", selected: "Selected profile", baseProfile: "Base profile", profile: "Source film profile" },
+    fr: { value: "Valeur", weight: "Poids", base: "base", selected: "Profil choisi", baseProfile: "Profil de base", profile: "Profil du film de départ" }
+  };
+  function lang() { return window.SITE_LANG ? window.SITE_LANG.get() : "en"; }
+  function W() { return WORDS[lang()]; }
+
+  function isObj(v) { return v && typeof v === "object" && !Array.isArray(v); }
+  function merge(a, b) {
+    if (Array.isArray(a) && Array.isArray(b)) {
+      return a.map(function (v, i) { return i < b.length ? (isObj(v) && isObj(b[i]) ? merge(v, b[i]) : b[i]) : v; });
+    }
+    if (isObj(a) && isObj(b)) {
+      var out = {};
+      Object.keys(a).forEach(function (k) { out[k] = a[k]; });
+      Object.keys(b).forEach(function (k) { out[k] = k in a ? merge(a[k], b[k]) : b[k]; });
+      return out;
+    }
+    return b;
+  }
 
   function el(name, attrs, parent, ns) {
     var n = ns ? document.createElementNS(NS, name) : document.createElement(name);
@@ -13,11 +35,13 @@
   }
 
   function fmt(v, f) {
-    if (f === "pct0") return Math.round(v * 100) + "%";
-    if (f === "pct1") return (v * 100).toFixed(1) + "%";
-    if (f === "dec3") return v.toFixed(3);
-    if (f === "int") return Math.round(v).toLocaleString("en-US");
-    return v.toFixed(2);
+    var fr = lang() === "fr";
+    if (f === "pct0") return Math.round(v * 100) + (fr ? " %" : "%");
+    if (f === "pct1") return fr ? (v * 100).toFixed(1).replace(".", ",") + " %" : (v * 100).toFixed(1) + "%";
+    if (f === "dec3") return fr ? v.toFixed(3).replace(".", ",") : v.toFixed(3);
+    if (f === "int") return Math.round(v).toLocaleString(lang() === "fr" ? "fr-FR" : "en-US");
+    var out = f === "dec1" ? v.toFixed(1) : v.toFixed(2);
+    return lang() === "fr" ? out.replace(".", ",") : out;
   }
 
   // one tooltip per chart, positioned over the hovered mark
@@ -53,7 +77,7 @@
       var bar = el("span", { class: "bar" }, track);
       bar.style.width = (100 * d.value / max) + "%";
       el("span", { class: "bar-value" }, li).textContent = fmt(d.value, spec.format);
-      hover(li, tip, "<b>" + d.label + "</b><br>" + (spec.valueName || "Value") + " " + fmt(d.value, spec.format) + (d.note ? "<br>" + d.note : ""));
+      hover(li, tip, "<b>" + d.label + "</b><br>" + (spec.valueName || W().value) + " " + fmt(d.value, spec.format) + (d.note ? "<br>" + d.note : ""));
     });
     return list;
   }
@@ -86,7 +110,7 @@
   // radar of weights with a profile switch; the base profile stays drawn as a reference
   function radar(host, spec) {
     var keys = Object.keys(spec.profiles);
-    var controls = el("div", { class: "segmented", role: "group", "aria-label": "Source film profile" }, host);
+    var controls = el("div", { class: "segmented", role: "group", "aria-label": W().profile }, host);
     var wrap = el("div", { class: "radar-wrap" }, host);
     var frame = el("div", { class: "radar-frame" }, wrap);
     var side = el("div", { class: "radar-side" }, wrap);
@@ -122,15 +146,15 @@
     var tip = tooltip(frame);
 
     var legend = el("ul", { class: "chart-legend" }, side);
-    var l1 = el("li", {}, legend); el("span", { class: "key" }, l1); l1.appendChild(document.createTextNode("Selected profile"));
-    var l2 = el("li", {}, legend); el("span", { class: "key is-muted" }, l2); l2.appendChild(document.createTextNode("Base profile"));
+    var l1 = el("li", {}, legend); el("span", { class: "key" }, l1); l1.appendChild(document.createTextNode(W().selected));
+    var l2 = el("li", {}, legend); el("span", { class: "key is-muted" }, l2); l2.appendChild(document.createTextNode(W().baseProfile));
     var note = el("p", { class: "radar-note" }, side);
     var listHost = el("div", {}, side);
 
     var buttons = keys.map(function (k) {
       var b = el("button", { type: "button", "aria-pressed": "false" }, controls);
       b.textContent = spec.profiles[k].label;
-      b.addEventListener("click", function () { select(k); });
+      b.addEventListener("click", function () { host.dataset.profile = k; select(k); });
       return b;
     });
 
@@ -148,18 +172,25 @@
       note.textContent = prof.note;
       listHost.innerHTML = "";
       bars(listHost, {
-        max: spec.max, format: spec.format, valueName: "Weight",
+        max: spec.max, format: spec.format, valueName: W().weight,
         items: spec.axes.map(function (name, i) { return { label: name, value: prof.weights[i] }; })
       });
     }
-    select(spec.base);
+    select(host.dataset.profile && spec.profiles[host.dataset.profile] ? host.dataset.profile : spec.base);
   }
 
   var kinds = { bars: bars, grouped: grouped, radar: radar };
-  Array.prototype.forEach.call(document.querySelectorAll(".chart[data-chart]"), function (host) {
-    var src = document.getElementById(host.getAttribute("data-src"));
-    var kind = kinds[host.getAttribute("data-chart")];
-    if (!src || !kind) return;
-    kind(host, JSON.parse(src.textContent));
-  });
+  function draw() {
+    Array.prototype.forEach.call(document.querySelectorAll(".chart[data-chart]"), function (host) {
+      var src = document.getElementById(host.getAttribute("data-src"));
+      var kind = kinds[host.getAttribute("data-chart")];
+      if (!src || !kind) return;
+      var spec = JSON.parse(src.textContent);
+      if (lang() === "fr" && spec.fr) spec = merge(spec, spec.fr);
+      host.innerHTML = "";
+      kind(host, spec);
+    });
+  }
+  draw();
+  document.addEventListener("langchange", draw);
 })();

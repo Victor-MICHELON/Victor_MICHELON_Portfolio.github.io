@@ -402,3 +402,63 @@ td.num, th.num { text-align: right; padding-right: 22px; }
 .cross-mark { color: var(--muted); font-weight: 600; }
 .map-key.map-key-inline { position: static; display: inline-flex; padding: 0; background: none; }
 .confusion td.corner { background: none; }
+
+/* "what sets it apart": the block a hurried reader meets before scrolling, same layout on every case study */
+.edge {
+  margin: 40px 0 0;
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px solid var(--rule);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.edge .label { margin: 0 0 8px; font-family: var(--display); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.edge h2 { margin: 0 0 14px; max-width: 32ch; font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 2.8vw, 1.9rem); letter-spacing: -0.02em; line-height: 1.12; }
+.edge p { margin: 0 0 14px; max-width: 80ch; }
+.edge .versus { display: grid; gap: 14px; margin: 20px 0; }
+@media (min-width: 760px) { .edge .versus { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.edge .versus > div { padding: 16px 18px; border-radius: var(--radius); background: var(--ground); }
+.edge .versus h3 { margin: 0 0 8px; font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--muted); }
+.edge .versus .mine { border-left: 3px solid var(--accent); }
+.edge .versus .mine h3 { color: var(--accent); }
+.edge .versus p { margin: 0 0 10px; }
+.edge .versus > div > :last-child { margin-bottom: 0; }
+.edge .versus ul { margin: 0; padding-left: 1.1em; }
+.edge .versus li + li { margin-top: 6px; }
+.edge .proof { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 20px; align-items: center; margin: 0 0 16px; padding: 16px 0; max-width: none; border-block: 1px solid var(--rule); }
+.edge .proof .big { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4.4vw, 2.8rem); letter-spacing: -0.03em; line-height: 1; color: var(--accent); white-space: nowrap; }
+.edge .proof .label { grid-column: 1 / -1; margin: 0; }
+@media (max-width: 520px) { .edge .proof { grid-template-columns: minmax(0, 1fr); } }
+.edge > p:last-child { margin-bottom: 0; }
+
+/* three-lane diagram: who does what in the agent lab (Parkinson case study) */
+.lanes { display: grid; gap: 10px; margin: 8px 0 0; font-family: var(--display); font-size: 0.9rem; }
+.lanes .stages { display: none; }
+.lane { padding: 12px 14px; border-left: 4px solid var(--lane); border-radius: 0 var(--radius) var(--radius) 0; background: var(--panel); }
+.lane h4 { margin: 0 0 6px; font-size: 0.95rem; font-weight: 700; color: var(--lane); }
+.lane h4 small { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+.lane ul { margin: 0; padding: 0; list-style: none; }
+.prose .lane li + li { margin-top: 6px; }
+.lane li { line-height: 1.3; hyphens: auto; overflow-wrap: break-word; }
+.lane-us { --lane: var(--ink); }
+.lane-agents { --lane: var(--accent); }
+.lane-protocol { --lane: var(--heat); }
+@media (min-width: 900px) {
+  .lanes { grid-template-columns: 9.5rem repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .lanes .stages { display: grid; grid-column: 2 / -1; grid-template-columns: subgrid; margin: 0; padding: 0; list-style: none; }
+  .prose .lanes .stages li + li { margin-top: 0; }
+  .lanes .stages li { padding: 0 2px 4px; border-bottom: 2px solid var(--rule); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .lane { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: stretch; padding: 8px 0; border-left: 0; border-radius: var(--radius); background: none; }
+  .lane h4 { margin: 0; padding: 8px 10px; border-left: 4px solid var(--lane); align-self: center; }
+  .lane ul { display: contents; }
+  .lane li, .prose .lane li + li { grid-column: var(--c); margin: 0; padding: 9px 11px; border: 1px solid var(--rule); border-top: 3px solid var(--lane); border-radius: 4px; background: var(--panel); font-size: 0.84rem; }
+}
+
+/* small stat rows inside the prose (before/after pairs) */
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0; padding: 0; list-style: none; max-width: 78ch; }
+.prose .duo li + li { margin-top: 0; }
+.duo li { padding: 12px 16px 14px; border-top: 3px solid var(--rule); background: var(--panel); border-radius: 0 0 var(--radius) var(--radius); font-family: var(--display); }
+.duo li.win { border-top-color: var(--accent); }
+.duo .big { display: block; font-size: 1.7rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+.duo li.win .big { color: var(--accent); }
+.duo .cap { display: block; margin-top: 4px; font-size: 0.86rem; color: var(--muted); line-height: 1.35; }

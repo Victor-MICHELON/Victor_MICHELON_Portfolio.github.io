@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CineMatch, an explainable hybrid movie recommender | Victor Michelon</title>
-<meta name="description" content="A hybrid movie recommender that blends eight semantic, metadata and collaborative signals with per-film adaptive weights, handles cold start, and shows why it recommends each film.">
+<title data-i18n="title">CineMatch, a recommender that also works on films nobody has rated | Victor Michelon</title>
+<meta name="description" content="A hybrid movie recommender that blends eight signals with per-film weights. On films with no ratings, where collaborative filtering collapses, it finds 5.6 times more films the user went on to like, measured offline on MovieLens.">
 <link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/cinematch.html">
-<meta property="og:title" content="CineMatch, an explainable hybrid movie recommender | Victor Michelon">
-<meta property="og:description" content="A hybrid movie recommender that blends eight semantic, metadata and collaborative signals with per-film adaptive weights, handles cold start, and shows why it recommends each film.">
+<meta property="og:title" content="CineMatch, a recommender that also works on films nobody has rated | Victor Michelon">
+<meta property="og:description" content="A hybrid movie recommender that blends eight signals with per-film weights. On films with no ratings, where collaborative filtering collapses, it finds 5.6 times more films the user went on to like, measured offline on MovieLens.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/cinematch.html">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/cinematch.png">
@@ -31,6 +31,7 @@
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
+      <a href="../index.html#experience" data-i18n="c.experience">Experience</a>
       <a href="../index.html#projects" data-i18n="c.projects">Projects</a>
       <a href="../index.html#about" data-i18n="c.about">About</a>
       <a href="../index.html#contact" data-i18n="c.contact">Contact</a>
@@ -47,19 +48,47 @@
   <header class="case-head">
     <div class="wrap">
       <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> <span data-i18n="c.all">All projects</span></a>
-      <p class="kicker">Streamlit app · 2025 to 2026</p>
-      <h1>CineMatch, an explainable hybrid recommender</h1>
-      <p class="lede">A movie recommender that blends semantic, metadata and collaborative signals, and shows why it recommends what it does. The blend adapts to each film, films without audience data fall back on content signals, and a radar chart displays the exact weights behind every result.</p>
+      <p class="kicker" data-i18n="kicker">Streamlit app · December 2025</p>
+      <h1 data-i18n="h1">CineMatch, a recommender that also works on films nobody has rated</h1>
+      <p class="lede" data-i18n="lede">A movie recommender that blends eight signals, from what the plot is about to how the audience rated it, with weights that adapt to each film. When a film has no ratings, the engine leans on its content instead of going blind, and every suggestion says why it is there. An offline evaluation on MovieLens measures what that is worth.</p>
       <ul class="kpis">
-        <li><span class="big">8</span><span class="cap">similarity signals, from plot embeddings to audience ratings</span></li>
-        <li><span class="big">6,203</span><span class="cap">films in the catalogue, from 1916 to 2024</span></li>
-        <li><span class="big">~0.2 ms</span><span class="cap">per query on a laptop, excluding posters</span></li>
-        <li><span class="big">43%</span><span class="cap">of films with no collaborative data, handled as cold start</span></li>
+        <li><span class="big">×5.6</span><span class="cap" data-i18n="k1">hits on films with no ratings, against collaborative filtering alone (19.1% vs 3.4%, tuned weights)</span></li>
+        <li><span class="big" data-i18n="k2b">12.2 MB</span><span class="cap" data-i18n="k2">of artifacts instead of 618 MB, for exactly the same similarities</span></li>
+        <li><span class="big" data-i18n="k3b">1.4 ms</span><span class="cap" data-i18n="k3">per query (median) on a laptop</span></li>
+        <li><span class="big" data-i18n="k4b">6,195</span><span class="cap" data-i18n="k4">films, 43% of them with no audience ratings</span></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="https://cinematch-reco.streamlit.app/">Try the live demo</a>
-        <a class="btn" href="https://github.com/Victor-MICHELON/CineMatch-recommender">Code on GitHub</a>
+        <a class="btn btn-primary" href="https://cinematch-reco.streamlit.app/" data-i18n="b1">Try the live demo</a>
+        <a class="btn" href="https://github.com/Victor-MICHELON/CineMatch-recommender" data-i18n="b2">Code on GitHub</a>
       </div>
+
+      <section class="edge" aria-labelledby="edge-h">
+        <p class="label" data-i18n="c.edge">What sets it apart</p>
+        <h2 id="edge-h" data-i18n="e.h">It also recommends the films nobody has rated yet</h2>
+        <p><strong data-i18n="c.stakes">The stakes.</strong> <span data-i18n="e.stakes">On a platform, a film with no ratings is never recommended, so never watched, so never rated. This is the cold-start problem: new releases and niche films stay invisible. In CineMatch’s catalogue, it concerns 43% of the films.</span></p>
+        <div class="versus">
+          <div>
+            <h3 data-i18n="c.usual">The usual approach</h3>
+            <p data-i18n="e.usual">Collaborative filtering: “people who liked this film also liked…”. Very effective when a film has many ratings.</p>
+            <p><strong data-i18n="c.breaks">Where it breaks.</strong> <span data-i18n="e.breaks">It has nothing to say about a film with no ratings. The fallback, “same genre, same actor”, finds films that look alike on paper, not on screen.</span></p>
+          </div>
+          <div class="mine">
+            <h3 data-i18n="c.mine">What I did differently</h3>
+            <ul>
+              <li data-i18n="e.m1">A hybrid engine with <strong>8 signals</strong>: what the plot means (SBERT embeddings), topics, mood, genre, cast and crew, origin, era and audience ratings.</li>
+              <li data-i18n="e.m2"><strong>Weights that adapt to each film.</strong> When a film has no ratings, the audience weight is not lost: it moves to plot, topics and mood.</li>
+              <li data-i18n="e.m3"><strong>Every suggestion explains itself</strong> (“same director · similar mood”), and a radar shows the weights used.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proof">
+          <p class="label" data-i18n="c.proof">The proof</p>
+          <span class="big">×5.6</span>
+          <p data-i18n="e.proof">On 2,330 test queries where the source film’s ratings are hidden, collaborative filtering alone puts a film the user really liked next in its top 10 in <strong>3.4%</strong> of cases. The hybrid with tuned weights: <strong>19.1%</strong>. With the handcrafted rules the app uses by default: 9.1% (×2.7). Example: <em>Parasite</em> has no MovieLens rating, and CineMatch suggests <em>The Host</em> and <em>Snowpiercer</em>: same director, same tone.</p>
+        </div>
+        <p><strong data-i18n="c.notdo">What it does not do.</strong> <span data-i18n="e.notdo">A plain list of the most-rated films still scores higher on this test (35.4%), with or without ratings. But it recommends the same few films to everyone, 1.4% of the catalogue, whatever the starting film; the hybrid’s suggestions reach about half of it.</span></p>
+        <p><strong data-i18n="c.shows">What it shows.</strong> <span data-i18n="e.shows">Designing a system for its hard case, then measuring it honestly instead of asserting it.</span></p>
+      </section>
     </div>
   </header>
 
@@ -67,181 +96,265 @@
     <nav class="toc" aria-label="On this page" data-i18n-aria="c.toc">
       <p data-i18n="c.onpage">On this page</p>
       <ol>
-        <li><a href="#problem">The problem</a></li>
-        <li><a href="#data">The data</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#weights">Adaptive weights</a></li>
-        <li><a href="#implementation">Implementation</a></li>
-        <li><a href="#results">The app</a></li>
-        <li><a href="#limits">Limits and roadmap</a></li>
-        <li><a href="#reproduce">Reproduce</a></li>
+        <li><a href="#problem" data-i18n="t1">The problem</a></li>
+        <li><a href="#data" data-i18n="t2">The data</a></li>
+        <li><a href="#approach" data-i18n="t3">Approach</a></li>
+        <li><a href="#weights" data-i18n="t4">Adaptive weights</a></li>
+        <li><a href="#evaluation" data-i18n="t5">Evaluation</a></li>
+        <li><a href="#implementation" data-i18n="t6">Implementation</a></li>
+        <li><a href="#app" data-i18n="t7">The app</a></li>
+        <li><a href="#limits" data-i18n="t8">Limits and roadmap</a></li>
+        <li><a href="#reproduce" data-i18n="t9">Reproduce</a></li>
       </ol>
     </nav>
 
     <article class="prose">
       <section id="problem" aria-labelledby="problem-h">
-        <h2 id="problem-h">The problem</h2>
-        <p>Keyword filtering (“same genre, same actor”) misses what makes two films <em>feel</em> alike, while pure collaborative filtering fails on films nobody has rated. CineMatch combines both families of signals and stays <strong>explainable</strong>: for every query, a radar chart shows how much each signal contributed to the ranking.</p>
-        <p>Example: <em>Pulp Fiction</em> (1994) returns <em>Reservoir Dogs</em>, <em>Se7en</em>, <em>The Usual Suspects</em> and <em>Kill Bill: Vol. 2</em>. Two share its director; the others share its crime and neo-noir tone.</p>
+        <h2 id="problem-h" data-i18n="t1">The problem</h2>
+        <p data-i18n="pb1">Keyword filtering (“same genre, same actor”) misses what makes two films <em>feel</em> alike, while pure collaborative filtering fails on films nobody has rated. CineMatch combines both families of signals and stays <strong>explainable</strong>: each card names the two signals that drove it, and a radar shows the exact weights behind the ranking.</p>
+        <p data-i18n="pb2">The hard case first. <em>Parasite</em> (2019) has no rating in MovieLens. CineMatch returns <em>The Host</em>, <em>Snowpiercer</em>, <em>The Gangster, the Cop, the Devil</em> and <em>The Roundup</em>: the first two share its director, Bong Joon-ho, and all four share its origin and its tone. Two rules fire (non-English, very popular) and, since there are no ratings, the audience weight moves to the content signals.</p>
+        <p data-i18n="pb3">The easy case, for comparison: <em>Pulp Fiction</em> (1994) has plenty of ratings and returns <em>Reservoir Dogs</em>, <em>Se7en</em>, <em>The Usual Suspects</em> and <em>Kill Bill: Vol. 2</em>.</p>
         <figure>
           <img class="shot" src="../assets/img/cinematch-3.webp" srcset="../assets/img/cinematch-3-800.webp 800w, ../assets/img/cinematch-3.webp 1400w" sizes="(min-width: 1000px) 780px, 100vw" width="1400" height="623" loading="lazy" alt="Four recommendations for Pulp Fiction: Reservoir Dogs, Se7en, The Usual Suspects and Kill Bill: Vol. 2, with their posters">
-          <figcaption>The four recommendations for <em>Pulp Fiction</em> in the live app.</figcaption>
+          <figcaption data-i18n="cap1">Recommendations for <em>Pulp Fiction</em>, a film with plenty of ratings, in the app.</figcaption>
         </figure>
       </section>
 
       <section id="data" aria-labelledby="data-h">
-        <h2 id="data-h">The data</h2>
+        <h2 id="data-h" data-i18n="t2">The data</h2>
         <ul>
-          <li><strong>Metadata and posters</strong> from TMDB, starting from the TMDB 5000 dataset, plus about 1,400 recent films.</li>
-          <li><strong>Ratings</strong> from MovieLens <code>ml-latest-small</code>, for the audience signal.</li>
-          <li><strong>Catalogue:</strong> 6,203 films from 1916 to 2024, median year 2008. 51 titles are shared by several films, such as two <em>Aladdin</em>.</li>
+          <li data-i18n="d1"><strong>Metadata, posters and trailers</strong> from the TMDB API, fetched by the pipeline.</li>
+          <li data-i18n="d2"><strong>Ratings</strong> from MovieLens <code>ml-latest-small</code> (610 users), for the audience signal and for the evaluation.</li>
+          <li data-i18n="d3"><strong>Catalogue:</strong> 6,195 films from 1916 to 2024. Some titles are shared by several films, such as two <em>Aladdin</em>, so the engine works on row positions, never on titles.</li>
         </ul>
         <div class="callout">
-          <span class="label">Cold start</span>
-          <p>43% of the catalogue has no collaborative data. For these films, the audience weight is redistributed to the content signals instead of being silently wasted.</p>
+          <span class="label" data-i18n="d4l">Cold start</span>
+          <p data-i18n="d4">43% of the catalogue has no MovieLens rating: recent films, non-English films, niche titles. For them, the audience signal is empty, and its weight is moved to the content signals instead of being silently wasted.</p>
         </div>
       </section>
 
       <section id="approach" aria-labelledby="approach-h">
-        <h2 id="approach-h">Approach</h2>
+        <h2 id="approach-h" data-i18n="t3">Approach</h2>
         <figure>
-          <ol class="flow" aria-label="Recommendation pipeline">
-            <li><span class="box"><b>Selected film i</b></span></li>
-            <li><span class="box"><b>Adaptive weights w(i)</b><small>genre, language, popularity rules</small></span></li>
-            <li><span class="box"><b>Collaborative data for i?</b><small>if not: audience weight → plot, topics, mood</small></span></li>
-            <li><span class="box is-key"><b>Weighted sum</b><small>of 8 pre-computed similarity rows</small></span></li>
-            <li><span class="box"><b>Top-k</b><small>argpartition</small></span></li>
-            <li><span class="box"><b>Ranked films</b><small>+ radar of weights</small></span></li>
+          <ol class="flow" aria-label="Recommendation pipeline" data-i18n-aria="fl">
+            <li><span class="box"><b data-i18n="fl1">Selected film(s)</b></span></li>
+            <li><span class="box"><b data-i18n="fl2">Adaptive weights</b><small data-i18n="fl2s">4 rules, written as data</small></span></li>
+            <li><span class="box"><b data-i18n="fl3">Ratings for this film?</b><small data-i18n="fl3s">if not: audience → plot, topics, mood</small></span></li>
+            <li><span class="box is-key"><b data-i18n="fl4">Weighted sum</b><small data-i18n="fl4s">of 8 similarity rows, computed from factors</small></span></li>
+            <li><span class="box"><b data-i18n="fl5">Filters, top-k</b><small data-i18n="fl5s">optional diversity re-ranking</small></span></li>
+            <li><span class="box"><b data-i18n="fl6">Ranked films</b><small data-i18n="fl6s">+ reasons + radar</small></span></li>
           </ol>
-          <figcaption>A query never encodes anything at run time: it reads eight rows of pre-computed matrices.</figcaption>
+          <figcaption data-i18n="flc">A query encodes nothing at run time: it reads eight similarity rows from pre-computed factors.</figcaption>
         </figure>
 
-        <h3>The eight signals</h3>
-        <p>Each signal is an <code>n × n</code> similarity matrix (n = 6,203 films), stored as float16.</p>
+        <h3 data-i18n="sig.h">The eight signals</h3>
+        <p data-i18n="sig.p">No <code>n × n</code> matrix is stored. Each signal is kept in factorised form: the similarity row of film <em>i</em> is <code>F @ F[i]</code> on L2-normalised rows, which is exactly the cosine, computed on demand.</p>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Signal</th><th scope="col">What it captures</th><th scope="col">Construction</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="sig.c1">Signal</th><th scope="col" data-i18n="sig.c2">What it captures</th><th scope="col" data-i18n="sig.c3">Construction</th></tr></thead>
             <tbody>
-              <tr><td>Plot</td><td>Plot semantics</td><td><code>all-MiniLM-L6-v2</code> embeddings of title and overview, cosine similarity</td></tr>
-              <tr><td>Topics</td><td>Precise topics</td><td>TMDB keywords, bag of words, cosine</td></tr>
-              <tr><td>Mood</td><td>Tone and atmosphere</td><td>Semantic signal; construction not yet versioned</td></tr>
-              <tr><td>Genre</td><td>Category</td><td>TMDB genres, bag of words, cosine</td></tr>
-              <tr><td>Cast &amp; crew</td><td>Artistic fingerprint</td><td>Director (weight ×3) and top-billed cast</td></tr>
-              <tr><td>Origin</td><td>Cultural context</td><td>Original language and production countries</td></tr>
-              <tr><td>Popularity &amp; era</td><td>Era and notoriety</td><td><code>exp(−|Δ|/σ)</code> on popularity (σ = 20) and release year (σ = 10), averaged</td></tr>
-              <tr><td>Audience</td><td>Audience taste</td><td>Collaborative similarity from MovieLens; construction not yet versioned</td></tr>
+              <tr><td data-i18n="s1a">Plot</td><td data-i18n="s1b">What the story is about</td><td data-i18n="s1c"><code>all-MiniLM-L6-v2</code> embeddings of title and overview</td></tr>
+              <tr><td data-i18n="s2a">Topics</td><td data-i18n="s2b">Precise topics</td><td data-i18n="s2c">TMDB keywords, bag of words</td></tr>
+              <tr><td data-i18n="s3a">Mood</td><td data-i18n="s3b">Tone and universe</td><td data-i18n="s3c"><code>all-MiniLM-L6-v2</code> on tagline, genres and keywords</td></tr>
+              <tr><td data-i18n="s4a">Genre</td><td data-i18n="s4b">Category</td><td data-i18n="s4c">TMDB genres, bag of words</td></tr>
+              <tr><td data-i18n="s5a">Cast &amp; crew</td><td data-i18n="s5b">Artistic fingerprint</td><td data-i18n="s5c">Director (weight ×3) and top-4 cast</td></tr>
+              <tr><td data-i18n="s6a">Origin</td><td data-i18n="s6b">Cultural context</td><td data-i18n="s6c">Original language and production countries</td></tr>
+              <tr><td data-i18n="s7a">Era &amp; fame</td><td data-i18n="s7b">Era and notoriety</td><td data-i18n="s7c"><code>exp(−|Δ|/σ)</code> on popularity (σ = 20) and release year (σ = 10), averaged</td></tr>
+              <tr><td data-i18n="s8a">Audience</td><td data-i18n="s8b">Audience taste</td><td data-i18n="s8c">Item-item cosine on MovieLens ratings</td></tr>
             </tbody>
           </table>
         </div>
 
-        <h3>Scoring</h3>
-        <p>For a source film <em>i</em> and a candidate <em>j</em>, the score is a normalized weighted sum of the eight matrices:</p>
+        <h3 data-i18n="sc.h">Scoring</h3>
+        <p data-i18n="sc.p1">For a source film <em>i</em> and a candidate <em>j</em>, the score is a normalised weighted sum of the eight similarities:</p>
         <div class="formula">
           <math display="block"><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>8</mn></munderover><msub><mi>w</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mspace width="0.2em"/><msub><mi>M</mi><mi>k</mi></msub><mo stretchy="false">[</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mn>8</mn></munderover><msub><mi>w</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow></math>
         </div>
-        <p>The “% MATCH” shown on each card is this normalized score: a relative ranking indicator, not a probability.</p>
+        <p data-i18n="sc.p2">Each term <code>w<sub>k</sub> · M<sub>k</sub>[i, j]</code> is a contribution: the two largest give the reason printed on the card. With several source films (“I liked A, B and C”), their scores are averaged. The “% MATCH” on each card is this normalised score, a relative ranking indicator, not a probability.</p>
       </section>
 
       <section id="weights" aria-labelledby="weights-h">
-        <h2 id="weights-h">Adaptive weights</h2>
-        <p>The weights start from a base profile and are adjusted by simple, readable rules. Pick a type of source film to see how the blend changes; these are the exact values the engine computes.</p>
+        <h2 id="weights-h" data-i18n="t4">Adaptive weights</h2>
+        <p data-i18n="w1">The weights start from a base profile and are adjusted by four readable rules, stored as data in a <code>WeightConfig</code>, so the same rules can be switched off one by one (ablation), tuned by Optuna and applied by the app. Pick a profile to see how the blend changes; these are the values the engine computes.</p>
         <figure>
           <div class="chart" data-chart="radar" data-src="weights-data"></div>
-          <figcaption>Weights of the eight signals for each type of source film, computed with <code>smart_weights</code> from <code>recommender.py</code>. The grey outline is the base profile.</figcaption>
+          <figcaption data-i18n="wcap">Weights of the eight signals, from <code>cinematch/config.py</code> and <code>reports/best_weights.json</code>. The grey outline is the base profile.</figcaption>
         </figure>
         <script type="application/json" id="weights-data">{"label": "Radar of the eight signal weights", "format": "dec2", "max": 0.4, "rings": [0.1, 0.2, 0.3, 0.4], "base": "base",
-          "axes": ["Plot", "Topics", "Mood", "Genre", "Cast & crew", "Origin", "Popularity & era", "Audience"],
+          "axes": ["Plot", "Topics", "Mood", "Genre", "Cast & crew", "Origin", "Era & fame", "Audience"],
           "profiles": {
             "base": {"label": "Base profile", "weights": [0.15, 0.25, 0.15, 0.10, 0.10, 0.00, 0.05, 0.20], "note": "Topics and audience lead; origin starts at zero."},
-            "horror": {"label": "Horror", "weights": [0.15, 0.35, 0.35, 0.10, 0.05, 0.00, 0.05, 0.20], "note": "Mood +0.20 and topics +0.10, cast −0.05: tone matters more than who is in it."},
-            "animation": {"label": "Animation or sequel", "weights": [0.15, 0.40, 0.15, 0.10, 0.10, 0.00, 0.05, 0.30], "note": "Topics +0.15 and audience +0.10, for animation or a title with a digit in it."},
-            "cold": {"label": "No audience data", "weights": [0.2167, 0.3167, 0.2167, 0.10, 0.10, 0.00, 0.05, 0.00], "note": "Cold start: the audience weight (0.20) is split equally between plot, topics and mood."}
-          }}</script>
+            "horror": {"label": "Horror", "weights": [0.15, 0.35, 0.35, 0.10, 0.05, 0.00, 0.05, 0.20], "note": "Mood +0.20 and topics +0.10, cast −0.05: tone matters more than who is in it (The Conjuring)."},
+            "franchise": {"label": "Animation or sequel", "weights": [0.15, 0.40, 0.15, 0.10, 0.10, 0.00, 0.05, 0.30], "note": "Topics +0.15 and audience +0.10, for animation or a title with a digit in it (Toy Story)."},
+            "foreign": {"label": "Non-English", "weights": [0.05, 0.25, 0.15, 0.10, 0.10, 0.30, 0.05, 0.20], "note": "Origin +0.30 and plot −0.10: language and country carry the cultural context."},
+            "popular": {"label": "Very popular", "weights": [0.15, 0.25, 0.15, 0.10, 0.10, 0.00, 0.10, 0.35], "note": "More than 3,000 TMDB votes: audience +0.15 and era & fame +0.05. The rule that helps most (ablation)."},
+            "parasite": {"label": "Parasite", "weights": [0.1667, 0.3667, 0.2667, 0.10, 0.10, 0.30, 0.10, 0.00], "note": "Non-English and very popular, but no MovieLens rating: the audience weight (0.35) is split equally between plot, topics and mood."},
+            "tuned": {"label": "Tuned (Optuna)", "weights": [0.0257, 0.1688, 0.0162, 0.0142, 0.0437, 0.0581, 0.3944, 0.2789], "note": "Base weights found by 200 Optuna trials on the validation users: much more era & fame and audience. One click away in the app’s advanced mode."}
+          },
+          "fr": {"label": "Radar des poids des huit signaux",
+            "axes": ["Synopsis", "Sujets", "Ambiance", "Genre", "Équipe", "Origine", "Époque", "Public"],
+            "profiles": {
+              "base": {"label": "Profil de base", "note": "Sujets et public en tête ; l’origine part de zéro."},
+              "horror": {"label": "Horreur", "note": "Ambiance +0,20 et sujets +0,10, équipe −0,05 : le ton compte plus que la distribution (The Conjuring)."},
+              "franchise": {"label": "Animation ou suite", "note": "Sujets +0,15 et public +0,10, pour l’animation ou un titre qui contient un chiffre (Toy Story)."},
+              "foreign": {"label": "Hors anglais", "note": "Origine +0,30 et synopsis −0,10 : la langue et le pays portent le contexte culturel."},
+              "popular": {"label": "Très populaire", "note": "Plus de 3 000 votes TMDB : public +0,15 et époque +0,05. C’est la règle qui aide le plus (ablation)."},
+              "parasite": {"label": "Parasite", "note": "Hors anglais et très populaire, mais sans note MovieLens : le poids du public (0,35) est réparti à parts égales entre synopsis, sujets et ambiance."},
+              "tuned": {"label": "Optimisé (Optuna)", "note": "Poids de base trouvés par 200 essais Optuna sur les utilisateurs de validation : beaucoup plus d’époque et de public. À un clic dans le mode avancé de l’application."}
+            }}}</script>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Condition on the source film</th><th scope="col">Adjustment</th><th scope="col">Status</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="r.c1">Condition on the source film</th><th scope="col" data-i18n="r.c2">Adjustment</th><th scope="col" data-i18n="r.c3">Status</th></tr></thead>
             <tbody>
-              <tr><td>Animation, or a digit in the title (sequels)</td><td>+ topics, + audience</td><td><span class="check"><span aria-hidden="true">✓ </span>Active</span></td></tr>
-              <tr><td>Horror</td><td>+ mood (+0.20), + topics, − cast</td><td><span class="check"><span aria-hidden="true">✓ </span>Active</span></td></tr>
-              <tr><td>No collaborative data (cold start)</td><td>audience weight → plot, topics, mood</td><td><span class="check"><span aria-hidden="true">✓ </span>Active</span></td></tr>
-              <tr><td>Non-English original language</td><td>+ origin (+0.30), − plot</td><td><span class="cross-mark"><span aria-hidden="true">✕ </span>Inactive</span></td></tr>
-              <tr><td>More than 3,000 votes</td><td>+ audience, + popularity</td><td><span class="cross-mark"><span aria-hidden="true">✕ </span>Inactive</span></td></tr>
+              <tr><td data-i18n="r1a">Animation, or a digit in the title (sequels)</td><td data-i18n="r1b">+ topics, + audience</td><td><span class="check"><span aria-hidden="true">✓ </span><span data-i18n="on">Active</span></span></td></tr>
+              <tr><td data-i18n="r2a">Horror</td><td data-i18n="r2b">+ mood (+0.20), + topics, − cast</td><td><span class="check"><span aria-hidden="true">✓ </span><span data-i18n="on">Active</span></span></td></tr>
+              <tr><td data-i18n="r3a">Non-English original language</td><td data-i18n="r3b">+ origin (+0.30), − plot</td><td><span class="check"><span aria-hidden="true">✓ </span><span data-i18n="on">Active</span></span></td></tr>
+              <tr><td data-i18n="r4a">More than 3,000 TMDB votes</td><td data-i18n="r4b">+ audience, + era &amp; fame</td><td><span class="check"><span aria-hidden="true">✓ </span><span data-i18n="on">Active</span></span></td></tr>
+              <tr><td data-i18n="r5a">No ratings (cold start)</td><td data-i18n="r5b">the actual audience weight → split over plot, topics, mood</td><td><span class="check"><span aria-hidden="true">✓ </span><span data-i18n="on">Active</span></span></td></tr>
             </tbody>
           </table>
         </div>
-        <p>The last two rules never trigger: the shipped data has no <code>original_language</code> or <code>vote_count</code> column. Rebuilding the data with these columns re-enables them with no code change.</p>
+        <p data-i18n="w2">All the rules fire on the rebuilt catalogue, which now has the original language and the vote count of every film; they are tested on <em>Parasite</em>, <em>Toy Story</em> and <em>The Conjuring</em>.</p>
+      </section>
+
+      <section id="evaluation" aria-labelledby="evaluation-h">
+        <h2 id="evaluation-h" data-i18n="t5">Evaluation</h2>
+        <p data-i18n="ev1">The question a recommender has to answer: <em>which films will this user like next?</em> The protocol is built so that the answer cannot leak.</p>
+        <ul>
+          <li data-i18n="ev2"><strong>Temporal split per user:</strong> each user’s oldest 80% of ratings for training, the newest 20% for testing. A liked film is rated 4 or more.</li>
+          <li data-i18n="ev3"><strong>Queries:</strong> one of the user’s five most recent liked films in training; the relevant answers are the films the user liked in the test period. Already-rated films are excluded.</li>
+          <li data-i18n="ev4"><strong>No leakage:</strong> the audience signal is rebuilt on the training part only.</li>
+          <li data-i18n="ev5"><strong>Test set used once:</strong> 20% of users tune the weights; the other 472 users (2,330 queries) give the final numbers, with 95% intervals from a 1,000-draw bootstrap.</li>
+          <li data-i18n="ev6"><strong>Cold start:</strong> every query is replayed with the source film’s ratings hidden, as for the 43% of the catalogue that has none.</li>
+        </ul>
+        <figure>
+          <div class="chart" data-chart="bars" data-src="eval-data"></div>
+          <figcaption data-i18n="evcap">HitRate@10 in cold start: the share of queries where at least one film the user liked next is in the top 10, with the source film’s ratings hidden. 2,330 test queries.</figcaption>
+        </figure>
+        <script type="application/json" id="eval-data">{"format": "pct1", "max": 0.4, "valueName": "HitRate@10", "items": [
+          {"label": "Most-rated films", "value": 0.354, "muted": true, "note": "Same list for everyone: 1.4% of the catalogue"},
+          {"label": "Hybrid, tuned weights", "value": 0.191, "note": "×5.6 against collaborative only"},
+          {"label": "Hybrid, uniform weights", "value": 0.128, "muted": true},
+          {"label": "Hybrid, handcrafted rules (app default)", "value": 0.091, "note": "×2.7 against collaborative only"},
+          {"label": "SBERT only", "value": 0.051, "muted": true},
+          {"label": "Collaborative only", "value": 0.034, "muted": true, "note": "No ratings, nothing to say"},
+          {"label": "Random", "value": 0.014, "muted": true}],
+          "fr": {"items": [
+            {"label": "Films les plus notés", "note": "La même liste pour tout le monde : 1,4 % du catalogue"},
+            {"label": "Hybride, poids optimisés", "note": "×5,6 face au collaboratif seul"},
+            {"label": "Hybride, poids uniformes"},
+            {"label": "Hybride, règles manuelles (défaut de l’app)", "note": "×2,7 face au collaboratif seul"},
+            {"label": "SBERT seul"},
+            {"label": "Collaboratif seul", "note": "Sans note, rien à dire"},
+            {"label": "Aléatoire"}]}}</script>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col" data-i18n="et.c1">Method</th><th scope="col" class="num" data-i18n="et.c2">NDCG@10, standard</th><th scope="col" class="num" data-i18n="et.c3">NDCG@10, cold start</th><th scope="col" class="num" data-i18n="et.c4">HitRate@10, cold start</th><th scope="col" class="num" data-i18n="et.c5">Catalogue coverage</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="et1">Most-rated films</td><td class="num"><strong>0.087</strong></td><td class="num"><strong>0.087</strong></td><td class="num"><strong>0.354</strong></td><td class="num">1.4%</td></tr>
+              <tr><td data-i18n="et2">Random</td><td class="num">0.002</td><td class="num">0.002</td><td class="num">0.014</td><td class="num">97.5%</td></tr>
+              <tr><td data-i18n="et3">SBERT only</td><td class="num">0.010</td><td class="num">0.010</td><td class="num">0.051</td><td class="num">65.9%</td></tr>
+              <tr><td data-i18n="et4">Collaborative only</td><td class="num">0.082</td><td class="num">0.004</td><td class="num">0.034</td><td class="num">40.5%</td></tr>
+              <tr><td data-i18n="et5">Hybrid, uniform weights</td><td class="num">0.042</td><td class="num">0.024</td><td class="num">0.128</td><td class="num">49.3%</td></tr>
+              <tr><td data-i18n="et6">Hybrid, base weights, no rules</td><td class="num">0.044</td><td class="num">0.016</td><td class="num">0.083</td><td class="num">50.0%</td></tr>
+              <tr><td data-i18n="et7">Hybrid, handcrafted rules (app default)</td><td class="num">0.057</td><td class="num">0.017</td><td class="num">0.091</td><td class="num">48.2%</td></tr>
+              <tr><td data-i18n="et8"><strong>Hybrid, tuned weights (Optuna)</strong></td><td class="num">0.070</td><td class="num">0.036</td><td class="num">0.191</td><td class="num">42.4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 data-i18n="rd.h">Reading it honestly</h3>
+        <ul>
+          <li data-i18n="rd1"><strong>On films that already have ratings, popularity wins.</strong> The most-rated list comes first and collaborative filtering alone comes close; the hybrid does not beat them there.</li>
+          <li data-i18n="rd2"><strong>Cold start is where the hybrid earns its keep.</strong> Without ratings, collaborative filtering collapses (0.034), while the tuned hybrid keeps 0.191 (×5.6) and a ten times higher NDCG@10.</li>
+          <li data-i18n="rd3"><strong>The rules help</strong>: NDCG@10 goes from 0.044 to 0.057 (+29%), mostly through the “very popular” rule (−1.27 points when it is removed).</li>
+          <li data-i18n="rd4"><strong>Tuning helps more</strong> (+22% on standard queries, ×2.1 in cold start), but it shifts weight to era and audience, so it partly re-learns popularity. The app keeps the handcrafted rules by default, which stay closer to “films like this one”, and offers the tuned profile in advanced mode.</li>
+        </ul>
       </section>
 
       <section id="implementation" aria-labelledby="implementation-h">
-        <h2 id="implementation-h">Implementation</h2>
-        <ul class="cards">
-          <li><strong>Pre-computed dense matrices</strong><p>At 6,203 films the full set is about 600 MB in float16. It buys sub-millisecond queries and a light runtime: no PyTorch or SBERT at serving time. Beyond about 20k films, approximate nearest neighbours (FAISS, HNSW) would replace it.</p></li>
-          <li><strong>Engine separate from the UI</strong><p><code>recommender.py</code> has no Streamlit import, so the scoring logic is unit-tested on synthetic data and reusable from a notebook or an API.</p></li>
-          <li><strong>Rules rather than a learned blender</strong><p>Transparent and debuggable, which is what makes the radar a faithful explanation rather than a decoration. Learning to rank comes once an evaluation set exists.</p></li>
-          <li><strong>Homonyms handled by index</strong><p>The search box shows <code>Title (year)</code> and the engine works on row positions, never on titles.</p></li>
-          <li><strong>Caching</strong><p>The data is loaded once with <code>st.cache_resource</code>; poster lookups are cached for 24 hours and failures are never cached.</p></li>
-          <li><strong>No secret in the code</strong><p>The TMDB key is read from the environment or Streamlit secrets only. Without a key, a placeholder poster is shown.</p></li>
+        <h2 id="implementation-h" data-i18n="t6">Implementation</h2>
+        <h3 data-i18n="im.h">From 618 MB to 12.2 MB</h3>
+        <p data-i18n="im.p">The first version shipped eight dense 6,203 × 6,203 similarity matrices: 618 MB through Git LFS and about 700 MB of RAM, so the hosted demo was slow to start. Storing the factors instead (embeddings, sparse bag-of-words and rating matrices) gives exactly the same cosines, computed per query.</p>
+        <ul class="duo">
+          <li><span class="big" data-i18n="du1b">618 MB</span><span class="cap" data-i18n="du1">on disk, first version (dense matrices)</span></li>
+          <li class="win"><span class="big" data-i18n="du2b">12.2 MB</span><span class="cap" data-i18n="du2">on disk now (factors, no pickle)</span></li>
+          <li class="win"><span class="big" data-i18n="du3b">708 → 180 MB</span><span class="cap" data-i18n="du3">of process RAM</span></li>
+          <li class="win"><span class="big" data-i18n="du4b">1.4 ms</span><span class="cap" data-i18n="du4">per query, median (2.2 ms at p95)</span></li>
         </ul>
-        <p>The core of a query, from <code>recommender.py</code>:</p>
-        <div class="code"><pre><code>scores = np.zeros(len(df), dtype=np.float32)
-for name, w in weights.items():
-    if w &gt; 0:
-        scores += w * matrices[SIGNAL_TO_MATRIX[name]][idx].astype(np.float32)
-
-# k+1 candidates: the source film almost always ranks first
-n_cand = min(k + 1, len(scores))
-top = np.argpartition(scores, -n_cand)[-n_cand:]
-top = top[np.argsort(scores[top])[::-1]]</code></pre></div>
+        <p data-i18n="im.p2">The price is a query that costs 1.4 ms instead of a fraction of a millisecond, which no user can notice. The audience signal is rebuilt identically (correlation 1.000 with the old one); the mood signal, whose original code was lost, is rebuilt from scratch (<a href="https://github.com/Victor-MICHELON/CineMatch-recommender/blob/main/reports/regression.md">non-regression report</a>).</p>
+        <ul class="cards">
+          <li><strong data-i18n="c1h">Engine separate from the UI</strong><p data-i18n="c1p"><code>cinematch/</code> has no Streamlit import: it is type-checked with <code>mypy --strict</code>, covered at 99% by tests, and reused as is by the evaluation code.</p></li>
+          <li><strong data-i18n="c2h">Rules as data</strong><p data-i18n="c2p">The magic numbers live in a <code>WeightConfig</code> dataclass, so the rules the app applies are exactly the ones that were ablated and tuned.</p></li>
+          <li><strong data-i18n="c3h">No pickle</strong><p data-i18n="c3p">Artifacts are Parquet, <code>.npy</code> (<code>allow_pickle=False</code>) and <code>.npz</code>, checked against a SHA-256 manifest when they load.</p></li>
+          <li><strong data-i18n="c4h">One command rebuilds everything</strong><p data-i18n="c4p"><code>python -m pipeline.build</code> goes from the TMDB API and MovieLens to the eight signals.</p></li>
+        </ul>
+        <p data-i18n="im.code">One similarity row, from <code>cinematch/data.py</code>:</p>
+        <div class="code"><pre><code>def similarity(self, signal: str, idx: int) -&gt; FloatArray:
+    if signal in EMBEDDING_SIGNALS:            # plot, mood
+        emb = self.embeddings[signal]
+        return emb @ emb[idx]
+    if signal in SPARSE_SIGNALS:               # topics, genre, cast, origin, audience
+        fac = self.factors[signal]
+        row = fac[idx].toarray().ravel()
+        return np.asarray(fac @ row, dtype=np.float32)
+    if signal == "context":                    # era &amp; fame
+        pop = np.exp(-np.abs(self._pop - self._pop[idx]) / self.context.pop_sigma)
+        year = np.exp(-np.abs(self._year - self._year[idx]) / self.context.year_sigma)
+        return ((pop + year) / 2).astype(np.float32)</code></pre></div>
       </section>
 
-      <section id="results" aria-labelledby="results-h">
-        <h2 id="results-h">The app</h2>
+      <section id="app" aria-labelledby="app-h">
+        <h2 id="app-h" data-i18n="t7">The app</h2>
+        <p data-i18n="ap1">Beyond one film: “I liked A, B and C” queries, filters (decade, genre, language, runtime), a diversity slider, manual weight sliders, 4, 8 or 12 results, TMDB links and trailers, and an English/French interface.</p>
         <figure>
           <img class="shot" src="../assets/img/cinematch-1.webp" width="1400" height="563" loading="lazy" alt="CineMatch home page with the film search box">
-          <figcaption>The home page: pick a source film by title and year.</figcaption>
+          <figcaption data-i18n="ap2">The home page: pick a source film by title and year.</figcaption>
         </figure>
         <figure>
           <img class="shot" src="../assets/img/cinematch-2.webp" width="1400" height="592" loading="lazy" alt="Analysis of the source film Pulp Fiction, with the radar of signal weights in the sidebar">
-          <figcaption>The analysis of the source film, with the radar of the weights used in the sidebar.</figcaption>
+          <figcaption data-i18n="ap3">The analysis of the source film, with the radar of the weights used in the sidebar.</figcaption>
         </figure>
       </section>
 
       <section id="limits" aria-labelledby="limits-h">
-        <h2 id="limits-h">Limits and roadmap</h2>
+        <h2 id="limits-h" data-i18n="t8">Limits and roadmap</h2>
         <div class="callout callout-limit">
-          <span class="label">Limits</span>
-          <p><strong>No offline evaluation yet.</strong> Quality is judged by inspection. Next: precision@k, recall@k and NDCG on held-out MovieLens ratings, plus an ablation per signal.</p>
+          <span class="label" data-i18n="lm.l">Limits</span>
+          <p data-i18n="lm.p"><strong>Popularity is a strong baseline.</strong> On films that already have ratings, the hybrid does not beat the most-rated list. A learned blender (LightGBM LambdaRank over the eight similarities) is the natural next step.</p>
         </div>
         <ul>
-          <li><strong>Two weighting rules are inactive</strong>, as shown above, which is visible on non-English films.</li>
-          <li><strong>Partial pipeline in the repository:</strong> the notebook covers 6 of the 8 signals on TMDB 5000; the scripts that built mood and audience, merged the recent films and exported the data are not yet versioned.</li>
-          <li><strong>Small catalogue:</strong> niche or very recent titles may have weak neighbours.</li>
-          <li><strong>Roadmap:</strong> weight tuning against an evaluation set, a learning-to-rank blender, diversity re-ranking (MMR), a FAISS index for larger catalogues, an English/French toggle.</li>
+          <li data-i18n="lm1"><strong>Small data:</strong> 6,195 films and <code>ml-latest-small</code> (610 users). Next: MovieLens 25M and a FAISS index over the embeddings.</li>
+          <li data-i18n="lm2"><strong>TMDB metadata drifts:</strong> the pipeline queries the live API, so a rebuild can change keywords or popularity slightly.</li>
+          <li data-i18n="lm3"><strong>Two defaults, two numbers:</strong> the ×5.6 comes from the tuned profile; the handcrafted rules the app uses by default give ×2.7.</li>
         </ul>
+        <p data-i18n="lm4">Already done, from the first version’s list: offline evaluation, all four rules active, a complete pipeline, weight tuning, diversity re-ranking (MMR) and an English/French toggle.</p>
       </section>
 
       <section id="reproduce" aria-labelledby="reproduce-h">
-        <h2 id="reproduce-h">Reproduce</h2>
+        <h2 id="reproduce-h" data-i18n="t9">Reproduce</h2>
         <div class="code"><pre><code>git clone https://github.com/Victor-MICHELON/CineMatch-recommender.git
 cd CineMatch-recommender
-git lfs pull                       # ~600 MB of similarity matrices
-
 python -m venv .venv &amp;&amp; source .venv/bin/activate
-pip install -r requirements.txt
-export TMDB_API_KEY=your_key       # optional, for posters
+pip install -r requirements.txt -e ".[dev]"
+export TMDB_API_KEY=your_key      # optional, for posters and trailers
 
-streamlit run app.py</code></pre></div>
-        <p>Tests need no data file: <code>pip install -r requirements-dev.txt &amp;&amp; pytest</code>. A Dev Container is included for GitHub Codespaces.</p>
-        <p>Data: <a href="https://www.themoviedb.org/">TMDB</a> (this product uses the TMDB API but is not endorsed or certified by TMDB), <a href="https://grouplens.org/datasets/movielens/">MovieLens</a> (Harper &amp; Konstan, 2015), <a href="https://www.sbert.net/">Sentence-Transformers</a> (Reimers &amp; Gurevych, 2019).</p>
-        <p class="stack">Python, sentence-transformers, NumPy, pandas, Plotly, Streamlit, pytest</p>
+streamlit run app.py              # downloads the 11 MB artifacts archive on first launch
+
+# rebuild everything from TMDB + MovieLens
+pip install -e ".[pipeline]" &amp;&amp; python -m pipeline.build --zip
+# offline evaluation -&gt; reports/eval.md
+pip install -e ".[eval]" &amp;&amp; python -m evaluation.run</code></pre></div>
+        <p data-i18n="rp1">Tests: <code>pytest</code> (<code>pytest -m "not slow"</code> without local artifacts). A Dev Container is included for GitHub Codespaces.</p>
+        <p data-i18n="rp2">Data: <a href="https://www.themoviedb.org/">TMDB</a> (this product uses the TMDB API but is not endorsed or certified by TMDB), <a href="https://grouplens.org/datasets/movielens/">MovieLens</a> (Harper &amp; Konstan, 2015), <a href="https://www.sbert.net/">Sentence-Transformers</a> (Reimers &amp; Gurevych, 2019).</p>
+        <p class="stack">Python, sentence-transformers, NumPy, SciPy, pandas, Optuna, Plotly, Streamlit, pytest, mypy</p>
       </section>
     </article>
   </div>
 
   <nav class="case-nav" aria-label="Other projects" data-i18n-aria="c.others">
     <div class="wrap">
-      <a class="prev" href="parkinson.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name">Predicting Parkinson’s motor scores</span></a>
-      <a class="next" href="brain-tumor.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name">Brain tumor MRI</span></a>
+      <a class="prev" href="parkinson.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name" data-i18n="nav.prev">Parkinson’s motor scores</span></a>
+      <a class="next" href="brain-tumor.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name" data-i18n="nav.next">Brain tumor MRI</span></a>
     </div>
   </nav>
 </main>
@@ -253,6 +366,149 @@ streamlit run app.py</code></pre></div>
   </div>
 </footer>
 
+<script>
+window.I18N_FR = {
+  "title": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés | Victor Michelon`,
+  "kicker": `Application Streamlit · décembre 2025`,
+  "h1": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés`,
+  "lede": `Un recommandeur de films qui combine huit signaux, du sens du synopsis aux notes du public, avec des poids qui s’adaptent à chaque film. Quand un film n’a aucune note, le moteur s’appuie sur son contenu au lieu de tourner à vide, et chaque suggestion dit pourquoi elle est là. Une évaluation hors ligne sur MovieLens mesure ce que ça vaut.`,
+  "k1": `de recommandations pertinentes sur les films sans note, face au filtrage collaboratif seul (19,1 % contre 3,4 %, poids optimisés)`,
+  "k2b": `12,2 Mo`,
+  "k2": `d’artefacts au lieu de 618 Mo, pour exactement les mêmes similarités`,
+  "k3b": `1,4 ms`,
+  "k3": `par requête (médiane) sur un ordinateur portable`,
+  "k4b": `6 195`,
+  "k4": `films, dont 43 % sans aucune note du public`,
+  "b1": `Essayer la démo`,
+  "b2": `Code sur GitHub`,
+
+  "e.h": `Il recommande aussi les films que personne n’a encore notés`,
+  "e.stakes": `Sur une plateforme, un film sans notes n’est jamais recommandé, donc jamais vu, donc jamais noté. C’est le problème du <em>cold start</em> : les nouveautés et les films de niche restent invisibles. Dans le catalogue de CineMatch, il touche 43 % des films.`,
+  "e.usual": `Le filtrage collaboratif : « les gens qui ont aimé ce film ont aussi aimé… ». Très efficace quand un film a beaucoup de notes.`,
+  "e.breaks": `Il n’a rien à dire sur un film qui n’en a aucune. L’alternative, « même genre, même acteur », trouve des films qui se ressemblent sur le papier, pas à l’écran.`,
+  "e.m1": `Un moteur hybride à <strong>8 signaux</strong> : le sens du synopsis (embeddings SBERT), les thèmes, l’ambiance, le genre, l’équipe artistique, l’origine, l’époque et les notes du public.`,
+  "e.m2": `<strong>Des poids qui s’adaptent à chaque film.</strong> Quand un film n’a pas de notes, le poids du signal « public » n’est pas perdu : il passe au synopsis, aux thèmes et à l’ambiance.`,
+  "e.m3": `<strong>Chaque suggestion s’explique</strong> (« même réalisateur · ambiance proche »), et un radar montre les poids utilisés.`,
+  "e.proof": `Sur 2 330 requêtes de test où l’on cache les notes du film de départ, le filtrage collaboratif seul place un film que l’utilisateur a réellement aimé ensuite dans ses 10 suggestions dans <strong>3,4 %</strong> des cas. Le moteur hybride aux poids optimisés : <strong>19,1 %</strong>. Avec les règles manuelles que l’application utilise par défaut : 9,1 % (×2,7). Exemple : <em>Parasite</em> n’a aucune note MovieLens, et CineMatch propose <em>The Host</em> et <em>Snowpiercer</em> : même réalisateur, même ton.`,
+  "e.notdo": `Une simple liste des films les plus notés fait encore mieux sur ce test (35,4 %), avec ou sans notes. Mais elle recommande les mêmes quelques films à tout le monde, 1,4 % du catalogue, quel que soit le film de départ ; les suggestions du moteur hybride en couvrent environ la moitié.`,
+  "e.shows": `Concevoir un système pour son cas difficile, puis le mesurer honnêtement plutôt que l’affirmer.`,
+
+  "t1": `Le problème`,
+  "t2": `Les données`,
+  "t3": `Approche`,
+  "t4": `Poids adaptatifs`,
+  "t5": `Évaluation`,
+  "t6": `Implémentation`,
+  "t7": `L’application`,
+  "t8": `Limites et feuille de route`,
+  "t9": `Reproduire`,
+
+  "pb1": `Le filtrage par mots-clés (« même genre, même acteur ») rate ce qui fait que deux films se <em>ressemblent</em>, et le filtrage collaboratif pur échoue sur les films que personne n’a notés. CineMatch combine les deux familles de signaux et reste <strong>explicable</strong> : chaque carte nomme les deux signaux qui l’ont fait remonter, et un radar montre les poids exacts derrière le classement.`,
+  "pb2": `Le cas difficile d’abord. <em>Parasite</em> (2019) n’a aucune note dans MovieLens. CineMatch renvoie <em>The Host</em>, <em>Snowpiercer</em>, <em>Le Gangster, le Flic et l’Assassin</em> et <em>The Roundup</em> : les deux premiers ont le même réalisateur, Bong Joon-ho, et les quatre partagent son origine et son ton. Deux règles se déclenchent (hors anglais, très populaire) et, faute de notes, le poids du public passe aux signaux de contenu.`,
+  "pb3": `Le cas facile, pour comparer : <em>Pulp Fiction</em> (1994) a beaucoup de notes et renvoie <em>Reservoir Dogs</em>, <em>Se7en</em>, <em>Usual Suspects</em> et <em>Kill Bill : Volume 2</em>.`,
+  "cap1": `Les recommandations pour <em>Pulp Fiction</em>, un film très noté, dans l’application.`,
+  "d1": `<strong>Métadonnées, affiches et bandes-annonces</strong> issues de l’API TMDB, récupérées par le pipeline.`,
+  "d2": `<strong>Notes</strong> de MovieLens <code>ml-latest-small</code> (610 utilisateurs), pour le signal public et pour l’évaluation.`,
+  "d3": `<strong>Catalogue :</strong> 6 195 films de 1916 à 2024. Certains titres sont partagés par plusieurs films, comme deux <em>Aladdin</em> : le moteur travaille donc sur des positions, jamais sur des titres.`,
+  "d4l": `Cold start`,
+  "d4": `43 % du catalogue n’a aucune note MovieLens : films récents, films non anglophones, titres de niche. Pour eux, le signal public est vide, et son poids passe aux signaux de contenu au lieu d’être perdu en silence.`,
+  "fl": `Pipeline de recommandation`,
+  "fl1": `Film(s) choisi(s)`,
+  "fl2": `Poids adaptatifs`,
+  "fl2s": `4 règles, écrites comme des données`,
+  "fl3": `Des notes pour ce film ?`,
+  "fl3s": `sinon : public → synopsis, sujets, ambiance`,
+  "fl4": `Somme pondérée`,
+  "fl4s": `de 8 lignes de similarité, calculées à partir de facteurs`,
+  "fl5": `Filtres, top-k`,
+  "fl5s": `re-classement optionnel pour la diversité`,
+  "fl6": `Films classés`,
+  "fl6s": `+ raisons + radar`,
+  "flc": `Une requête n’encode rien à l’exécution : elle lit huit lignes de similarité à partir de facteurs pré-calculés.`,
+  "sig.h": `Les huit signaux`,
+  "sig.p": `Aucune matrice <code>n × n</code> n’est stockée. Chaque signal est gardé sous forme factorisée : la ligne de similarité du film <em>i</em> vaut <code>F @ F[i]</code> sur des lignes normalisées L2, soit exactement le cosinus, calculé à la demande.`,
+  "sig.c1": `Signal`,
+  "sig.c2": `Ce qu’il capte`,
+  "sig.c3": `Construction`,
+  "s1a": `Synopsis`, "s1b": `Le sujet de l’histoire`, "s1c": `Embeddings <code>all-MiniLM-L6-v2</code> du titre et du synopsis`,
+  "s2a": `Sujets`, "s2b": `Des thèmes précis`, "s2c": `Mots-clés TMDB, sac de mots`,
+  "s3a": `Ambiance`, "s3b": `Le ton et l’univers`, "s3c": `<code>all-MiniLM-L6-v2</code> sur l’accroche, les genres et les mots-clés`,
+  "s4a": `Genre`, "s4b": `La catégorie`, "s4c": `Genres TMDB, sac de mots`,
+  "s5a": `Équipe`, "s5b": `L’empreinte artistique`, "s5c": `Réalisateur (poids ×3) et les 4 premiers rôles`,
+  "s6a": `Origine`, "s6b": `Le contexte culturel`, "s6c": `Langue originale et pays de production`,
+  "s7a": `Époque`, "s7b": `L’époque et la notoriété`, "s7c": `<code>exp(−|Δ|/σ)</code> sur la popularité (σ = 20) et l’année de sortie (σ = 10), moyennés`,
+  "s8a": `Public`, "s8b": `Le goût du public`, "s8c": `Cosinus film-film sur les notes MovieLens`,
+  "sc.h": `Le score`,
+  "sc.p1": `Pour un film de départ <em>i</em> et un candidat <em>j</em>, le score est une somme pondérée et normalisée des huit similarités :`,
+  "sc.p2": `Chaque terme <code>w<sub>k</sub> · M<sub>k</sub>[i, j]</code> est une contribution : les deux plus fortes donnent la raison affichée sur la carte. Avec plusieurs films de départ (« j’ai aimé A, B et C »), leurs scores sont moyennés. Le « % MATCH » de chaque carte est ce score normalisé, un indicateur de classement relatif, pas une probabilité.`,
+  "w1": `Les poids partent d’un profil de base et sont ajustés par quatre règles lisibles, stockées comme des données dans une <code>WeightConfig</code> : les mêmes règles peuvent être désactivées une à une (ablation), optimisées par Optuna et appliquées par l’application. Choisissez un profil pour voir comment le mélange change ; ce sont les valeurs que calcule le moteur.`,
+  "wcap": `Poids des huit signaux, tirés de <code>cinematch/config.py</code> et <code>reports/best_weights.json</code>. Le contour gris est le profil de base.`,
+  "r.c1": `Condition sur le film de départ`,
+  "r.c2": `Ajustement`,
+  "r.c3": `Statut`,
+  "r1a": `Animation, ou un chiffre dans le titre (suites)`, "r1b": `+ sujets, + public`,
+  "r2a": `Horreur`, "r2b": `+ ambiance (+0,20), + sujets, − équipe`,
+  "r3a": `Langue originale autre que l’anglais`, "r3b": `+ origine (+0,30), − synopsis`,
+  "r4a": `Plus de 3 000 votes TMDB`, "r4b": `+ public, + époque`,
+  "r5a": `Aucune note (cold start)`, "r5b": `le poids réel du public → réparti sur synopsis, sujets, ambiance`,
+  "on": `Active`,
+  "w2": `Toutes les règles se déclenchent sur le catalogue reconstruit, qui contient désormais la langue originale et le nombre de votes de chaque film ; elles sont testées sur <em>Parasite</em>, <em>Toy Story</em> et <em>The Conjuring</em>.`,
+  "ev1": `La question à laquelle un recommandeur doit répondre : <em>quels films cet utilisateur va-t-il aimer ensuite ?</em> Le protocole est construit pour que la réponse ne puisse pas fuiter.`,
+  "ev2": `<strong>Découpage temporel par utilisateur :</strong> les 80 % de notes les plus anciennes de chaque utilisateur pour l’entraînement, les 20 % les plus récentes pour le test. Un film aimé est noté 4 ou plus.`,
+  "ev3": `<strong>Requêtes :</strong> un des cinq films aimés les plus récents de l’utilisateur dans l’entraînement ; les bonnes réponses sont les films aimés pendant la période de test. Les films déjà notés sont exclus.`,
+  "ev4": `<strong>Aucune fuite :</strong> le signal public est reconstruit sur la partie entraînement uniquement.`,
+  "ev5": `<strong>Jeu de test utilisé une seule fois :</strong> 20 % des utilisateurs servent à régler les poids ; les 472 autres (2 330 requêtes) donnent les chiffres finaux, avec des intervalles à 95 % par bootstrap (1 000 tirages).`,
+  "ev6": `<strong>Cold start :</strong> chaque requête est rejouée en cachant les notes du film de départ, comme pour les 43 % du catalogue qui n’en ont pas.`,
+  "evcap": `HitRate@10 en cold start : la part des requêtes où au moins un film aimé ensuite par l’utilisateur figure dans le top 10, notes du film de départ cachées. 2 330 requêtes de test.`,
+  "et.c1": `Méthode`,
+  "et.c2": `NDCG@10, standard`,
+  "et.c3": `NDCG@10, cold start`,
+  "et.c4": `HitRate@10, cold start`,
+  "et.c5": `Couverture du catalogue`,
+  "et1": `Films les plus notés`,
+  "et2": `Aléatoire`,
+  "et3": `SBERT seul`,
+  "et4": `Collaboratif seul`,
+  "et5": `Hybride, poids uniformes`,
+  "et6": `Hybride, poids de base sans règles`,
+  "et7": `Hybride, règles manuelles (défaut de l’app)`,
+  "et8": `<strong>Hybride, poids optimisés (Optuna)</strong>`,
+  "rd.h": `Une lecture honnête`,
+  "rd1": `<strong>Sur les films qui ont déjà des notes, la popularité gagne.</strong> La liste des plus notés arrive en tête et le filtrage collaboratif seul s’en approche ; le moteur hybride ne les bat pas sur ce terrain.`,
+  "rd2": `<strong>Le cold start est là où l’hybride fait la différence.</strong> Sans notes, le filtrage collaboratif s’effondre (0,034), tandis que l’hybride optimisé garde 0,191 (×5,6) et un NDCG@10 dix fois plus élevé.`,
+  "rd3": `<strong>Les règles aident</strong> : le NDCG@10 passe de 0,044 à 0,057 (+29 %), surtout grâce à la règle « très populaire » (−1,27 point quand on la retire).`,
+  "rd4": `<strong>L’optimisation aide davantage</strong> (+22 % sur les requêtes standard, ×2,1 en cold start), mais elle déplace le poids vers l’époque et le public : elle réapprend en partie la popularité. L’application garde par défaut les règles manuelles, plus proches de « des films comme celui-ci », et propose le profil optimisé en mode avancé.`,
+  "im.h": `De 618 Mo à 12,2 Mo`,
+  "im.p": `La première version livrait huit matrices de similarité denses de 6 203 × 6 203 : 618 Mo via Git LFS et environ 700 Mo de RAM, si bien que la démo en ligne mettait du temps à démarrer. Stocker les facteurs à la place (embeddings, matrices creuses de sacs de mots et de notes) donne exactement les mêmes cosinus, calculés à chaque requête.`,
+  "du1b": `618 Mo`, "du1": `sur disque, première version (matrices denses)`,
+  "du2b": `12,2 Mo`, "du2": `sur disque aujourd’hui (facteurs, sans pickle)`,
+  "du3b": `708 → 180 Mo`, "du3": `de RAM pour le processus`,
+  "du4b": `1,4 ms`, "du4": `par requête, en médiane (2,2 ms au 95e centile)`,
+  "im.p2": `Le prix : une requête qui coûte 1,4 ms au lieu d’une fraction de milliseconde, ce qu’aucun utilisateur ne peut percevoir. Le signal public est reconstruit à l’identique (corrélation de 1,000 avec l’ancien) ; le signal d’ambiance, dont le code d’origine était perdu, est reconstruit de zéro (<a href="https://github.com/Victor-MICHELON/CineMatch-recommender/blob/main/reports/regression.md">rapport de non-régression</a>).`,
+  "c1h": `Le moteur séparé de l’interface`,
+  "c1p": `<code>cinematch/</code> n’importe pas Streamlit : il est vérifié par <code>mypy --strict</code>, couvert à 99 % par les tests, et réutilisé tel quel par le code d’évaluation.`,
+  "c2h": `Les règles comme des données`,
+  "c2p": `Les nombres magiques vivent dans une dataclass <code>WeightConfig</code> : les règles appliquées par l’application sont exactement celles qui ont été ablatées et optimisées.`,
+  "c3h": `Pas de pickle`,
+  "c3p": `Les artefacts sont en Parquet, <code>.npy</code> (<code>allow_pickle=False</code>) et <code>.npz</code>, vérifiés par un manifeste SHA-256 au chargement.`,
+  "c4h": `Une commande reconstruit tout`,
+  "c4p": `<code>python -m pipeline.build</code> va de l’API TMDB et de MovieLens jusqu’aux huit signaux.`,
+  "im.code": `Une ligne de similarité, tirée de <code>cinematch/data.py</code> :`,
+  "ap1": `Au-delà d’un seul film : des requêtes « j’ai aimé A, B et C », des filtres (décennie, genre, langue, durée), un curseur de diversité, des curseurs de poids manuels, 4, 8 ou 12 résultats, des liens TMDB et des bandes-annonces, et une interface en anglais ou en français.`,
+  "ap2": `L’accueil : choisir un film de départ par titre et année.`,
+  "ap3": `L’analyse du film de départ, avec le radar des poids utilisés dans la barre latérale.`,
+  "lm.l": `Limites`,
+  "lm.p": `<strong>La popularité est une baseline solide.</strong> Sur les films qui ont déjà des notes, l’hybride ne bat pas la liste des plus notés. Un mélange appris (LightGBM LambdaRank sur les huit similarités) est la prochaine étape naturelle.`,
+  "lm1": `<strong>Peu de données :</strong> 6 195 films et <code>ml-latest-small</code> (610 utilisateurs). Ensuite : MovieLens 25M et un index FAISS sur les embeddings.`,
+  "lm2": `<strong>Les métadonnées TMDB bougent :</strong> le pipeline interroge l’API en direct, donc une reconstruction peut légèrement changer les mots-clés ou la popularité.`,
+  "lm3": `<strong>Deux réglages, deux chiffres :</strong> le ×5,6 vient du profil optimisé ; les règles manuelles utilisées par défaut dans l’application donnent ×2,7.`,
+  "lm4": `Déjà fait, sur la liste de la première version : l’évaluation hors ligne, les quatre règles actives, un pipeline complet, l’optimisation des poids, le re-classement pour la diversité (MMR) et le choix anglais/français.`,
+  "rp1": `Tests : <code>pytest</code> (<code>pytest -m "not slow"</code> sans les artefacts en local). Un Dev Container est fourni pour GitHub Codespaces.`,
+  "rp2": `Données : <a href="https://www.themoviedb.org/">TMDB</a> (ce produit utilise l’API TMDB mais n’est ni approuvé ni certifié par TMDB), <a href="https://grouplens.org/datasets/movielens/">MovieLens</a> (Harper &amp; Konstan, 2015), <a href="https://www.sbert.net/">Sentence-Transformers</a> (Reimers &amp; Gurevych, 2019).`,
+  "nav.prev": `Scores moteurs de Parkinson`,
+  "nav.next": `IRM et tumeurs cérébrales`
+};
+</script>
 <script src="../assets/i18n.js" defer></script>
 <script src="../assets/site.js" defer></script>
 <script src="../assets/project.js" defer></script>

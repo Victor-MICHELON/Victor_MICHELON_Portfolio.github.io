@@ -1,4 +1,4 @@
-// case study pages: highlight the current section in the table of contents, copy buttons on code blocks
+// case study pages: highlight the current section in the table of contents, copy buttons on code blocks (EN/FR)
 (function () {
   "use strict";
 
@@ -24,19 +24,25 @@
     });
   }
 
+  function words() { return window.SITE_LANG ? window.SITE_LANG.labels() : { copy: "Copy", copied: "Copied" }; }
+  var copies = [];
   Array.prototype.forEach.call(document.querySelectorAll(".code"), function (block) {
     var pre = block.querySelector("pre");
     if (!pre || !navigator.clipboard) return;
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "copy";
-    btn.textContent = "Copy";
+    btn.textContent = words().copy;
     btn.addEventListener("click", function () {
       navigator.clipboard.writeText(pre.innerText).then(function () {
-        btn.textContent = "Copied";
-        setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+        btn.textContent = words().copied;
+        setTimeout(function () { btn.textContent = words().copy; }, 1600);
       });
     });
     block.appendChild(btn);
+    copies.push(btn);
+  });
+  document.addEventListener("langchange", function () {
+    copies.forEach(function (b) { b.textContent = words().copy; });
   });
 })();

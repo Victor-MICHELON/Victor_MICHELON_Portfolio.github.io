@@ -300,3 +300,20 @@ dl.skills dd { margin: 0; }
   .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .reveal.is-in { opacity: 1; transform: none; }
 }
+
+/* experience: professional and research work, above the projects */
+.exp-grid { display: grid; gap: 22px; margin-top: 36px; }
+@media (min-width: 860px) { .exp-grid { grid-template-columns: 1fr 1fr; } }
+.exp { padding: 22px 24px 24px; background: var(--panel); border: 1px solid var(--rule); border-top: 4px solid var(--cobalt); border-radius: var(--radius); }
+.exp .card-meta { color: var(--cobalt-deep); }
+.exp h3 { margin: 0 0 10px; font-family: var(--display); font-weight: 700; font-size: clamp(1.3rem, 2.2vw, 1.55rem); letter-spacing: -0.02em; line-height: 1.15; }
+.exp p { margin: 0 0 14px; }
+.exp .card-figure { margin-bottom: 16px; }
+.exp .card-figure .big { color: var(--cobalt); }
+.exp .tags { margin-bottom: 0; }
+
+/* five header items on a phone: tighter spacing, no wrapped labels */
+@media (max-width: 560px) {
+  .site-head nav { gap: 12px; font-size: 0.92rem; flex-wrap: wrap; justify-content: flex-end; }
+  .site-head nav a { white-space: nowrap; }
+}

@@ -1,7 +1,9 @@
 <!doctype html>
 <!--
   Case study template. Copy it to projects/<slug>.html and replace every [bracketed] text.
-  - data-project on <body> picks the accent color: parkinson, cinematch, brain or tsunami.
+  - data-project on <body> picks the accent color: parkinson, cinematch, brain, tsunami or ligue1.
+  - Every translatable element gets data-i18n="key"; the French text goes in window.I18N_FR at the bottom.
+  - Shared labels (c.*) live in assets/i18n.js.
   - Each <section id> needs a matching link in the .toc list.
   - Files starting with "_" are not published by GitHub Pages (Jekyll skips them).
 -->
@@ -31,6 +33,7 @@
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
+      <a href="../index.html#experience" data-i18n="c.experience">Experience</a>
       <a href="../index.html#projects" data-i18n="c.projects">Projects</a>
       <a href="../index.html#about" data-i18n="c.about">About</a>
       <a href="../index.html#contact" data-i18n="c.contact">Contact</a>
@@ -59,6 +62,30 @@
         <a class="btn btn-primary" href="[repository URL]">Code on GitHub</a>
         <a class="btn" href="[demo URL]">Live demo</a>
       </div>
+
+      <section class="edge" aria-labelledby="edge-h">
+        <p class="label" data-i18n="c.edge">What sets it apart</p>
+        <h2 id="edge-h" data-i18n="e.h">[What this project does that the usual version does not, in one line]</h2>
+        <p><strong data-i18n="c.stakes">The stakes.</strong> <span data-i18n="e.stakes">[Who has the problem and what it costs them, without jargon.]</span></p>
+        <div class="versus">
+          <div>
+            <h3 data-i18n="c.usual">The usual approach</h3>
+            <p data-i18n="e.usual">[How this is usually done, in one or two sentences.]</p>
+            <p><strong data-i18n="c.breaks">Where it breaks.</strong> <span data-i18n="e.breaks">[A concrete example or a figure.]</span></p>
+          </div>
+          <div class="mine">
+            <h3 data-i18n="c.mine">What I did differently</h3>
+            <ul><li data-i18n="e.m1">[Two or three points at most.]</li></ul>
+          </div>
+        </div>
+        <div class="proof">
+          <p class="label" data-i18n="c.proof">The proof</p>
+          <span class="big">[×5.6]</span>
+          <p data-i18n="e.proof">[The measured figure, with its baseline.]</p>
+        </div>
+        <p><strong data-i18n="c.notdo">What it does not do.</strong> <span data-i18n="e.notdo">[Where it does not win.]</span></p>
+        <p><strong data-i18n="c.shows">What it shows.</strong> <span data-i18n="e.shows">[One line tying it to the job you want.]</span></p>
+      </section>
     </div>
   </header>
 
@@ -159,6 +186,11 @@ pip install -r requirements.txt</code></pre></div>
   </div>
 </footer>
 
+<script>
+window.I18N_FR = {
+  "e.h": `[Traduction]`
+};
+</script>
 <script src="../assets/i18n.js" defer></script>
 <script src="../assets/site.js" defer></script>
 <script src="../assets/project.js" defer></script>

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brain tumor MRI classification with Grad-CAM | Victor Michelon</title>
-<meta name="description" content="Four-class brain tumor MRI classification: a CNN baseline against a fine-tuned EfficientNetB0 (97.8% test accuracy), Grad-CAM explanations, and a reproducible pipeline that hunts near-duplicate leaks.">
+<title data-i18n="title">Brain tumor MRI classification with Grad-CAM | Victor Michelon</title>
+<meta name="description" content="Four-class brain MRI classification: a CNN baseline against a fine-tuned EfficientNetB0 (97.8% test accuracy), with Grad-CAM to check that the model looks at the tumor, and a quantitative check against tumor masks.">
 <link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/brain-tumor.html">
 <meta property="og:title" content="Brain tumor MRI classification with Grad-CAM | Victor Michelon">
-<meta property="og:description" content="Four-class brain tumor MRI classification: a CNN baseline against a fine-tuned EfficientNetB0 (97.8% test accuracy), Grad-CAM explanations, and a reproducible pipeline that hunts near-duplicate leaks.">
+<meta property="og:description" content="Four-class brain MRI classification: a CNN baseline against a fine-tuned EfficientNetB0 (97.8% test accuracy), with Grad-CAM to check that the model looks at the tumor, and a quantitative check against tumor masks.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/brain-tumor.html">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/brain-tumor.png">
@@ -31,6 +31,7 @@
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
+      <a href="../index.html#experience" data-i18n="c.experience">Experience</a>
       <a href="../index.html#projects" data-i18n="c.projects">Projects</a>
       <a href="../index.html#about" data-i18n="c.about">About</a>
       <a href="../index.html#contact" data-i18n="c.contact">Contact</a>
@@ -47,18 +48,46 @@
   <header class="case-head">
     <div class="wrap">
       <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> <span data-i18n="c.all">All projects</span></a>
-      <p class="kicker">Deep learning on MRI · December 2025</p>
-      <h1>Brain tumor MRI classification with Grad-CAM</h1>
-      <p class="lede">An end-to-end deep learning workflow that classifies brain MRI scans into four categories. A CNN trained from scratch is the baseline for a fine-tuned EfficientNetB0, and Grad-CAM shows which regions drive each prediction, because in medical imaging accuracy alone is not enough.</p>
+      <p class="kicker" data-i18n="kicker">Deep learning on MRI · November 2025</p>
+      <h1 data-i18n="h1">Brain tumor MRI classification with Grad-CAM</h1>
+      <p class="lede" data-i18n="lede">Four classes of brain MRI, and a CNN built from scratch against a fine-tuned EfficientNetB0. In medical imaging a good score proves little on its own, so the project is built around a second question: does the model look at the tumor? Grad-CAM shows where it looks, and a quantitative check against the tumor masks is written and tested.</p>
       <ul class="kpis">
-        <li><span class="big">97.8%</span><span class="cap">test accuracy, EfficientNetB0 fine-tuned</span></li>
-        <li><span class="big">92.1%</span><span class="cap">test accuracy, CNN baseline</span></li>
-        <li><span class="big">0.79 → 0.94</span><span class="cap">recall on meningioma, the hardest class</span></li>
-        <li><span class="big">1,311</span><span class="cap">held-out test scans</span></li>
+        <li><span class="big" data-i18n="k1b">97.8%</span><span class="cap" data-i18n="k1">test accuracy, fine-tuned EfficientNetB0, against 92.1% for the CNN baseline</span></li>
+        <li><span class="big" data-i18n="k2b">0.79 → 0.94</span><span class="cap" data-i18n="k2">recall on meningioma, the hardest class</span></li>
+        <li><span class="big">4 / 4</span><span class="cap" data-i18n="k3">sample heat maps on the region where that type of tumor is expected (qualitative)</span></li>
+        <li><span class="big" data-i18n="k4b">1,311</span><span class="cap" data-i18n="k4">held-out test scans</span></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="https://github.com/Victor-MICHELON/Brain_Tumor_Classification">Code and notebook on GitHub</a>
+        <a class="btn btn-primary" href="https://github.com/Victor-MICHELON/Brain_Tumor_Classification" data-i18n="b1">Code and notebook on GitHub</a>
       </div>
+
+      <section class="edge" aria-labelledby="edge-h">
+        <p class="label" data-i18n="c.edge">What sets it apart</p>
+        <h2 id="edge-h" data-i18n="e.h">The model shows where it looks, and I check that it looks at the right place</h2>
+        <p><strong data-i18n="c.stakes">The stakes.</strong> <span data-i18n="e.stakes">A radiologist cannot rely on a model that answers “glioma, 98%” without showing why. In medical imaging, a good score does not prove that the model learned the disease: it may have learned a shortcut, such as a hospital marker, a type of scanner or a framing habit.</span></p>
+        <div class="versus">
+          <div>
+            <h3 data-i18n="c.usual">The usual approach</h3>
+            <p data-i18n="e.usual">Train a CNN or a pretrained model, report the accuracy and the confusion matrix, and stop there.</p>
+            <p><strong data-i18n="c.breaks">Where it breaks.</strong> <span data-i18n="e.breaks">Hundreds of MRI classifiers report 97 to 99% on this kind of dataset. A score that high can come from near-duplicate images shared between training and test, or from a shortcut, and the accuracy alone cannot tell.</span></p>
+          </div>
+          <div class="mine">
+            <h3 data-i18n="c.mine">What I did differently</h3>
+            <ul>
+              <li data-i18n="e.m1"><strong>Grad-CAM, written by hand</strong> for both architectures: a heat map of the regions that drove each prediction.</li>
+              <li data-i18n="e.m2"><strong>The maps checked against anatomy:</strong> each type of tumor grows in a typical place, and the maps should find it.</li>
+              <li data-i18n="e.m3"><strong>A quantitative check</strong> against the dataset’s tumor masks (does the hottest point fall in the tumor?), compared with a random map, and a hunt for near-duplicates between training and test.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proof">
+          <p class="label" data-i18n="c.proof">The proof</p>
+          <span class="big" data-i18n="e.big">97.8%</span>
+          <p data-i18n="e.proof">Test accuracy on 1,311 scans, against 92.1% for the CNN baseline. On one random test scan per class, the heat map lands where that tumor grows: inside the brain tissue for a glioma, against the skull for a meningioma, on the midline at the base of the brain for a pituitary tumor, and nowhere in particular when there is no tumor.</p>
+        </div>
+        <p><strong data-i18n="c.notdo">What it does not do.</strong> <span data-i18n="e.notdo">Four maps are an illustration, not a statistic. The quantitative check and the duplicate hunt are written and tested on synthetic data, but have not run on the real dataset yet; the numbers above may drop once duplicates are removed.</span></p>
+        <p><strong data-i18n="c.shows">What it shows.</strong> <span data-i18n="e.shows">I do not stop at “it works”: I look for why it works, and whether it is for the right reason.</span></p>
+      </section>
     </div>
   </header>
 
@@ -66,105 +95,152 @@
     <nav class="toc" aria-label="On this page" data-i18n-aria="c.toc">
       <p data-i18n="c.onpage">On this page</p>
       <ol>
-        <li><a href="#problem">The problem</a></li>
-        <li><a href="#data">The data</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#gradcam">Explainability with Grad-CAM</a></li>
-        <li><a href="#implementation">Reproducible pipeline</a></li>
-        <li><a href="#limits">Limits and next steps</a></li>
-        <li><a href="#reproduce">Reproduce</a></li>
+        <li><a href="#problem" data-i18n="t1">The problem</a></li>
+        <li><a href="#data" data-i18n="t2">The data</a></li>
+        <li><a href="#approach" data-i18n="t3">Approach</a></li>
+        <li><a href="#results" data-i18n="t4">Results</a></li>
+        <li><a href="#gradcam" data-i18n="t5">Explainability with Grad-CAM</a></li>
+        <li><a href="#implementation" data-i18n="t6">Reproducible pipeline</a></li>
+        <li><a href="#limits" data-i18n="t7">Limits and next steps</a></li>
+        <li><a href="#reproduce" data-i18n="t8">Reproduce</a></li>
       </ol>
     </nav>
 
     <article class="prose">
       <section id="problem" aria-labelledby="problem-h">
-        <h2 id="problem-h">The problem</h2>
-        <p>Brain tumors present differently across MRI scans, and early detection improves patient outcomes. The goal is a system that recognizes four diagnostic categories, <strong>glioma</strong>, <strong>meningioma</strong>, <strong>pituitary tumor</strong> and <strong>no tumor</strong>, and that makes its decisions inspectable: Grad-CAM heat maps highlight the regions that most influence each prediction.</p>
+        <h2 id="problem-h" data-i18n="t1">The problem</h2>
+        <p data-i18n="pb1">Brain tumors look different from one MRI scan to the next, and early detection improves patient outcomes. The goal is a system that recognizes four diagnostic categories, <strong>glioma</strong>, <strong>meningioma</strong>, <strong>pituitary tumor</strong> and <strong>no tumor</strong>, and whose decisions can be inspected.</p>
         <div class="callout callout-limit">
-          <span class="label">Disclaimer</span>
-          <p>Educational and research project. It is not a medical device and must not be used for diagnosis.</p>
+          <span class="label" data-i18n="pb.l">Disclaimer</span>
+          <p data-i18n="pb2">Educational and research project. It is not a medical device and must not be used for diagnosis.</p>
         </div>
       </section>
 
       <section id="data" aria-labelledby="data-h">
-        <h2 id="data-h">The data</h2>
-        <p>The <a href="https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification">Brain Tumor Dataset</a> on Kaggle: labeled axial MRI slices with variations in acquisition quality, brightness, orientation and anatomy.</p>
+        <h2 id="data-h" data-i18n="t2">The data</h2>
+        <p data-i18n="d1">The <a href="https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification">Brain Tumor Dataset</a> on Kaggle: labeled axial MRI slices with variations in acquisition quality, brightness, orientation and anatomy. It also ships tumor segmentation masks, which the quantitative Grad-CAM check uses.</p>
         <ul>
-          <li><strong>Training:</strong> 5,712 scans, split 80/20 with stratification into 4,569 for training and 1,143 for validation.</li>
-          <li><strong>Test:</strong> 1,311 scans: 300 glioma, 306 meningioma, 405 no tumor, 300 pituitary.</li>
+          <li data-i18n="d2"><strong>Training:</strong> 5,712 scans, split 80/20 with stratification into 4,569 for training and 1,143 for validation.</li>
+          <li data-i18n="d3"><strong>Test:</strong> 1,311 scans: 300 glioma, 306 meningioma, 405 no tumor, 300 pituitary.</li>
         </ul>
       </section>
 
       <section id="approach" aria-labelledby="approach-h">
-        <h2 id="approach-h">Approach</h2>
+        <h2 id="approach-h" data-i18n="t3">Approach</h2>
         <figure>
-          <ol class="flow" aria-label="Classification pipeline">
-            <li><span class="box"><b>MRI slice</b></span></li>
-            <li><span class="box"><b>Preprocessing</b><small>with augmentation</small></span></li>
-            <li><span class="box is-key"><b>CNN or EfficientNetB0</b><small>two models compared</small></span></li>
-            <li><span class="box"><b>Softmax</b><small>4 classes</small></span></li>
-            <li><span class="box"><b>Grad-CAM</b><small>where the model looked</small></span></li>
+          <ol class="flow" aria-label="Classification pipeline" data-i18n-aria="fl">
+            <li><span class="box"><b data-i18n="fl1">MRI slice</b><small>224 × 224</small></span></li>
+            <li><span class="box"><b data-i18n="fl2">Preprocessing</b><small data-i18n="fl2s">with augmentation</small></span></li>
+            <li><span class="box is-key"><b data-i18n="fl3">CNN or EfficientNetB0</b><small data-i18n="fl3s">two models compared</small></span></li>
+            <li><span class="box"><b>Softmax</b><small data-i18n="fl4s">4 classes</small></span></li>
+            <li><span class="box"><b>Grad-CAM</b><small data-i18n="fl5s">where the model looked</small></span></li>
           </ol>
         </figure>
         <ul class="cards">
-          <li><strong>Baseline: custom CNN</strong><p>Stacked <code>Conv2D</code> and <code>MaxPooling2D</code> layers, <code>Dropout</code> regularization, a <code>Flatten</code> and dense head, trained from scratch with Adam. It sets the bar to beat.</p></li>
-          <li><strong>Transfer learning: EfficientNetB0</strong><p>Pretrained on ImageNet, frozen then partially fine-tuned, with a new head: <code>GlobalAveragePooling2D</code>, dense ReLU layer, dropout and softmax. Better generalization and faster convergence.</p></li>
+          <li><strong data-i18n="m1h">Baseline: custom CNN</strong><p data-i18n="m1p">Stacked <code>Conv2D</code> and <code>MaxPooling2D</code> layers, <code>Dropout</code>, a dense head, trained from scratch with Adam. It sets the bar to beat.</p></li>
+          <li><strong data-i18n="m2h">Transfer learning: EfficientNetB0</strong><p data-i18n="m2p">Pretrained on ImageNet, frozen then partially fine-tuned, with a new head: <code>GlobalAveragePooling2D</code>, a dense ReLU layer, dropout and softmax.</p></li>
         </ul>
       </section>
 
       <section id="results" aria-labelledby="results-h">
-        <h2 id="results-h">Results</h2>
+        <h2 id="results-h" data-i18n="t4">Results</h2>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Model</th><th scope="col" class="num">Test accuracy</th><th scope="col" class="num">Test loss</th><th scope="col" class="num">Macro F1</th><th scope="col">Weakest class (recall)</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="rt.c1">Model</th><th scope="col" class="num" data-i18n="rt.c2">Test accuracy</th><th scope="col" class="num" data-i18n="rt.c3">Test loss</th><th scope="col" class="num" data-i18n="rt.c4">Macro F1</th><th scope="col" data-i18n="rt.c5">Weakest class (recall)</th></tr></thead>
             <tbody>
-              <tr><td>Custom CNN (baseline)</td><td class="num">92.14%</td><td class="num">0.208</td><td class="num">0.92</td><td>meningioma (0.79)</td></tr>
-              <tr><td><strong>EfficientNetB0 (fine-tuned)</strong></td><td class="num"><strong>97.79%</strong></td><td class="num">0.057</td><td class="num">0.98</td><td>meningioma (0.94)</td></tr>
+              <tr><td data-i18n="rt1">Custom CNN (baseline)</td><td class="num">92.14%</td><td class="num">0.208</td><td class="num">0.92</td><td data-i18n="rt1w">meningioma (0.79)</td></tr>
+              <tr><td data-i18n="rt2"><strong>EfficientNetB0 (fine-tuned)</strong></td><td class="num"><strong>97.79%</strong></td><td class="num">0.057</td><td class="num">0.98</td><td data-i18n="rt2w">meningioma (0.94)</td></tr>
             </tbody>
           </table>
         </div>
         <figure>
           <div class="chart" data-chart="grouped" data-src="recall-data"></div>
-          <figcaption>Recall per class on the 1,311 test scans, from the classification reports in the notebook. The fine-tuned model matches or beats the baseline on every class; the gap is largest on meningioma and glioma.</figcaption>
+          <figcaption data-i18n="rcap">Recall per class on the 1,311 test scans, from the classification reports in the notebook. The fine-tuned model matches or beats the baseline on every class; the gap is largest on meningioma and glioma.</figcaption>
         </figure>
         <script type="application/json" id="recall-data">{"format": "dec2", "max": 1, "valueName": "recall",
           "categories": ["Glioma", "Meningioma", "No tumor", "Pituitary"],
           "series": [
             {"name": "Custom CNN (baseline)", "muted": true, "values": [0.88, 0.79, 1.00, 0.99]},
-            {"name": "EfficientNetB0 fine-tuned", "values": [0.97, 0.94, 1.00, 0.99]}]}</script>
-        <p>The two models were not trained under strictly identical conditions (class weights and augmentation strength differ), so the gap reflects the whole pipeline rather than the architecture alone.</p>
+            {"name": "EfficientNetB0 fine-tuned", "values": [0.97, 0.94, 1.00, 0.99]}],
+          "fr": {"valueName": "rappel", "categories": ["Gliome", "Méningiome", "Pas de tumeur", "Hypophyse"],
+            "series": [{"name": "CNN maison (baseline)"}, {"name": "EfficientNetB0 affiné"}]}}</script>
+        <p data-i18n="rp">The two models were not trained under strictly identical conditions (class weights and augmentation strength differ), so the gap reflects the whole pipeline rather than the architecture alone. <code>src/train.py</code> fixes that for the next run.</p>
       </section>
 
       <section id="gradcam" aria-labelledby="gradcam-h">
-        <h2 id="gradcam-h">Explainability with Grad-CAM</h2>
-        <p>Grad-CAM heat maps highlight the regions that most influence each prediction, here on one random test sample per class (seeded).</p>
+        <h2 id="gradcam-h" data-i18n="t5">Explainability with Grad-CAM</h2>
+
+        <h3 data-i18n="g1.h">Why it matters here</h3>
+        <p data-i18n="g1.p1">A clinician has to be able to check a prediction before trusting it, and a score cannot be checked. The risk is concrete: a well-known pneumonia detector trained on chest X-rays from several hospitals had also learned to recognize which hospital an image came from, and partly relied on it (Zech et al., <em>PLOS Medicine</em>, 2018). It scored well, for a reason that would not survive a new hospital.</p>
+        <p data-i18n="g1.p2">Regulation points the same way: in the European Union, AI that is part of a medical device is classified as high-risk by the AI Act, with obligations of transparency and human oversight.</p>
+
+        <h3 data-i18n="g2.h">How Grad-CAM works</h3>
+        <figure>
+          <ol class="flow" aria-label="How Grad-CAM builds a heat map" data-i18n-aria="gfl">
+            <li><span class="box"><b data-i18n="gf1">MRI</b></span></li>
+            <li><span class="box"><b data-i18n="gf2">Last convolution layer</b><small data-i18n="gf2s">feature maps, 7 × 7</small></span></li>
+            <li><span class="box"><b data-i18n="gf3">Gradient of the class score</b><small data-i18n="gf3s">one weight per map</small></span></li>
+            <li><span class="box is-key"><b data-i18n="gf4">Weighted sum of the maps</b><small data-i18n="gf4s">positive part only</small></span></li>
+            <li><span class="box"><b data-i18n="gf5">Heat map</b><small data-i18n="gf5s">upsampled over the MRI</small></span></li>
+          </ol>
+        </figure>
+        <p data-i18n="g2.p">The last convolution layer produces a set of maps, each one picking up a pattern in the image. Grad-CAM measures, through the gradient, how much each map weighed in the score of the predicted class, then adds the maps up with those weights. Laid over the MRI, the result shows in red what tipped the decision.</p>
+
+        <h3 data-i18n="g3.h">How to read the four maps</h3>
+        <p data-i18n="g3.p">One random test scan per class (seeded), all four correctly predicted by the fine-tuned model. Each type of tumor has a typical location, and the maps find it:</p>
         <ul class="gallery">
-          <li><figure><img src="../assets/img/gradcam-glioma.webp" width="236" height="291" loading="lazy" alt="Grad-CAM heat map on a glioma scan, correctly predicted"><figcaption>Glioma</figcaption></figure></li>
-          <li><figure><img src="../assets/img/gradcam-meningioma.webp" width="252" height="320" loading="lazy" alt="Grad-CAM heat map on a meningioma scan, correctly predicted"><figcaption>Meningioma</figcaption></figure></li>
-          <li><figure><img src="../assets/img/gradcam-pituitary.webp" width="420" height="478" loading="lazy" alt="Grad-CAM heat map on a pituitary tumor scan, correctly predicted"><figcaption>Pituitary</figcaption></figure></li>
-          <li><figure><img src="../assets/img/gradcam-no-tumor.webp" width="420" height="524" loading="lazy" alt="Grad-CAM heat map on a scan with no tumor, correctly predicted"><figcaption>No tumor</figcaption></figure></li>
+          <li><figure><img src="../assets/img/gradcam-glioma.webp" width="236" height="291" loading="lazy" alt="Grad-CAM heat map on a glioma scan: the hot spot sits inside one hemisphere, on the lesion" data-i18n-aria="ga1"><figcaption data-i18n="gc1">Glioma</figcaption></figure></li>
+          <li><figure><img src="../assets/img/gradcam-meningioma.webp" width="252" height="320" loading="lazy" alt="Grad-CAM heat map on a meningioma scan: the hot spot sits at the front, against the skull" data-i18n-aria="ga2"><figcaption data-i18n="gc2">Meningioma</figcaption></figure></li>
+          <li><figure><img src="../assets/img/gradcam-pituitary.webp" width="420" height="478" loading="lazy" alt="Grad-CAM heat map on a pituitary tumor scan: the hot spot sits on the midline, at the base of the brain" data-i18n-aria="ga3"><figcaption data-i18n="gc3">Pituitary</figcaption></figure></li>
+          <li><figure><img src="../assets/img/gradcam-no-tumor.webp" width="420" height="524" loading="lazy" alt="Grad-CAM heat map on a scan with no tumor: activation spread over the whole brain, with no focus" data-i18n-aria="ga4"><figcaption data-i18n="gc4">No tumor</figcaption></figure></li>
         </ul>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col" data-i18n="gt.c1">Class</th><th scope="col" data-i18n="gt.c2">Where this tumor grows</th><th scope="col" data-i18n="gt.c3">What the map shows</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="gt1a">Glioma</td><td data-i18n="gt1b">In the brain tissue itself</td><td data-i18n="gt1c">A hot spot inside one hemisphere, on the lesion</td></tr>
+              <tr><td data-i18n="gt2a">Meningioma</td><td data-i18n="gt2b">At the edge, from the membranes that wrap the brain</td><td data-i18n="gt2c">A hot spot against the skull, at the front</td></tr>
+              <tr><td data-i18n="gt3a">Pituitary</td><td data-i18n="gt3b">On the midline, at the base of the brain</td><td data-i18n="gt3c">A hot spot centred on the midline, at the base</td></tr>
+              <tr><td data-i18n="gt4a">No tumor</td><td data-i18n="gt4b">No lesion to find</td><td data-i18n="gt4c">Activation spread over the whole brain, with no focus: the model sees nothing localized</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 data-i18n="g4.h">What Grad-CAM does not prove</h3>
+        <ul>
+          <li data-i18n="g4.1"><strong>Coarse resolution:</strong> the map is a 7 × 7 grid enlarged to the image, so it points at a region, not at a contour.</li>
+          <li data-i18n="g4.2"><strong>Four examples are not a statistic.</strong> They show what the model can do, not how often it does it.</li>
+          <li data-i18n="g4.3"><strong>The right place is not the whole story:</strong> a map on the tumor does not rule out a bias elsewhere in the dataset.</li>
+        </ul>
+
+        <h3 data-i18n="g5.h">The quantitative check</h3>
+        <p data-i18n="g5.p">To turn the illustration into a measure, <code>src/localization.py</code> compares each heat map with the tumor mask shipped with the dataset, on three simple questions, and does the same with a random map as the reference level:</p>
+        <ul class="cards">
+          <li><strong data-i18n="g5.1h">Pointing game</strong><p data-i18n="g5.1p">Does the hottest point of the map fall inside the tumor?</p></li>
+          <li><strong data-i18n="g5.2h">Energy in the mask</strong><p data-i18n="g5.2p">What share of the map’s total heat lies inside the tumor?</p></li>
+          <li><strong data-i18n="g5.3h">Overlap (IoU)</strong><p data-i18n="g5.3p">How much the hot zone and the tumor overlap, at a 0.5 threshold.</p></li>
+        </ul>
+        <p data-i18n="g5.p2">Then <code>src/evaluate.py</code> draws the Grad-CAM maps of the model’s most confident errors, which is where explainability helps most: seeing why a meningioma gets taken for something else.</p>
         <div class="callout">
-          <span class="label">How to read it</span>
-          <p>On these samples the activation concentrates on the lesion area, which is consistent with the model using tumor-related features. This is qualitative evidence only: it is not a quantitative validation, such as overlap with the dataset’s segmentation masks, and it does not rule out dataset biases.</p>
+          <span class="label" data-i18n="g5.l">Status</span>
+          <p data-i18n="g5.s">Written and tested on synthetic data, not yet run on the real dataset: running it needs a GPU for a day. The result will read “the hottest point falls in the tumor in X% of test scans, against Y% for a random map”.</p>
         </div>
       </section>
 
       <section id="implementation" aria-labelledby="implementation-h">
-        <h2 id="implementation-h">Reproducible pipeline</h2>
-        <p>The notebook is the original exploratory work and the source of the results above. The <code>src/</code> package addresses its main weaknesses:</p>
+        <h2 id="implementation-h" data-i18n="t6">Reproducible pipeline</h2>
+        <p data-i18n="im.p">The notebook is the original exploratory work and the source of the results above. The <code>src/</code> package addresses its weaknesses:</p>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Module</th><th scope="col">Purpose</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="it.c1">Module</th><th scope="col" data-i18n="it.c2">Purpose</th></tr></thead>
             <tbody>
-              <tr><td><code>dedup.py</code></td><td>Perceptual-hash (dHash) clustering of near-duplicates: a <strong>leak-free train/validation split</strong>, grouped and stratified, and detection of training images that also appear in the test set</td></tr>
-              <tr><td><code>data.py</code></td><td><code>tf.data</code> pipeline with Keras augmentation layers, replacing the deprecated <code>ImageDataGenerator</code></td></tr>
-              <tr><td><code>models.py</code></td><td>CNN baseline and EfficientNetB0; fine-tuning keeps BatchNorm frozen</td></tr>
-              <tr><td><code>train.py</code></td><td>Trains either model with the <strong>same</strong> split, augmentation, class weights and epoch budget, and writes a leakage report</td></tr>
-              <tr><td><code>gradcam.py</code></td><td>Grad-CAM for both architectures, also on reloaded models</td></tr>
-              <tr><td><code>localization.py</code></td><td><strong>Quantitative Grad-CAM validation</strong> against tumor masks: pointing game, IoU@0.5, energy in the mask, against a random heat-map baseline</td></tr>
-              <tr><td><code>evaluate.py</code></td><td>Test metrics with bootstrap 95% intervals, calibration (ECE), top confusions, Grad-CAM gallery of the most confident errors</td></tr>
+              <tr><td><code>dedup.py</code></td><td data-i18n="it1">Perceptual-hash (dHash) clustering of near-duplicates: a <strong>leak-free train/validation split</strong>, grouped and stratified, and detection of training images that also appear in the test set</td></tr>
+              <tr><td><code>data.py</code></td><td data-i18n="it2"><code>tf.data</code> pipeline with Keras augmentation layers, replacing the deprecated <code>ImageDataGenerator</code></td></tr>
+              <tr><td><code>models.py</code></td><td data-i18n="it3">CNN baseline and EfficientNetB0; fine-tuning keeps BatchNorm frozen</td></tr>
+              <tr><td><code>train.py</code></td><td data-i18n="it4">Trains either model with the <strong>same</strong> split, augmentation, class weights and epoch budget, and writes a leakage report</td></tr>
+              <tr><td><code>gradcam.py</code></td><td data-i18n="it5">Grad-CAM for both architectures, also on reloaded models</td></tr>
+              <tr><td><code>localization.py</code></td><td data-i18n="it6"><strong>Quantitative Grad-CAM check</strong> against tumor masks: pointing game, IoU@0.5, energy in the mask, against a random heat map</td></tr>
+              <tr><td><code>evaluate.py</code></td><td data-i18n="it7">Test metrics with bootstrap 95% intervals, calibration (ECE), top confusions, Grad-CAM gallery of the most confident errors</td></tr>
             </tbody>
           </table>
         </div>
@@ -172,28 +248,25 @@
 python -m src.train --model tl       # -&gt; artifacts/tl.keras
 python -m src.evaluate --model artifacts/tl.keras --seg-dir /path/to/DATASET/segmentation
 pytest                               # synthetic-data tests, no dataset needed</code></pre></div>
-        <div class="callout">
-          <span class="label">Status</span>
-          <p>The code is tested on synthetic data, with unit tests and a train-then-evaluate smoke run that includes Grad-CAM on reloaded models. It has <strong>not yet been run on the real dataset</strong>, so the numbers on this page still come from the notebook. Segmentation images do not share file names with the classification ones, so they are matched by content (dHash) to know whether each belongs to the test set, the training set or neither; only the test group gives an unbiased localization score.</p>
-        </div>
+        <p data-i18n="im.p2">Segmentation images do not share file names with the classification ones, so they are matched by content (dHash) to know whether each belongs to the test set, the training set or neither; only the test group gives an unbiased localization score.</p>
       </section>
 
       <section id="limits" aria-labelledby="limits-h">
-        <h2 id="limits-h">Limits and next steps</h2>
+        <h2 id="limits-h" data-i18n="t7">Limits and next steps</h2>
         <div class="callout callout-limit">
-          <span class="label">Possible leakage</span>
-          <p>Validation accuracy (99.9%) is noticeably higher than test accuracy (97.8%), a sign of near-duplicates shared between training and validation. <code>src/dedup.py</code> quantifies and removes them; re-running with it is the next step and may lower the reported figures.</p>
+          <span class="label" data-i18n="lm.l">Possible leakage</span>
+          <p data-i18n="lm.p">Validation accuracy (99.9%) is noticeably higher than test accuracy (97.8%), a sign of near-duplicates shared between training and validation. <code>src/dedup.py</code> measures and removes them; re-running with it is the next step and may lower the reported figures. A lower but clean number is worth more than a fragile 97.8%.</p>
         </div>
         <ol class="steps">
-          <li><strong>Classification, not segmentation:</strong> the model predicts a category but does not localize tumors pixel by pixel.</li>
-          <li><strong>Single run:</strong> one seed; with 1,311 test images the 95% interval on accuracy is roughly ±0.8 point.</li>
-          <li><strong>Generalization to real-world MRI:</strong> domain shift across scanners and protocols is untested; there is no external validation set.</li>
-          <li><strong>Explainability:</strong> the Grad-CAM figures are qualitative; <code>src/localization.py</code> provides the quantitative check, still to be run on the real data.</li>
+          <li data-i18n="lm1"><strong>Classification, not segmentation:</strong> the model predicts a category; it does not outline the tumor pixel by pixel.</li>
+          <li data-i18n="lm2"><strong>Single run:</strong> one seed; with 1,311 test images the 95% interval on accuracy is roughly ±0.8 point.</li>
+          <li data-i18n="lm3"><strong>Real-world MRI:</strong> the shift across scanners and protocols is untested; there is no external validation set.</li>
+          <li data-i18n="lm4"><strong>Explainability:</strong> the maps on this page are qualitative until <code>src/localization.py</code> runs on the real data.</li>
         </ol>
       </section>
 
       <section id="reproduce" aria-labelledby="reproduce-h">
-        <h2 id="reproduce-h">Reproduce</h2>
+        <h2 id="reproduce-h" data-i18n="t8">Reproduce</h2>
         <div class="code"><pre><code>git clone https://github.com/Victor-MICHELON/Brain_Tumor_Classification.git
 cd Brain_Tumor_Classification
 python -m venv .venv &amp;&amp; source .venv/bin/activate
@@ -202,16 +275,16 @@ pip install -r requirements.txt
 # dataset: Kaggle indk214/brain-tumor-dataset-segmentation-and-classification
 export DATASET_DIR=/path/to/DATASET/classification   # contains Training/ and Testing/
 jupyter notebook mri-tumor-classification-cnn-transfer-learning.ipynb</code></pre></div>
-        <p>A GPU is strongly recommended for fine-tuning. Seeds are fixed (<code>SEED = 42</code>), but GPU runs are not bit-for-bit deterministic.</p>
-        <p class="stack">Python, NumPy, pandas, TensorFlow and Keras (EfficientNetB0), scikit-learn, Matplotlib, Seaborn, Plotly, Grad-CAM implemented by hand</p>
+        <p data-i18n="rp1">A GPU is strongly recommended for fine-tuning. Seeds are fixed (<code>SEED = 42</code>), but GPU runs are not bit-for-bit deterministic.</p>
+        <p class="stack" data-i18n="stack">Python, NumPy, pandas, TensorFlow and Keras (EfficientNetB0), scikit-learn, Matplotlib, Seaborn, Plotly, Grad-CAM implemented by hand</p>
       </section>
     </article>
   </div>
 
   <nav class="case-nav" aria-label="Other projects" data-i18n-aria="c.others">
     <div class="wrap">
-      <a class="prev" href="cinematch.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name">CineMatch recommender</span></a>
-      <a class="next" href="tsunami.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name">Tsunami risk</span></a>
+      <a class="prev" href="cinematch.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name" data-i18n="nav.prev">CineMatch recommender</span></a>
+      <a class="next" href="tsunami.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name" data-i18n="nav.next">Tsunami risk</span></a>
     </div>
   </nav>
 </main>
@@ -223,6 +296,140 @@ jupyter notebook mri-tumor-classification-cnn-transfer-learning.ipynb</code></pr
   </div>
 </footer>
 
+<script>
+window.I18N_FR = {
+  "title": `Classification d’IRM cérébrales avec Grad-CAM | Victor Michelon`,
+  "kicker": `Deep learning sur IRM · novembre 2025`,
+  "h1": `Classification d’IRM cérébrales avec Grad-CAM`,
+  "lede": `Quatre classes d’IRM cérébrales, et un CNN construit from scratch face à un EfficientNetB0 affiné. En imagerie médicale, un bon score ne prouve pas grand-chose à lui seul : le projet est donc construit autour d’une seconde question, le modèle regarde-t-il la tumeur ? Grad-CAM montre où il regarde, et une vérification quantitative contre les masques des tumeurs est écrite et testée.`,
+  "k1b": `97,8 %`,
+  "k1": `de précision sur le test, EfficientNetB0 affiné, contre 92,1 % pour le CNN de référence`,
+  "k2b": `0,79 → 0,94`,
+  "k2": `de rappel sur le méningiome, la classe la plus difficile`,
+  "k3": `cartes d’exemple sur la zone où ce type de tumeur est attendu (qualitatif)`,
+  "k4b": `1 311`,
+  "k4": `IRM de test mises de côté`,
+  "b1": `Code et notebook sur GitHub`,
+
+  "e.h": `Le modèle montre où il regarde, et je vérifie qu’il regarde au bon endroit`,
+  "e.stakes": `Un radiologue ne peut pas s’appuyer sur un modèle qui répond « gliome, 98 % » sans montrer pourquoi. En imagerie médicale, un bon score ne prouve pas que le modèle a appris la maladie : il peut avoir appris un raccourci, comme un marqueur de l’hôpital, un type de scanner ou une habitude de cadrage.`,
+  "e.usual": `Entraîner un CNN ou un modèle pré-entraîné, afficher la précision et la matrice de confusion, et s’arrêter là.`,
+  "e.breaks": `Des centaines de classifieurs d’IRM affichent 97 à 99 % sur ce type de dataset. Un score aussi haut peut venir d’images quasi identiques partagées entre entraînement et test, ou d’un raccourci, et la précision seule ne permet pas de le savoir.`,
+  "e.m1": `<strong>Grad-CAM, codé à la main</strong> pour les deux architectures : une carte de chaleur des zones qui ont décidé chaque prédiction.`,
+  "e.m2": `<strong>Les cartes confrontées à l’anatomie :</strong> chaque type de tumeur pousse à un endroit typique, et les cartes doivent le retrouver.`,
+  "e.m3": `<strong>Une vérification quantitative</strong> contre les masques de tumeur du dataset (le point le plus chaud tombe-t-il dans la tumeur ?), comparée à une carte aléatoire, et une traque des quasi-doublons entre entraînement et test.`,
+  "e.big": `97,8 %`,
+  "e.proof": `De précision sur 1 311 IRM de test, contre 92,1 % pour le CNN de référence. Sur une IRM de test tirée au hasard par classe, la carte de chaleur tombe là où pousse la tumeur : dans le tissu cérébral pour un gliome, contre le crâne pour un méningiome, sur la ligne médiane à la base du cerveau pour une tumeur de l’hypophyse, et nulle part en particulier quand il n’y a pas de tumeur.`,
+  "e.notdo": `Quatre cartes sont une illustration, pas une statistique. La vérification quantitative et la traque des doublons sont écrites et testées sur des données synthétiques, mais n’ont pas encore tourné sur le vrai dataset ; les chiffres ci-dessus pourraient baisser une fois les doublons retirés.`,
+  "e.shows": `Je ne m’arrête pas à « ça marche » : je cherche pourquoi ça marche, et si c’est pour la bonne raison.`,
+
+  "t1": `Le problème`,
+  "t2": `Les données`,
+  "t3": `Approche`,
+  "t4": `Résultats`,
+  "t5": `L’explicabilité avec Grad-CAM`,
+  "t6": `Pipeline reproductible`,
+  "t7": `Limites et suite`,
+  "t8": `Reproduire`,
+  "pb1": `Les tumeurs cérébrales se présentent différemment d’une IRM à l’autre, et un dépistage précoce améliore le pronostic. L’objectif : un système qui reconnaît quatre catégories, <strong>gliome</strong>, <strong>méningiome</strong>, <strong>tumeur de l’hypophyse</strong> et <strong>pas de tumeur</strong>, et dont les décisions peuvent être inspectées.`,
+  "pb.l": `Avertissement`,
+  "pb2": `Projet pédagogique et de recherche. Ce n’est pas un dispositif médical et il ne doit pas servir au diagnostic.`,
+  "d1": `Le <a href="https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification">Brain Tumor Dataset</a> sur Kaggle : des coupes IRM axiales étiquetées, de qualité, de luminosité, d’orientation et d’anatomie variables. Il contient aussi des masques de segmentation des tumeurs, qu’utilise la vérification quantitative de Grad-CAM.`,
+  "d2": `<strong>Entraînement :</strong> 5 712 IRM, découpées 80/20 avec stratification en 4 569 pour l’entraînement et 1 143 pour la validation.`,
+  "d3": `<strong>Test :</strong> 1 311 IRM : 300 gliomes, 306 méningiomes, 405 sans tumeur, 300 tumeurs de l’hypophyse.`,
+  "fl": `Pipeline de classification`,
+  "fl1": `Coupe IRM`,
+  "fl2": `Prétraitement`,
+  "fl2s": `avec augmentation`,
+  "fl3": `CNN ou EfficientNetB0`,
+  "fl3s": `deux modèles comparés`,
+  "fl4s": `4 classes`,
+  "fl5s": `où le modèle a regardé`,
+  "m1h": `Baseline : CNN maison`,
+  "m1p": `Des couches <code>Conv2D</code> et <code>MaxPooling2D</code> empilées, du <code>Dropout</code>, une tête dense, entraînés from scratch avec Adam. Il fixe la barre à battre.`,
+  "m2h": `Transfer learning : EfficientNetB0`,
+  "m2p": `Pré-entraîné sur ImageNet, gelé puis partiellement affiné, avec une nouvelle tête : <code>GlobalAveragePooling2D</code>, une couche dense ReLU, du dropout et un softmax.`,
+  "rt.c1": `Modèle`,
+  "rt.c2": `Précision (test)`,
+  "rt.c3": `Perte (test)`,
+  "rt.c4": `F1 macro`,
+  "rt.c5": `Classe la plus faible (rappel)`,
+  "rt1": `CNN maison (baseline)`,
+  "rt1w": `méningiome (0,79)`,
+  "rt2": `<strong>EfficientNetB0 (affiné)</strong>`,
+  "rt2w": `méningiome (0,94)`,
+  "rcap": `Rappel par classe sur les 1 311 IRM de test, d’après les rapports de classification du notebook. Le modèle affiné égale ou bat la baseline sur chaque classe ; l’écart est le plus grand sur le méningiome et le gliome.`,
+  "rp": `Les deux modèles n’ont pas été entraînés dans des conditions strictement identiques (poids des classes et intensité de l’augmentation différents) : l’écart reflète donc tout le pipeline plutôt que la seule architecture. <code>src/train.py</code> corrige ce point pour le prochain run.`,
+  "g1.h": `Pourquoi c’est important ici`,
+  "g1.p1": `Un clinicien doit pouvoir vérifier une prédiction avant de lui faire confiance, et un score ne se vérifie pas. Le risque est concret : un détecteur de pneumonie célèbre, entraîné sur des radiographies pulmonaires de plusieurs hôpitaux, avait aussi appris à reconnaître l’hôpital d’origine de l’image, et s’en servait en partie (Zech et al., <em>PLOS Medicine</em>, 2018). Il avait un bon score, pour une raison qui ne tiendrait pas dans un nouvel hôpital.`,
+  "g1.p2": `La réglementation va dans le même sens : dans l’Union européenne, l’IA intégrée à un dispositif médical est classée à haut risque par l’AI Act, avec des obligations de transparence et de supervision humaine.`,
+  "g2.h": `Comment fonctionne Grad-CAM`,
+  "gfl": `Comment Grad-CAM construit une carte de chaleur`,
+  "gf1": `IRM`,
+  "gf2": `Dernière couche de convolution`,
+  "gf2s": `cartes de caractéristiques, 7 × 7`,
+  "gf3": `Gradient du score de la classe`,
+  "gf3s": `un poids par carte`,
+  "gf4": `Somme pondérée des cartes`,
+  "gf4s": `partie positive seulement`,
+  "gf5": `Carte de chaleur`,
+  "gf5s": `agrandie sur l’IRM`,
+  "g2.p": `La dernière couche de convolution produit un ensemble de cartes, qui repèrent chacune un motif dans l’image. Grad-CAM mesure, grâce au gradient, combien chaque carte a pesé dans le score de la classe prédite, puis additionne les cartes avec ces poids. Superposé à l’IRM, le résultat montre en rouge ce qui a fait pencher la décision.`,
+  "g3.h": `Comment lire les quatre cartes`,
+  "g3.p": `Une IRM de test tirée au hasard par classe (graine fixée), toutes les quatre bien prédites par le modèle affiné. Chaque type de tumeur a une localisation typique, et les cartes la retrouvent :`,
+  "ga1": `Carte Grad-CAM sur un gliome : le point chaud est à l’intérieur d’un hémisphère, sur la lésion`,
+  "ga2": `Carte Grad-CAM sur un méningiome : le point chaud est à l’avant, contre le crâne`,
+  "ga3": `Carte Grad-CAM sur une tumeur de l’hypophyse : le point chaud est sur la ligne médiane, à la base du cerveau`,
+  "ga4": `Carte Grad-CAM sans tumeur : activation diffuse sur tout le cerveau, sans foyer`,
+  "gc1": `Gliome`,
+  "gc2": `Méningiome`,
+  "gc3": `Hypophyse`,
+  "gc4": `Pas de tumeur`,
+  "gt.c1": `Classe`,
+  "gt.c2": `Où pousse cette tumeur`,
+  "gt.c3": `Ce que montre la carte`,
+  "gt1a": `Gliome`, "gt1b": `Dans le tissu cérébral lui-même`, "gt1c": `Un point chaud à l’intérieur d’un hémisphère, sur la lésion`,
+  "gt2a": `Méningiome`, "gt2b": `En périphérie, à partir des méninges qui enveloppent le cerveau`, "gt2c": `Un point chaud collé au crâne, à l’avant`,
+  "gt3a": `Hypophyse`, "gt3b": `Sur la ligne médiane, à la base du cerveau`, "gt3c": `Un point chaud centré sur la ligne médiane, à la base`,
+  "gt4a": `Pas de tumeur`, "gt4b": `Aucune lésion à trouver`, "gt4c": `Une activation diffuse sur tout le cerveau, sans foyer : le modèle ne « voit » rien de localisé`,
+  "g4.h": `Ce que Grad-CAM ne prouve pas`,
+  "g4.1": `<strong>Une résolution grossière :</strong> la carte est une grille 7 × 7 agrandie à la taille de l’image ; elle désigne une zone, pas un contour.`,
+  "g4.2": `<strong>Quatre exemples ne font pas une statistique.</strong> Ils montrent ce que le modèle sait faire, pas à quelle fréquence il le fait.`,
+  "g4.3": `<strong>Le bon endroit ne dit pas tout :</strong> une carte sur la tumeur n’exclut pas un biais ailleurs dans le dataset.`,
+  "g5.h": `La vérification quantitative`,
+  "g5.p": `Pour transformer l’illustration en mesure, <code>src/localization.py</code> compare chaque carte de chaleur au masque de la tumeur fourni avec le dataset, sur trois questions simples, et fait de même avec une carte aléatoire comme niveau de référence :`,
+  "g5.1h": `Pointing game`,
+  "g5.1p": `Le point le plus chaud de la carte tombe-t-il dans la tumeur ?`,
+  "g5.2h": `Énergie dans le masque`,
+  "g5.2p": `Quelle part de la chaleur totale de la carte se trouve dans la tumeur ?`,
+  "g5.3h": `Recouvrement (IoU)`,
+  "g5.3p": `À quel point la zone chaude et la tumeur se recouvrent, au seuil de 0,5.`,
+  "g5.p2": `Ensuite, <code>src/evaluate.py</code> trace les cartes Grad-CAM des erreurs les plus confiantes du modèle : c’est là que l’explicabilité sert le plus, pour comprendre pourquoi un méningiome est pris pour autre chose.`,
+  "g5.l": `Statut`,
+  "g5.s": `Écrit et testé sur des données synthétiques, pas encore lancé sur le vrai dataset : il faut une journée de GPU. Le résultat se lira « le point le plus chaud tombe dans la tumeur dans X % des IRM de test, contre Y % pour une carte aléatoire ».`,
+  "im.p": `Le notebook est le travail exploratoire d’origine et la source des résultats ci-dessus. Le paquet <code>src/</code> corrige ses faiblesses :`,
+  "it.c1": `Module`,
+  "it.c2": `Rôle`,
+  "it1": `Regroupement des quasi-doublons par hachage perceptuel (dHash) : un <strong>découpage entraînement/validation sans fuite</strong>, groupé et stratifié, et la détection des images d’entraînement qui apparaissent aussi dans le test`,
+  "it2": `Pipeline <code>tf.data</code> avec des couches d’augmentation Keras, à la place de l’<code>ImageDataGenerator</code> obsolète`,
+  "it3": `Baseline CNN et EfficientNetB0 ; l’affinage garde la BatchNorm gelée`,
+  "it4": `Entraîne l’un ou l’autre modèle avec le <strong>même</strong> découpage, la même augmentation, les mêmes poids de classes et le même budget d’epochs, et écrit un rapport de fuite`,
+  "it5": `Grad-CAM pour les deux architectures, y compris sur des modèles rechargés`,
+  "it6": `<strong>Vérification quantitative de Grad-CAM</strong> contre les masques de tumeur : pointing game, IoU@0,5, énergie dans le masque, face à une carte aléatoire`,
+  "it7": `Métriques de test avec intervalles à 95 % par bootstrap, calibration (ECE), confusions principales, galerie Grad-CAM des erreurs les plus confiantes`,
+  "im.p2": `Les images de segmentation ne portent pas les mêmes noms que celles de classification : elles sont donc appariées par leur contenu (dHash), pour savoir si chacune appartient au test, à l’entraînement ou à aucun des deux ; seul le groupe test donne un score de localisation sans biais.`,
+  "lm.l": `Fuite possible`,
+  "lm.p": `La précision en validation (99,9 %) est nettement plus haute qu’en test (97,8 %), signe de quasi-doublons partagés entre entraînement et validation. <code>src/dedup.py</code> les mesure et les retire ; relancer avec lui est la prochaine étape et pourrait faire baisser les chiffres affichés. Un chiffre plus bas mais propre vaut mieux qu’un 97,8 % fragile.`,
+  "lm1": `<strong>Classification, pas segmentation :</strong> le modèle prédit une catégorie ; il ne détoure pas la tumeur pixel par pixel.`,
+  "lm2": `<strong>Un seul run :</strong> une graine ; avec 1 311 images de test, l’intervalle à 95 % sur la précision est d’environ ±0,8 point.`,
+  "lm3": `<strong>IRM réelles :</strong> le changement de scanner et de protocole n’est pas testé ; il n’y a pas de jeu de validation externe.`,
+  "lm4": `<strong>Explicabilité :</strong> les cartes de cette page restent qualitatives tant que <code>src/localization.py</code> n’a pas tourné sur les vraies données.`,
+  "rp1": `Un GPU est fortement recommandé pour l’affinage. Les graines sont fixées (<code>SEED = 42</code>), mais les runs sur GPU ne sont pas déterministes au bit près.`,
+  "stack": `Python, NumPy, pandas, TensorFlow et Keras (EfficientNetB0), scikit-learn, Matplotlib, Seaborn, Plotly, Grad-CAM implémenté à la main`,
+  "nav.prev": `Recommandeur CineMatch`,
+  "nav.next": `Risque de tsunami`
+};
+</script>
 <script src="../assets/i18n.js" defer></script>
 <script src="../assets/site.js" defer></script>
 <script src="../assets/project.js" defer></script>

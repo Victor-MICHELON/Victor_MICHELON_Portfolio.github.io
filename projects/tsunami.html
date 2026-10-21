@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tsunami risk from seismic data | Victor Michelon</title>
-<meta name="description" content="Can an earthquake's seismic profile alone flag tsunami risk? A recall-first gradient boosting model that detects 95% of tsunamis, a temporal leak removed, and a geospatial feature: distance to the nearest plate boundary.">
+<title data-i18n="title">Tsunami risk from seismic data | Victor Michelon</title>
+<meta name="description" content="Can an earthquake's seismic profile alone flag a tsunami? A leak removed before modelling, eight classifiers in leak-proof pipelines, and an alarm threshold set for safety: 60 of 61 tsunamis detected on the test set with a threshold chosen in cross-validation.">
 <link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/tsunami.html">
 <meta property="og:title" content="Tsunami risk from seismic data | Victor Michelon">
-<meta property="og:description" content="Can an earthquake's seismic profile alone flag tsunami risk? A recall-first gradient boosting model that detects 95% of tsunamis, a temporal leak removed, and a geospatial feature: distance to the nearest plate boundary.">
+<meta property="og:description" content="Can an earthquake's seismic profile alone flag a tsunami? A leak removed before modelling, eight classifiers in leak-proof pipelines, and an alarm threshold set for safety: 60 of 61 tsunamis detected on the test set with a threshold chosen in cross-validation.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/tsunami.html">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/tsunami.png">
@@ -31,6 +31,7 @@
 <header class="site-head">
   <div class="wrap">
     <nav aria-label="Main">
+      <a href="../index.html#experience" data-i18n="c.experience">Experience</a>
       <a href="../index.html#projects" data-i18n="c.projects">Projects</a>
       <a href="../index.html#about" data-i18n="c.about">About</a>
       <a href="../index.html#contact" data-i18n="c.contact">Contact</a>
@@ -47,19 +48,47 @@
   <header class="case-head">
     <div class="wrap">
       <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> <span data-i18n="c.all">All projects</span></a>
-      <p class="kicker">Classification on seismic data · October 2025</p>
-      <h1>Tsunami risk from seismic data</h1>
-      <p class="lede">Can an earthquake’s seismic characteristics alone say whether it is likely to cause a tsunami? I benchmarked eight classifiers inside leak-proof pipelines, removed a temporal bias that would have leaked the answer, and added a physical feature. The final model is tuned for safety: missing a real tsunami costs far more than a false alarm.</p>
+      <p class="kicker" data-i18n="kicker">Classification on seismic data · October 2025</p>
+      <h1 data-i18n="h1">Tsunami risk from seismic data</h1>
+      <p class="lede" data-i18n="lede">Can an earthquake’s seismic profile alone say whether it is likely to cause a tsunami? I found and removed a leak that let the model read the answer from the year, benchmarked eight classifiers in leak-proof pipelines, and treated the alarm threshold as a safety decision: missing a real tsunami costs far more than a false alarm.</p>
       <ul class="kpis">
-        <li><span class="big">95%</span><span class="cap">of tsunamis detected on the hold-out set (recall)</span></li>
-        <li><span class="big">0.90</span><span class="cap">F1-score on tsunami events, 0.905 in cross-validation</span></li>
-        <li><span class="big">0.90</span><span class="cap">ROC-AUC on the hold-out set</span></li>
-        <li><span class="big">449</span><span class="cap">events kept out of 782, after removing a leak</span></li>
+        <li><span class="big">58 / 61</span><span class="cap" data-i18n="k1">tsunamis detected on the test set, at the default threshold</span></li>
+        <li><span class="big">60 / 61</span><span class="cap" data-i18n="k2">with an alarm threshold chosen in cross-validation, for 2 more false alarms</span></li>
+        <li><span class="big" data-i18n="k3b">0.90</span><span class="cap" data-i18n="k3">ROC-AUC on the test set (0.5 = chance)</span></li>
+        <li><span class="big">449</span><span class="cap" data-i18n="k4">events kept out of 782, after removing a leak</span></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-primary" href="https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model">Notebook on GitHub</a>
-        <a class="btn" href="https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset">Dataset on Kaggle</a>
+        <a class="btn btn-primary" href="https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model" data-i18n="b1">Notebook on GitHub</a>
+        <a class="btn" href="https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset" data-i18n="b2">Dataset on Kaggle</a>
       </div>
+
+      <section class="edge" aria-labelledby="edge-h">
+        <p class="label" data-i18n="c.edge">What sets it apart</p>
+        <h2 id="edge-h" data-i18n="e.h">A model that cannot cheat, with an alarm set for the error that kills</h2>
+        <p><strong data-i18n="c.stakes">The stakes.</strong> <span data-i18n="e.stakes">After an earthquake, seismic data arrives within minutes, well before sensors at sea confirm a wave. A reliable first signal from that data alone buys time. And the two errors do not cost the same: a false alarm disrupts, a missed tsunami kills.</span></p>
+        <div class="versus">
+          <div>
+            <h3 data-i18n="c.usual">The usual approach</h3>
+            <p data-i18n="e.usual">Train a classifier on the dataset as it is, and maximize overall accuracy.</p>
+            <p><strong data-i18n="c.breaks">Where it breaks.</strong> <span data-i18n="e.breaks">In this dataset, every earthquake from 2001 to 2011 is labeled “no tsunami”: the model learns that the year gives the answer. Overall accuracy then treats a missed tsunami like a false alarm, and latitude and longitude let the model memorize regions rather than physics.</span></p>
+          </div>
+          <div class="mine">
+            <h3 data-i18n="c.mine">What I did differently</h3>
+            <ul>
+              <li data-i18n="e.m1"><strong>Found and removed the leak before any modelling:</strong> 449 earthquakes kept out of 782, year and month dropped.</li>
+              <li data-i18n="e.m2"><strong>Judged the models on the tsunami class</strong>, not on overall accuracy, then <strong>chose the alarm threshold</strong> on the training folds to keep at least 98% of tsunamis.</li>
+              <li data-i18n="e.m3"><strong>Added a physical feature</strong>, the distance from the epicenter to the nearest plate boundary, and measured whether it helps.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proof">
+          <p class="label" data-i18n="c.proof">The proof</p>
+          <span class="big">60 / 61</span>
+          <p data-i18n="e.proof">At the default threshold, the model detects 58 of the 61 tsunamis in the test set, with 10 false alarms out of 29 quiet earthquakes. With the threshold chosen on the training folds, without looking at the test set, it misses 1 tsunami instead of 3, for 12 false alarms instead of 10. With the leak left in, the same model would have shown 93.6% accuracy and 0.98 ROC-AUC instead of 85.6% and 0.90: a better-looking score, worthless on a new earthquake.</p>
+        </div>
+        <p><strong data-i18n="c.notdo">What it does not do.</strong> <span data-i18n="e.notdo">The physical feature did not measurably help: cross-validated F1 is 0.905 with it and 0.897 without, within noise. And tuning for overall accuracy selects the very same model as tuning for the tsunami class: the metric alone changed nothing, the threshold did.</span></p>
+        <p><strong data-i18n="c.shows">What it shows.</strong> <span data-i18n="e.shows">I read the data before modelling it, I choose the metric and the threshold from the real cost of errors, and I report the ideas that did not pay.</span></p>
+      </section>
     </div>
   </header>
 
@@ -67,91 +96,93 @@
     <nav class="toc" aria-label="On this page" data-i18n-aria="c.toc">
       <p data-i18n="c.onpage">On this page</p>
       <ol>
-        <li><a href="#problem">The problem</a></li>
-        <li><a href="#data">The data</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#limits">Limits</a></li>
-        <li><a href="#reproduce">Reproduce</a></li>
+        <li><a href="#problem" data-i18n="t1">The problem</a></li>
+        <li><a href="#data" data-i18n="t2">The data</a></li>
+        <li><a href="#approach" data-i18n="t3">Approach</a></li>
+        <li><a href="#results" data-i18n="t4">Results</a></li>
+        <li><a href="#choices" data-i18n="t5">What each choice is worth</a></li>
+        <li><a href="#limits" data-i18n="t6">Limits</a></li>
+        <li><a href="#reproduce" data-i18n="t7">Reproduce</a></li>
       </ol>
     </nav>
 
     <article class="prose">
       <section id="problem" aria-labelledby="problem-h">
-        <h2 id="problem-h">The problem</h2>
-        <p>The objective is to predict tsunami potential from seismic features only. In this setting the two kinds of error do not cost the same:</p>
+        <h2 id="problem-h" data-i18n="t1">The problem</h2>
+        <p data-i18n="pb1">The objective is to predict tsunami potential from seismic features only. In this setting the two kinds of error do not cost the same:</p>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Error</th><th scope="col">Meaning</th><th scope="col">Cost</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="pt.c1">Error</th><th scope="col" data-i18n="pt.c2">Meaning</th><th scope="col" data-i18n="pt.c3">Cost</th></tr></thead>
             <tbody>
-              <tr><td>False positive</td><td>Predicts a tsunami when none occurs</td><td>Inconvenience</td></tr>
-              <tr><td>False negative</td><td>Misses a real tsunami</td><td><strong>Disaster: lives at risk</strong></td></tr>
+              <tr><td data-i18n="pt1a">False positive</td><td data-i18n="pt1b">Predicts a tsunami when none occurs</td><td data-i18n="pt1c">Disruption</td></tr>
+              <tr><td data-i18n="pt2a">False negative</td><td data-i18n="pt2b">Misses a real tsunami</td><td data-i18n="pt2c"><strong>Disaster: lives at risk</strong></td></tr>
             </tbody>
           </table>
         </div>
-        <p>So the model is optimized for <strong>recall</strong> on tsunami events, not for raw accuracy, and accepts a moderate number of false alarms.</p>
+        <p data-i18n="pb2">So the models are compared on the tsunami class rather than on raw accuracy, and the final alarm threshold accepts a moderate number of false alarms to miss as few tsunamis as possible.</p>
       </section>
 
       <section id="data" aria-labelledby="data-h">
-        <h2 id="data-h">The data</h2>
-        <p>The <em>Global Earthquake–Tsunami Risk Assessment</em> dataset: 782 significant earthquakes recorded worldwide from 2001 to 2022, with magnitude, depth, intensity metrics, location and date, a binary tsunami label (38.9% positive) and no missing values. Tectonic plate boundaries come from the PB2002 model.</p>
+        <h2 id="data-h" data-i18n="t2">The data</h2>
+        <p data-i18n="d1">The <em>Global Earthquake–Tsunami Risk Assessment</em> dataset: 782 significant earthquakes recorded worldwide from 2001 to 2022, with magnitude, depth, intensity metrics, location and date, a binary tsunami label (38.9% positive) and no missing values. Tectonic plate boundaries come from the PB2002 model.</p>
         <figure class="map-figure">
-          <img src="../assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt="Map of the Pacific ring of fire: earthquake epicenters as dots, blue for those that caused a tsunami and grey for the others, over the tectonic plate boundaries">
-          <figcaption><span class="map-key map-key-inline"><span class="k-tsu">Tsunami</span><span class="k-no">No tsunami</span></span><br>Epicenters over the plate boundaries, Pacific-centred: 716 of the 782 earthquakes fall in this window. Tsunamis line up along subduction zones.</figcaption>
+          <img src="../assets/img/tsunami-map.svg" width="864" height="520" loading="lazy" alt="Map of the Pacific ring of fire: earthquake epicenters as dots, blue for those that caused a tsunami and grey for the others, over the tectonic plate boundaries" data-i18n-aria="map.alt">
+          <figcaption><span class="map-key map-key-inline"><span class="k-tsu" data-i18n="k.tsu">Tsunami</span><span class="k-no" data-i18n="k.no">No tsunami</span></span><br><span data-i18n="mapcap">Epicenters over the plate boundaries, Pacific-centred: 716 of the 782 earthquakes fall in this window. Tsunamis line up along subduction zones.</span></figcaption>
         </figure>
         <div class="callout">
-          <span class="label">A leak in the timeline</span>
-          <p>Every record from 2001 to 2011 is labeled “no tsunami”, while later years have a realistic mix. A model would learn that the year predicts the answer. I removed the pre-2012 records, and the year and month columns, before any modelling.</p>
+          <span class="label" data-i18n="lk.l">A leak in the timeline</span>
+          <p data-i18n="lk.p">Every record from 2001 to 2011 is labeled “no tsunami”, while later years have a realistic mix. A model would learn that the year predicts the answer. I removed the pre-2012 records, and the year and month columns, before any modelling.</p>
         </div>
         <figure>
           <div class="chart" data-chart="bars" data-src="funnel-data"></div>
-          <figcaption>From the raw dataset to the evaluation split. The split is stratified: 67.7% tsunami events in the training set, 67.8% in the hold-out set.</figcaption>
+          <figcaption data-i18n="fcap">From the raw dataset to the evaluation split. The split is stratified: 67.7% tsunami events in the training set, 67.8% in the test set.</figcaption>
         </figure>
         <script type="application/json" id="funnel-data">{"format": "int", "max": 782, "valueName": "Events", "items": [
           {"label": "Raw dataset, 2001 to 2022", "value": 782, "muted": true},
           {"label": "After removing pre-2012 records", "value": 449},
           {"label": "Training set", "value": 359},
-          {"label": "Hold-out test set", "value": 90}]}</script>
+          {"label": "Test set", "value": 90}],
+          "fr": {"valueName": "Événements", "items": [{"label": "Dataset brut, 2001 à 2022"}, {"label": "Après retrait des données d’avant 2012"}, {"label": "Jeu d’entraînement"}, {"label": "Jeu de test"}]}}</script>
       </section>
 
       <section id="approach" aria-labelledby="approach-h">
-        <h2 id="approach-h">Approach</h2>
+        <h2 id="approach-h" data-i18n="t3">Approach</h2>
         <figure>
-          <ol class="flow" aria-label="Modelling pipeline">
-            <li><span class="box"><b>EDA</b><small>temporal bias found</small></span></li>
-            <li><span class="box"><b>Leak removal</b><small>pre-2012 records</small></span></li>
-            <li><span class="box"><b>Feature engineering</b><small>incl. distance to fault</small></span></li>
-            <li><span class="box is-key"><b>8 pipelines</b><small>repeated stratified CV, 10×3</small></span></li>
-            <li><span class="box"><b>GridSearchCV</b><small>top 2 models</small></span></li>
-            <li><span class="box"><b>Hold-out evaluation</b><small>90 events</small></span></li>
+          <ol class="flow" aria-label="Modelling pipeline" data-i18n-aria="fl">
+            <li><span class="box"><b data-i18n="fl1">EDA</b><small data-i18n="fl1s">temporal bias found</small></span></li>
+            <li><span class="box"><b data-i18n="fl2">Leak removal</b><small data-i18n="fl2s">pre-2012 records</small></span></li>
+            <li><span class="box"><b data-i18n="fl3">Feature engineering</b><small data-i18n="fl3s">incl. distance to plate boundary</small></span></li>
+            <li><span class="box is-key"><b data-i18n="fl4">8 pipelines</b><small data-i18n="fl4s">repeated stratified CV, 10×3</small></span></li>
+            <li><span class="box"><b>GridSearchCV</b><small data-i18n="fl5s">top 2 models</small></span></li>
+            <li><span class="box"><b data-i18n="fl6">Test evaluation</b><small data-i18n="fl6s">90 events</small></span></li>
           </ol>
         </figure>
-        <h3>Geospatial feature engineering</h3>
-        <p>A first model reached 95% recall on tsunamis but only 0.62 on non-tsunamis, and it may have relied on indirect location proxies such as latitude, longitude or a Pacific flag. To give it a physical signal instead, I computed <code>distance_to_fault_km</code>: the distance from each epicenter to the nearest tectonic plate boundary, with GeoPandas and Shapely, after projecting both layers to a metric CRS.</p>
+        <h3 data-i18n="geo.h">Geospatial feature engineering</h3>
+        <p data-i18n="geo.p">A first model might rely on indirect location proxies such as latitude, longitude or a Pacific flag. To give it a physical signal instead, I computed <code>distance_to_fault_km</code>: the distance from each epicenter to the nearest tectonic plate boundary, with GeoPandas and Shapely, after projecting both layers to a metric coordinate system. Whether it helped is measured further down.</p>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Engineered feature</th><th scope="col">Idea</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="ft.c1">Engineered feature</th><th scope="col" data-i18n="ft.c2">Idea</th></tr></thead>
             <tbody>
-              <tr><td><code>distance_to_fault_km</code></td><td>Distance from the epicenter to the nearest plate boundary (241 boundary segments)</td></tr>
-              <tr><td><code>mag_depth_ratio</code></td><td>Magnitude divided by depth, which favors strong and shallow quakes</td></tr>
-              <tr><td><code>is_shallow</code></td><td>Depth of 70 km or less</td></tr>
-              <tr><td><code>pacific_region</code></td><td>Longitude in the Pacific ring of fire band</td></tr>
+              <tr><td><code>distance_to_fault_km</code></td><td data-i18n="ft1">Distance from the epicenter to the nearest plate boundary (241 boundary segments)</td></tr>
+              <tr><td><code>mag_depth_ratio</code></td><td data-i18n="ft2">Magnitude divided by depth, which favors strong and shallow quakes</td></tr>
+              <tr><td><code>is_shallow</code></td><td data-i18n="ft3">Depth of 70 km or less</td></tr>
+              <tr><td><code>pacific_region</code></td><td data-i18n="ft4">Longitude in the Pacific ring of fire band</td></tr>
             </tbody>
           </table>
         </div>
         <ul class="cards">
-          <li><strong>Leak-proof pipelines</strong><p>Scaling and encoding live inside <code>sklearn.pipeline</code>, so they are fitted on training folds only.</p></li>
-          <li><strong>Robust validation</strong><p><code>RepeatedStratifiedKFold</code>, 10 folds × 3 repeats: stable estimates on a small, imbalanced dataset.</p></li>
-          <li><strong>Targeted tuning</strong><p><code>GridSearchCV</code> only on the two best models, gradient boosting and random forest.</p></li>
+          <li><strong data-i18n="ca1h">Leak-proof pipelines</strong><p data-i18n="ca1p">Scaling and encoding live inside <code>sklearn.pipeline</code>, so they are fitted on training folds only.</p></li>
+          <li><strong data-i18n="ca2h">Robust validation</strong><p data-i18n="ca2p"><code>RepeatedStratifiedKFold</code>, 10 folds × 3 repeats: stable estimates on a small, imbalanced dataset.</p></li>
+          <li><strong data-i18n="ca3h">Targeted tuning</strong><p data-i18n="ca3p"><code>GridSearchCV</code> only on the two best models, gradient boosting and random forest.</p></li>
         </ul>
       </section>
 
       <section id="results" aria-labelledby="results-h">
-        <h2 id="results-h">Results</h2>
-        <h3>Model comparison</h3>
+        <h2 id="results-h" data-i18n="t4">Results</h2>
+        <h3 data-i18n="mc.h">Model comparison</h3>
         <figure>
           <div class="chart" data-chart="bars" data-src="models-data"></div>
-          <figcaption>Mean F1-score of each pipeline in repeated stratified cross-validation on the training set, before tuning. Gradient boosting and random forest are nearly tied; gradient boosting was kept after tuning.</figcaption>
+          <figcaption data-i18n="mcap">Mean F1-score on the tsunami class for each pipeline, in repeated stratified cross-validation on the training set, before tuning. Gradient boosting and random forest are nearly tied; gradient boosting was kept after tuning.</figcaption>
         </figure>
         <script type="application/json" id="models-data">{"format": "dec3", "max": 1, "valueName": "CV F1", "items": [
           {"label": "Gradient Boosting", "value": 0.9021, "note": "Recall 0.929 · ROC-AUC 0.908"},
@@ -161,50 +192,89 @@
           {"label": "SVM", "value": 0.8606, "muted": true, "note": "Recall 0.855 · ROC-AUC 0.849"},
           {"label": "KNN", "value": 0.8526, "muted": true, "note": "Recall 0.889 · ROC-AUC 0.815"},
           {"label": "AdaBoost", "value": 0.8493, "muted": true, "note": "Recall 0.859 · ROC-AUC 0.845"},
-          {"label": "Logistic Regression", "value": 0.8398, "muted": true, "note": "Recall 0.815 · ROC-AUC 0.832"}]}</script>
+          {"label": "Logistic Regression", "value": 0.8398, "muted": true, "note": "Recall 0.815 · ROC-AUC 0.832"}],
+          "fr": {"valueName": "F1 en CV", "items": [
+            {"note": "Rappel 0,929 · ROC-AUC 0,908"}, {"note": "Rappel 0,951 · ROC-AUC 0,908"}, {"note": "Rappel 0,890 · ROC-AUC 0,880"}, {"note": "Rappel 0,892 · ROC-AUC 0,879"},
+            {"note": "Rappel 0,855 · ROC-AUC 0,849"}, {"note": "Rappel 0,889 · ROC-AUC 0,815"}, {"note": "Rappel 0,859 · ROC-AUC 0,845"}, {"label": "Régression logistique", "note": "Rappel 0,815 · ROC-AUC 0,832"}]}}</script>
 
-        <h3>On the hold-out set</h3>
+        <h3 data-i18n="ho.h">On the test set, default threshold</h3>
         <figure>
             <table class="confusion">
-              <caption class="sr-only">Confusion matrix on the 90 hold-out events</caption>
-              <tr><td class="corner"></td><th scope="col" class="axis">Predicted no tsunami</th><th scope="col" class="axis">Predicted tsunami</th></tr>
-              <tr><th scope="row" class="axis">Actual no tsunami</th><td class="strong" style="--share: 66%">19<small>correct</small></td><td style="--share: 34%">10<small>false alarms</small></td></tr>
-              <tr><th scope="row" class="axis">Actual tsunami</th><td style="--share: 5%">3<small>missed</small></td><td class="strong" style="--share: 95%">58<small>detected</small></td></tr>
+              <caption class="sr-only" data-i18n="cm.cap">Confusion matrix on the 90 test events</caption>
+              <tr><td class="corner"></td><th scope="col" class="axis" data-i18n="cm.p0">Predicted no tsunami</th><th scope="col" class="axis" data-i18n="cm.p1">Predicted tsunami</th></tr>
+              <tr><th scope="row" class="axis" data-i18n="cm.a0">Actual no tsunami</th><td class="strong" style="--share: 66%">19<small data-i18n="cm.tn">correct</small></td><td style="--share: 34%">10<small data-i18n="cm.fp">false alarms</small></td></tr>
+              <tr><th scope="row" class="axis" data-i18n="cm.a1">Actual tsunami</th><td style="--share: 5%">3<small data-i18n="cm.fn">missed</small></td><td class="strong" style="--share: 95%">58<small data-i18n="cm.tp">detected</small></td></tr>
             </table>
-            <figcaption>Confusion matrix of the tuned gradient boosting model on the 90 hold-out events. Shading is the share of each actual class.</figcaption>
+            <figcaption data-i18n="cmcap">Confusion matrix of the tuned gradient boosting model on the 90 test events, threshold 0.5. Shading is the share of each actual class.</figcaption>
         </figure>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Hold-out, 90 events</th><th scope="col" class="num">Precision</th><th scope="col" class="num">Recall</th><th scope="col" class="num">F1</th></tr></thead>
+            <thead><tr><th scope="col" data-i18n="ht.c1">Test set, 90 events</th><th scope="col" class="num" data-i18n="ht.c2">Precision</th><th scope="col" class="num" data-i18n="ht.c3">Recall</th><th scope="col" class="num">F1</th></tr></thead>
             <tbody>
-              <tr><td>Tsunami (61)</td><td class="num">0.85</td><td class="num">0.95</td><td class="num">0.90</td></tr>
-              <tr><td>No tsunami (29)</td><td class="num">0.86</td><td class="num">0.66</td><td class="num">0.75</td></tr>
+              <tr><td data-i18n="ht1">Tsunami (61)</td><td class="num">0.85</td><td class="num">0.95</td><td class="num">0.90</td></tr>
+              <tr><td data-i18n="ht2">No tsunami (29)</td><td class="num">0.86</td><td class="num">0.66</td><td class="num">0.75</td></tr>
             </tbody>
           </table>
         </div>
-        <p>The model correctly classifies about 9 out of 10 earthquakes and detects 19 out of 20 tsunamis. The hold-out F1 (0.90) is close to the cross-validated one (0.905), so there is no sign of overfitting.</p>
+        <p data-i18n="ho.p">The test F1 (0.90) is close to the cross-validated one (0.905), so there is no sign of overfitting.</p>
+      </section>
+
+      <section id="choices" aria-labelledby="choices-h">
+        <h2 id="choices-h" data-i18n="t5">What each choice is worth</h2>
+        <p data-i18n="ch.p">Each decision above can be measured by undoing it and keeping everything else the same: same gradient boosting, same split, same seed. The figures come from <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io/blob/main/scripts/tsunami_extra.py"><code>scripts/tsunami_extra.py</code></a>, which reproduces the notebook’s final model exactly before changing one thing at a time.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col" data-i18n="cht.c1">Variant</th><th scope="col" class="num" data-i18n="cht.c2">CV F1</th><th scope="col" class="num" data-i18n="cht.c3">Test accuracy</th><th scope="col" class="num">ROC-AUC</th><th scope="col" class="num" data-i18n="cht.c4">Tsunamis missed</th><th scope="col" class="num" data-i18n="cht.c5">False alarms</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="cht1">Final model, threshold 0.5</td><td class="num">0.905</td><td class="num">85.6%</td><td class="num">0.904</td><td class="num">3 / 61</td><td class="num">10 / 29</td></tr>
+              <tr><td data-i18n="cht2"><strong>Same model, threshold chosen in cross-validation (0.04)</strong></td><td class="num">0.905</td><td class="num">85.6%</td><td class="num">0.904</td><td class="num"><strong>1 / 61</strong></td><td class="num">12 / 29</td></tr>
+              <tr><td data-i18n="cht3">Trained with the leak (all years, year and month kept)</td><td class="num">0.907</td><td class="num">93.6%</td><td class="num">0.980</td><td class="num">3 / 61</td><td class="num">7 / 96</td></tr>
+              <tr><td data-i18n="cht4">Without <code>distance_to_fault_km</code></td><td class="num">0.897</td><td class="num">88.9%</td><td class="num">0.896</td><td class="num">2 / 61</td><td class="num">8 / 29</td></tr>
+              <tr><td data-i18n="cht5">Tuned for overall accuracy instead of tsunami F1</td><td class="num" colspan="5" data-i18n="cht5b">Same hyperparameters, so the same model</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li data-i18n="chl1"><strong>The leak would have flattered the model:</strong> 93.6% accuracy and 0.98 ROC-AUC, because the test set would then contain 2001 to 2011 earthquakes that the year alone classifies. Nothing of that carries over to a new earthquake.</li>
+          <li data-i18n="chl2"><strong>The threshold is the safety lever.</strong> Chosen on out-of-fold predictions of the training set, to keep at least 98% of tsunamis, it misses one tsunami instead of three for two more false alarms, at the same overall accuracy.</li>
+          <li data-i18n="chl3"><strong>The physical feature did not pay.</strong> Without it, cross-validated F1 drops by 0.008, within noise, and the test set even looks slightly better. I keep it for interpretability, not for the score.</li>
+        </ul>
+        <figure>
+          <div class="chart" data-chart="grouped" data-src="threshold-data"></div>
+          <figcaption data-i18n="thcap">Tsunamis missed (out of 61) and false alarms (out of 29) on the test set, by decision threshold. The threshold is a choice, not a default: lowering it trades false alarms for missed tsunamis. Reading the best threshold off this chart would be tuning on the test set, which is why 0.04 was chosen on the training folds.</figcaption>
+        </figure>
+        <script type="application/json" id="threshold-data">{"format": "int", "max": 14, "valueName": "",
+          "categories": ["0.04 (chosen in CV)", "0.25", "0.50 (default)", "0.75", "0.90"],
+          "series": [
+            {"name": "Tsunamis missed", "values": [1, 1, 3, 4, 8]},
+            {"name": "False alarms", "muted": true, "values": [12, 10, 10, 8, 5]}],
+          "fr": {"categories": ["0,04 (choisi en CV)", "0,25", "0,50 (défaut)", "0,75", "0,90"],
+            "series": [{"name": "Tsunamis manqués"}, {"name": "Fausses alertes"}]}}</script>
       </section>
 
       <section id="limits" aria-labelledby="limits-h">
-        <h2 id="limits-h">Limits</h2>
+        <h2 id="limits-h" data-i18n="t6">Limits</h2>
         <div class="callout callout-limit">
-          <span class="label">Read 0.90 with care</span>
-          <p>The hold-out set has only 90 events, 61 of them tsunamis. A model that always answered “tsunami” would already reach a tsunami F1 of 0.81 on that split.</p>
+          <span class="label" data-i18n="lm.l">Read 0.90 with care</span>
+          <p data-i18n="lm.p">The test set has only 90 events, 61 of them tsunamis. A model that always answered “tsunami” would already reach a tsunami F1 of 0.81 on that split, which is why the counts of missed tsunamis and false alarms say more than the F1.</p>
         </div>
         <ul>
-          <li><strong>Recall on non-tsunami events is 0.66:</strong> 10 false alarms out of 29, the price of the recall-first choice.</li>
-          <li><strong>Small dataset:</strong> 449 usable events after the leak removal, so every metric has a wide margin of error.</li>
-          <li><strong>Seismic features only:</strong> no ocean depth, fault mechanism or sea-level data, which real warning systems rely on.</li>
+          <li data-i18n="lm1"><strong>False alarms are the price:</strong> 10 to 12 out of 29 quiet earthquakes, depending on the threshold.</li>
+          <li data-i18n="lm2"><strong>Small dataset:</strong> 449 usable events after the leak removal, so every metric has a wide margin of error, and one tsunami more or less moves recall by 1.6 points.</li>
+          <li data-i18n="lm3"><strong>Seismic features only:</strong> no ocean depth, fault mechanism or sea-level data, which real warning systems rely on.</li>
         </ul>
       </section>
 
       <section id="reproduce" aria-labelledby="reproduce-h">
-        <h2 id="reproduce-h">Reproduce</h2>
+        <h2 id="reproduce-h" data-i18n="t7">Reproduce</h2>
         <div class="code"><pre><code>git clone https://github.com/Victor-MICHELON/Tsunami_Risk_Prediction_Model.git
 cd Tsunami_Risk_Prediction_Model
 pip install pandas numpy scikit-learn xgboost lightgbm matplotlib seaborn geopandas shapely pyproj
-jupyter notebook tsunami-risk-prediction-ml-project-final-version.ipynb</code></pre></div>
-        <p>The data files are in <code>Data/</code>. The notebook was written on Kaggle, so its paths point to <code>/kaggle/input/</code> and need to be adjusted locally.</p>
+jupyter notebook tsunami-risk-prediction-ml-project-final-version.ipynb
+
+# the comparisons of "What each choice is worth", from the portfolio repository
+python scripts/tsunami_extra.py /path/to/Tsunami_Risk_Prediction_Model/Data</code></pre></div>
+        <p data-i18n="rp1">The data files are in <code>Data/</code>. The notebook was written on Kaggle, so its paths point to <code>/kaggle/input/</code> and need to be adjusted locally.</p>
         <p class="stack">Python, pandas, NumPy, scikit-learn (Pipeline, GridSearchCV, RepeatedStratifiedKFold), XGBoost, LightGBM, GeoPandas, Shapely, pyproj, Matplotlib, Seaborn</p>
       </section>
     </article>
@@ -212,8 +282,8 @@ jupyter notebook tsunami-risk-prediction-ml-project-final-version.ipynb</code></
 
   <nav class="case-nav" aria-label="Other projects" data-i18n-aria="c.others">
     <div class="wrap">
-      <a class="prev" href="brain-tumor.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name">Brain tumor MRI</span></a>
-      <a class="next" href="ligue1.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name">Ligue 1 match prediction</span></a>
+      <a class="prev" href="brain-tumor.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name" data-i18n="nav.prev">Brain tumor MRI</span></a>
+      <a class="next" href="ligue1.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name" data-i18n="nav.next">Ligue 1 season prediction</span></a>
     </div>
   </nav>
 </main>
@@ -225,6 +295,92 @@ jupyter notebook tsunami-risk-prediction-ml-project-final-version.ipynb</code></
   </div>
 </footer>
 
+<script>
+window.I18N_FR = {
+  "title": `Risque de tsunami à partir de données sismiques | Victor Michelon`,
+  "kicker": `Classification sur données sismiques · octobre 2025`,
+  "h1": `Risque de tsunami à partir de données sismiques`,
+  "lede": `Le profil sismique d’un séisme suffit-il à dire s’il risque de provoquer un tsunami ? J’ai trouvé et retiré une fuite qui permettait au modèle de lire la réponse dans l’année, comparé huit classifieurs dans des pipelines étanches, et traité le seuil d’alerte comme une décision de sécurité : rater un vrai tsunami coûte bien plus cher qu’une fausse alerte.`,
+  "k1": `tsunamis détectés sur le jeu de test, au seuil par défaut`,
+  "k2": `avec un seuil d’alerte choisi en validation croisée, pour 2 fausses alertes de plus`,
+  "k3b": `0,90`,
+  "k3": `de ROC-AUC sur le jeu de test (0,5 = hasard)`,
+  "k4": `séismes gardés sur 782, après retrait d’une fuite`,
+  "b1": `Notebook sur GitHub`,
+  "b2": `Dataset sur Kaggle`,
+  "e.h": `Un modèle qui ne peut pas tricher, avec une alerte réglée pour l’erreur qui tue`,
+  "e.stakes": `Après un séisme, les données sismiques arrivent en quelques minutes, bien avant que les capteurs en mer confirment une vague. Un premier signal fiable à partir de ces seules données fait gagner du temps. Et les deux erreurs n’ont pas le même prix : une fausse alerte dérange, un tsunami manqué tue.`,
+  "e.usual": `Entraîner un classifieur sur le dataset tel quel, et maximiser la précision globale.`,
+  "e.breaks": `Dans ce dataset, tous les séismes de 2001 à 2011 sont étiquetés « pas de tsunami » : le modèle apprend que l’année donne la réponse. La précision globale traite ensuite un tsunami manqué comme une fausse alerte, et la latitude et la longitude permettent au modèle de mémoriser des régions plutôt que la physique.`,
+  "e.m1": `<strong>Repéré et retiré la fuite avant toute modélisation :</strong> 449 séismes gardés sur 782, année et mois supprimés.`,
+  "e.m2": `<strong>Jugé les modèles sur la classe tsunami</strong>, pas sur la précision globale, puis <strong>choisi le seuil d’alerte</strong> sur les folds d’entraînement pour garder au moins 98 % des tsunamis.`,
+  "e.m3": `<strong>Ajouté une variable physique</strong>, la distance de l’épicentre à la frontière de plaques la plus proche, et mesuré si elle aide.`,
+  "e.proof": `Au seuil par défaut, le modèle détecte 58 des 61 tsunamis du jeu de test, avec 10 fausses alertes sur 29 séismes sans tsunami. Avec le seuil choisi sur les folds d’entraînement, sans regarder le jeu de test, il rate 1 tsunami au lieu de 3, pour 12 fausses alertes au lieu de 10. Avec la fuite, le même modèle aurait affiché 93,6 % de précision et 0,98 de ROC-AUC au lieu de 85,6 % et 0,90 : un score plus flatteur, qui ne vaut rien sur un nouveau séisme.`,
+  "e.notdo": `La variable physique n’a pas apporté de gain mesurable : le F1 en validation croisée est de 0,905 avec elle et 0,897 sans, dans le bruit. Et régler le modèle pour la précision globale sélectionne exactement le même modèle que le régler pour la classe tsunami : la métrique seule n’a rien changé, le seuil si.`,
+  "e.shows": `Je lis les données avant de les modéliser, je choisis la métrique et le seuil selon le coût réel des erreurs, et je dis quelles idées n’ont pas payé.`,
+  "t1": `Le problème`, "t2": `Les données`, "t3": `Approche`, "t4": `Résultats`, "t5": `Ce que vaut chaque choix`, "t6": `Limites`, "t7": `Reproduire`,
+  "pb1": `L’objectif est de prédire le risque de tsunami à partir des seules caractéristiques sismiques. Dans ce cadre, les deux types d’erreur n’ont pas le même coût :`,
+  "pt.c1": `Erreur`, "pt.c2": `Signification`, "pt.c3": `Coût`,
+  "pt1a": `Faux positif`, "pt1b": `Prédit un tsunami alors qu’il n’y en a pas`, "pt1c": `Dérangement`,
+  "pt2a": `Faux négatif`, "pt2b": `Rate un vrai tsunami`, "pt2c": `<strong>Catastrophe : des vies en jeu</strong>`,
+  "pb2": `Les modèles sont donc comparés sur la classe tsunami plutôt que sur la précision brute, et le seuil d’alerte final accepte un nombre modéré de fausses alertes pour rater le moins de tsunamis possible.`,
+  "d1": `Le dataset <em>Global Earthquake–Tsunami Risk Assessment</em> : 782 séismes importants enregistrés dans le monde de 2001 à 2022, avec magnitude, profondeur, mesures d’intensité, localisation et date, une étiquette tsunami binaire (38,9 % de positifs) et aucune valeur manquante. Les frontières des plaques tectoniques viennent du modèle PB2002.`,
+  "map.alt": `Carte de la ceinture de feu du Pacifique : les épicentres en points, bleus pour ceux qui ont provoqué un tsunami et gris pour les autres, sur les frontières des plaques tectoniques`,
+  "k.tsu": `Tsunami`, "k.no": `Pas de tsunami`,
+  "mapcap": `Épicentres sur les frontières de plaques, centrés sur le Pacifique : 716 des 782 séismes tombent dans cette fenêtre. Les tsunamis s’alignent le long des zones de subduction.`,
+  "lk.l": `Une fuite dans la chronologie`,
+  "lk.p": `Tous les enregistrements de 2001 à 2011 sont étiquetés « pas de tsunami », alors que les années suivantes ont un mélange réaliste. Un modèle apprendrait que l’année prédit la réponse. J’ai retiré les enregistrements d’avant 2012, ainsi que les colonnes année et mois, avant toute modélisation.`,
+  "fcap": `Du dataset brut au découpage d’évaluation. Le découpage est stratifié : 67,7 % de tsunamis dans l’entraînement, 67,8 % dans le test.`,
+  "fl": `Pipeline de modélisation`,
+  "fl1": `Analyse exploratoire`, "fl1s": `biais temporel trouvé`,
+  "fl2": `Retrait de la fuite`, "fl2s": `données d’avant 2012`,
+  "fl3": `Création de variables`, "fl3s": `dont la distance aux plaques`,
+  "fl4": `8 pipelines`, "fl4s": `CV stratifiée répétée, 10×3`,
+  "fl5s": `les 2 meilleurs modèles`,
+  "fl6": `Évaluation sur le test`, "fl6s": `90 séismes`,
+  "geo.h": `Une variable géospatiale`,
+  "geo.p": `Un premier modèle pourrait s’appuyer sur des indices indirects de localisation comme la latitude, la longitude ou un indicateur « Pacifique ». Pour lui donner plutôt un signal physique, j’ai calculé <code>distance_to_fault_km</code> : la distance de chaque épicentre à la frontière de plaques la plus proche, avec GeoPandas et Shapely, après avoir projeté les deux couches dans un système de coordonnées métrique. Son apport est mesuré plus bas.`,
+  "ft.c1": `Variable créée`, "ft.c2": `Idée`,
+  "ft1": `Distance de l’épicentre à la frontière de plaques la plus proche (241 segments)`,
+  "ft2": `Magnitude divisée par la profondeur, qui favorise les séismes forts et peu profonds`,
+  "ft3": `Profondeur de 70 km ou moins`,
+  "ft4": `Longitude dans la bande de la ceinture de feu du Pacifique`,
+  "ca1h": `Des pipelines étanches`, "ca1p": `La normalisation et l’encodage vivent dans un <code>sklearn.pipeline</code>, donc ils ne sont ajustés que sur les folds d’entraînement.`,
+  "ca2h": `Une validation robuste`, "ca2p": `<code>RepeatedStratifiedKFold</code>, 10 folds × 3 répétitions : des estimations stables sur un petit dataset déséquilibré.`,
+  "ca3h": `Un réglage ciblé`, "ca3p": `<code>GridSearchCV</code> seulement sur les deux meilleurs modèles, gradient boosting et forêt aléatoire.`,
+  "mc.h": `Comparaison des modèles`,
+  "mcap": `F1 moyen sur la classe tsunami pour chaque pipeline, en validation croisée stratifiée répétée sur l’entraînement, avant réglage. Gradient boosting et forêt aléatoire sont presque à égalité ; le gradient boosting a été gardé après réglage.`,
+  "ho.h": `Sur le jeu de test, au seuil par défaut`,
+  "cm.cap": `Matrice de confusion sur les 90 séismes de test`,
+  "cm.p0": `Prédit sans tsunami`, "cm.p1": `Prédit tsunami`,
+  "cm.a0": `Réel sans tsunami`, "cm.a1": `Réel tsunami`,
+  "cm.tn": `corrects`, "cm.fp": `fausses alertes`, "cm.fn": `manqués`, "cm.tp": `détectés`,
+  "cmcap": `Matrice de confusion du gradient boosting réglé sur les 90 séismes de test, seuil 0,5. La teinte indique la part de chaque classe réelle.`,
+  "ht.c1": `Jeu de test, 90 séismes`, "ht.c2": `Précision`, "ht.c3": `Rappel`,
+  "ht1": `Tsunami (61)`, "ht2": `Pas de tsunami (29)`,
+  "ho.p": `Le F1 sur le test (0,90) est proche de celui de la validation croisée (0,905) : pas de signe de surapprentissage.`,
+  "ch.p": `Chaque décision ci-dessus peut se mesurer en la défaisant, tout le reste égal par ailleurs : même gradient boosting, même découpage, même graine. Les chiffres viennent de <a href="https://github.com/Victor-MICHELON/Victor_MICHELON_Portfolio.github.io/blob/main/scripts/tsunami_extra.py"><code>scripts/tsunami_extra.py</code></a>, qui reproduit exactement le modèle final du notebook avant de changer une seule chose à la fois.`,
+  "cht.c1": `Variante`, "cht.c2": `F1 en CV`, "cht.c3": `Précision (test)`, "cht.c4": `Tsunamis manqués`, "cht.c5": `Fausses alertes`,
+  "cht1": `Modèle final, seuil 0,5`,
+  "cht2": `<strong>Même modèle, seuil choisi en validation croisée (0,04)</strong>`,
+  "cht3": `Entraîné avec la fuite (toutes les années, année et mois gardés)`,
+  "cht4": `Sans <code>distance_to_fault_km</code>`,
+  "cht5": `Réglé pour la précision globale au lieu du F1 tsunami`,
+  "cht5b": `Mêmes hyperparamètres, donc le même modèle`,
+  "chl1": `<strong>La fuite aurait flatté le modèle :</strong> 93,6 % de précision et 0,98 de ROC-AUC, parce que le jeu de test contiendrait alors des séismes de 2001 à 2011 que l’année suffit à classer. Rien de tout cela ne vaut pour un nouveau séisme.`,
+  "chl2": `<strong>Le seuil est le levier de sécurité.</strong> Choisi sur les prédictions hors fold de l’entraînement, pour garder au moins 98 % des tsunamis, il rate un tsunami au lieu de trois pour deux fausses alertes de plus, à précision globale égale.`,
+  "chl3": `<strong>La variable physique n’a pas payé.</strong> Sans elle, le F1 en validation croisée baisse de 0,008, dans le bruit, et le jeu de test paraît même un peu meilleur. Je la garde pour l’interprétation, pas pour le score.`,
+  "thcap": `Tsunamis manqués (sur 61) et fausses alertes (sur 29) sur le jeu de test, selon le seuil de décision. Le seuil est un choix, pas un réglage par défaut : le baisser échange des fausses alertes contre des tsunamis manqués. Lire le meilleur seuil sur ce graphique reviendrait à régler sur le test : c’est pourquoi 0,04 a été choisi sur les folds d’entraînement.`,
+  "lm.l": `Lire 0,90 avec prudence`,
+  "lm.p": `Le jeu de test ne compte que 90 séismes, dont 61 tsunamis. Un modèle qui répondrait toujours « tsunami » atteindrait déjà un F1 tsunami de 0,81 sur ce découpage : c’est pourquoi les nombres de tsunamis manqués et de fausses alertes en disent plus que le F1.`,
+  "lm1": `<strong>Les fausses alertes sont le prix à payer :</strong> 10 à 12 sur 29 séismes sans tsunami, selon le seuil.`,
+  "lm2": `<strong>Petit dataset :</strong> 449 séismes utilisables après le retrait de la fuite, donc chaque métrique a une large marge d’erreur, et un tsunami de plus ou de moins fait bouger le rappel de 1,6 point.`,
+  "lm3": `<strong>Données sismiques seulement :</strong> ni profondeur de l’océan, ni mécanisme de la faille, ni niveau de la mer, sur lesquels s’appuient les vrais systèmes d’alerte.`,
+  "rp1": `Les données sont dans <code>Data/</code>. Le notebook a été écrit sur Kaggle : ses chemins pointent vers <code>/kaggle/input/</code> et doivent être adaptés en local.`,
+  "nav.prev": `IRM et tumeurs cérébrales`,
+  "nav.next": `Saison de Ligue 1 prédite`
+};
+</script>
 <script src="../assets/i18n.js" defer></script>
 <script src="../assets/site.js" defer></script>
 <script src="../assets/project.js" defer></script>
