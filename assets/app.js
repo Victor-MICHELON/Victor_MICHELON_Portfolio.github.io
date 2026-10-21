@@ -21,7 +21,7 @@
       verdicts: { GAIN: "better than its reference", NOISE: "within noise of its reference", WORSE: "worse than its reference", NONE: "no reference run", baseline: "baseline" },
       submitted: ", submitted model",
       title: function (n) { return "Cross-validated error across " + n + " logged runs"; },
-      desc: function (a, b) { return "Error falls from " + a + " for a baseline that predicts the mean to " + b + " for the submitted blend of five models. The same numbers are in the table below the chart."; },
+      desc: function (a, b) { return "Error falls from " + a + " for a baseline that predicts the mean to " + b + " for the submitted blend of five models. The key steps are in the table below the chart."; },
       yAxis: "RMSE, log scale (lower is better)",
       xAxis: "Runs in the order they were logged, 7 to 14 October 2026",
       marks: {
@@ -39,7 +39,7 @@
       verdicts: { GAIN: "meilleur que sa référence", NOISE: "dans le bruit de sa référence", WORSE: "moins bon que sa référence", NONE: "pas de run de référence", baseline: "baseline" },
       submitted: ", modèle soumis",
       title: function (n) { return "Erreur en validation croisée sur les " + n + " runs journalisés"; },
-      desc: function (a, b) { return "L’erreur passe de " + a + " pour une baseline qui prédit la moyenne à " + b + " pour le mélange de cinq modèles soumis. Les mêmes chiffres sont dans le tableau sous le graphique."; },
+      desc: function (a, b) { return "L’erreur passe de " + a + " pour une baseline qui prédit la moyenne à " + b + " pour le mélange de cinq modèles soumis. Les étapes clés sont dans le tableau sous le graphique."; },
       yAxis: "RMSE, échelle logarithmique (plus bas = mieux)",
       xAxis: "Runs dans l’ordre où ils ont été journalisés, du 7 au 14 octobre 2026",
       marks: {

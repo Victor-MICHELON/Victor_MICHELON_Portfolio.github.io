@@ -167,13 +167,6 @@ code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); 
 .links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 18px; font-family: var(--display); font-weight: 600; }
 .stack { margin: 16px 0 0; font-family: var(--display); font-size: 0.9rem; color: var(--muted); }
 
-/* hero key figures */
-.hero-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 48px 0 0; padding: 0; list-style: none; max-width: 900px; }
-.hero-figures a { display: block; height: 100%; padding: 14px 16px 16px; border-top: 3px solid var(--accent); background: var(--panel); border-radius: 0 0 var(--radius) var(--radius); color: var(--ink); text-decoration: none; font-family: var(--display); }
-.hero-figures a:hover { background: var(--rule); }
-.hero-figures .big { display: block; font-size: clamp(1.8rem, 3.6vw, 2.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--accent); }
-.hero-figures .cap { display: block; margin-top: 4px; font-size: 0.9rem; color: var(--muted); line-height: 1.35; }
-
 /* project cards */
 .cards-grid { display: grid; gap: 22px; margin-top: 36px; }
 @media (min-width: 860px) { .cards-grid { grid-template-columns: 1fr 1fr; } }

@@ -49,12 +49,7 @@
       <p class="kicker" data-i18n="kicker">Portfolio</p>
       <h1>Victor Michelon</h1>
       <p class="field" data-i18n="field">AI Engineering &amp; Data Science student</p>
-      <p class="lede" data-i18n="lede">Engineering and management student (ESILV × EMLV) in AI and Data Science. This summer at Sewan, I put a multi-agent pipeline on AWS into production; it handles about 250 support tickets a week. I also research LLM quantization, and with my team I finished 7th of 295 at the IBM × Probabl hackathon. I am looking for a 4 to 5 month internship from April 2027.</p>
-      <ul class="hero-figures">
-        <li><a href="#experience"><span class="big">~250</span><span class="cap" data-i18n="f1">support tickets a week handled in production by my multi-agent pipeline at Sewan</span></a></li>
-        <li><a href="projects/parkinson.html"><span class="big" data-i18n="f2b">7th / 295</span><span class="cap" data-i18n="f2">at the IBM × Probabl hackathon (top 3%), with a research lab run by AI agents</span></a></li>
-        <li><a href="#experience"><span class="big">LLM</span><span class="cap" data-i18n="f3">built from scratch in PyTorch for research on quantization, in progress</span></a></li>
-      </ul>
+      <p class="lede" data-i18n="lede">I am an engineering and management student at ESILV and EMLV, specialising in AI and Data Science. What I enjoy most is taking a model out of the notebook and seeing a real team use it: this summer at Sewan, the multi-agent pipeline I built on AWS went into production and now handles about 250 support tickets a week. I also like to understand what happens inside models, which led me to research on LLM quantization, and I enjoy a challenge: with my team, I finished 7th of 295 at the IBM × Probabl hackathon. I am looking for a 4 to 5 month internship from April 2027.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#projects" data-i18n="btn1">View projects</a>
         <a class="btn" href="#contact" data-i18n="btn2">Contact me</a>
@@ -95,20 +90,20 @@
           <div class="card-media"><img src="assets/img/ibm-probabl-800.jpg" srcset="assets/img/ibm-probabl-800.jpg 800w, assets/img/ibm-probabl.jpg 1376w" sizes="(min-width: 860px) 540px, 100vw" width="1376" height="768" loading="lazy" alt="IBM and Probabl logos"></div>
           <div class="card-body">
             <p class="card-meta" data-i18n="p1.meta">IBM × Probabl hackathon · team of three · October 2026</p>
-            <h3><a class="card-link" href="projects/parkinson.html" data-i18n="p1.h">Estimating Parkinson’s motor scores from noisy clinical data</a></h3>
-            <p data-i18n="p1.p">The motor score that best tracks the disease is rarely measured, and the measurements are noisy. We ran the hackathon as a research lab driven by AI agents, with rules that keep them honest: a critic agent hunts for leaks, and a locked protocol judges every experiment the same way.</p>
-            <p class="card-figure"><span class="big" data-i18n="p1.big">7th / 295</span><span class="cap" data-i18n="p1.cap">on the Kaggle leaderboard (top 3%), after 61 experiments judged by the same protocol</span></p>
-            <ul class="tags" aria-label="Stack"><li data-i18n="p1.t">AI agents</li><li>PyTorch</li><li>LightGBM</li><li>skore</li></ul>
+            <h3><a class="card-link" href="projects/parkinson.html" data-i18n="p1.h">Predicting the condition of Parkinson’s patients from noisy medical data</a></h3>
+            <p data-i18n="p1.p">An ensemble model that combines gradient boosting on structured data with sequential neural networks, and cuts the error by 85% compared with predicting the mean. We built it through an agentic R&amp;D workflow in IBM Bob: agents explore and code, a critic agent hunts for leaks, and a locked protocol judges all 61 experiments the same way.</p>
+            <p class="card-figure"><span class="big" data-i18n="p1.big">7th / 295</span><span class="cap" data-i18n="p1.cap">on the Kaggle leaderboard of the IBM × Probabl hackathon (top 3%)</span></p>
+            <ul class="tags" aria-label="Stack"><li>IBM Bob</li><li>PyTorch</li><li>LightGBM</li><li>skore</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span></p>
           </div>
         </article>
         <article class="card" data-project="cinematch">
           <div class="card-media"><img src="assets/img/cinematch-2-800.webp" srcset="assets/img/cinematch-2-800.webp 800w, assets/img/cinematch-2.webp 1400w" sizes="(min-width: 860px) 540px, 100vw" width="1400" height="592" loading="lazy" alt=""></div>
           <div class="card-body">
-            <p class="card-meta" data-i18n="p2.meta">Streamlit app · December 2025</p>
-            <h3><a class="card-link" href="projects/cinematch.html" data-i18n="p2.h">CineMatch, a recommender that also works on films nobody has rated</a></h3>
-            <p data-i18n="p2.p">Eight signals, from what the plot is about to who made the film, blended with weights that adapt to each film. When a film has no ratings, the engine leans on its content instead of going blind, and every suggestion says why it is there.</p>
-            <p class="card-figure"><span class="big">×5.6</span><span class="cap" data-i18n="p2.cap">more hits than collaborative filtering on films with no ratings, measured offline (tuned weights)</span></p>
+            <p class="card-meta" data-i18n="p2.meta">CineMatch AI · Streamlit app · December 2025</p>
+            <h3><a class="card-link" href="projects/cinematch.html" data-i18n="p2.h">A hybrid film recommendation engine</a></h3>
+            <p data-i18n="p2.p">CineMatch AI combines two architectures: content-based filtering, which compares films by what they are (Sentence-BERT embeddings of the plot, topics, cast, origin), and collaborative filtering, which compares them by who liked them. Weights adapt to each film, which solves the cold-start problem: a film with no ratings is still recommended from its content, with the reason why.</p>
+            <p class="card-figure"><span class="big" data-i18n="p2.big">×5.6</span><span class="cap" data-i18n="p2.cap">more hits than collaborative filtering on films with no ratings, measured offline (tuned weights)</span></p>
             <ul class="tags" aria-label="Stack"><li>Sentence-BERT</li><li>NumPy</li><li>Optuna</li><li>Streamlit</li></ul>
             <p class="card-foot"><span class="card-cta"><span data-i18n="c.cta">Read the case study</span> <span aria-hidden="true">→</span></span><a class="card-extra" href="https://cinematch-reco.streamlit.app/" data-i18n="c.demo">Live demo</a></p>
           </div>
@@ -192,11 +187,7 @@ window.I18N_FR = {
   "title": `Victor Michelon, Portfolio | AI Engineering et Data Science`,
   "kicker": `Portfolio`,
   "field": `Étudiant en AI Engineering &amp; Data Science`,
-  "lede": `Étudiant ingénieur-manager (ESILV × EMLV) en IA et Data Science. Cet été, chez Sewan, j’ai mis en production un pipeline multi-agents sur AWS qui traite environ 250 tickets de support par semaine. Je fais aussi de la recherche sur la quantification des LLM, et j’ai fini 7e sur 295 avec mon équipe au hackathon IBM × Probabl. Je cherche un stage de 4 à 5 mois à partir d’avril 2027.`,
-  "f1": `tickets de support par semaine traités en production par mon pipeline multi-agents chez Sewan`,
-  "f2b": `7e / 295`,
-  "f2": `au hackathon IBM × Probabl (top 3 %), avec un labo de recherche piloté par des agents IA`,
-  "f3": `écrit from scratch en PyTorch pour une recherche sur la quantification, en cours`,
+  "lede": `Je suis étudiant ingénieur-manager à l’ESILV et à l’EMLV, spécialisé en IA et Data Science. Ce qui me plaît le plus, c’est de sortir un modèle du notebook et de voir une vraie équipe s’en servir : cet été, chez Sewan, le pipeline multi-agents que j’ai construit sur AWS est passé en production et traite aujourd’hui environ 250 tickets de support par semaine. J’aime aussi comprendre ce qui se passe à l’intérieur des modèles, ce qui m’a mené à une recherche sur la quantification des LLM, et j’aime les défis : avec mon équipe, j’ai fini 7e sur 295 au hackathon IBM × Probabl. Je cherche un stage de 4 à 5 mois à partir d’avril 2027.`,
   "btn1": `Voir les projets`,
   "btn2": `Me contacter`,
   "gh": `Profil GitHub`,
@@ -213,14 +204,14 @@ window.I18N_FR = {
 
   "sub": `Cinq études de cas, chacune avec sa méthode, ses résultats, ses limites, et ce qui la distingue de l’approche classique.`,
   "p1.meta": `Hackathon IBM × Probabl · équipe de trois · octobre 2026`,
-  "p1.h": `Estimer les scores moteurs de la maladie de Parkinson à partir de données cliniques bruitées`,
-  "p1.p": `Le score moteur qui suit le mieux la maladie est rarement mesuré, et les mesures sont bruitées. Nous avons mené le hackathon comme un labo de recherche piloté par des agents IA, avec des règles qui les empêchent de se tromper eux-mêmes : un agent critique traque les fuites, et un protocole verrouillé juge chaque expérience de la même façon.`,
+  "p1.h": `Prédire l’état de patients atteints de Parkinson à partir de données médicales bruitées`,
+  "p1.p": `Un modèle d’ensemble qui combine du gradient boosting sur données structurées et des réseaux de neurones séquentiels, et réduit l’erreur de 85 % par rapport à une prédiction par la moyenne. Nous l’avons construit avec un workflow agentique de R&amp;D dans IBM Bob : des agents explorent et codent, un agent critique traque les fuites, et un protocole verrouillé juge les 61 expériences de la même façon.`,
   "p1.big": `7e / 295`,
-  "p1.cap": `au classement Kaggle (top 3 %), après 61 expériences jugées par le même protocole`,
-  "p1.t": `Agents IA`,
-  "p2.meta": `Application Streamlit · décembre 2025`,
-  "p2.h": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés`,
-  "p2.p": `Huit signaux, du sens du synopsis à l’équipe qui a fait le film, combinés avec des poids qui s’adaptent à chaque film. Quand un film n’a aucune note, le moteur s’appuie sur son contenu au lieu de tourner à vide, et chaque suggestion dit pourquoi elle est là.`,
+  "p1.cap": `au classement Kaggle du hackathon IBM × Probabl (top 3 %)`,
+  "p2.meta": `CineMatch AI · application Streamlit · décembre 2025`,
+  "p2.h": `Moteur de recommandation hybride de films`,
+  "p2.p": `CineMatch AI combine deux architectures : le filtrage par contenu, qui compare les films sur ce qu’ils sont (embeddings Sentence-BERT du synopsis, thèmes, équipe, origine), et le filtrage collaboratif, qui les compare sur qui les a aimés. Les poids s’adaptent à chaque film, ce qui résout le problème du cold start : un film sans aucune note est quand même recommandé grâce à son contenu, avec la raison affichée.`,
+  "p2.big": `×5,6`,
   "p2.cap": `de recommandations pertinentes par rapport au filtrage collaboratif sur les films sans note, mesuré hors ligne (poids optimisés)`,
   "p3.meta": `Deep learning sur IRM · novembre 2025`,
   "p3.h": `Classification d’IRM cérébrales avec Grad-CAM`,

@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="title">CineMatch, a recommender that also works on films nobody has rated | Victor Michelon</title>
-<meta name="description" content="A hybrid movie recommender that blends eight signals with per-film weights. On films with no ratings, where collaborative filtering collapses, it finds 5.6 times more films the user went on to like, measured offline on MovieLens.">
+<title data-i18n="title">CineMatch AI, a hybrid film recommendation engine | Victor Michelon</title>
+<meta name="description" content="A hybrid film recommendation engine that combines content-based filtering (Sentence-BERT embeddings and metadata) with collaborative filtering, and solves the cold-start problem: on films with no ratings, it finds 5.6 times more films the user went on to like than collaborative filtering, measured offline on MovieLens.">
 <link rel="canonical" href="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/cinematch.html">
-<meta property="og:title" content="CineMatch, a recommender that also works on films nobody has rated | Victor Michelon">
-<meta property="og:description" content="A hybrid movie recommender that blends eight signals with per-film weights. On films with no ratings, where collaborative filtering collapses, it finds 5.6 times more films the user went on to like, measured offline on MovieLens.">
+<meta property="og:title" content="CineMatch AI, a hybrid film recommendation engine | Victor Michelon">
+<meta property="og:description" content="A hybrid film recommendation engine that combines content-based filtering (Sentence-BERT embeddings and metadata) with collaborative filtering, and solves the cold-start problem: on films with no ratings, it finds 5.6 times more films the user went on to like than collaborative filtering, measured offline on MovieLens.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/projects/cinematch.html">
 <meta property="og:image" content="https://victor-michelon.github.io/Victor_MICHELON_Portfolio.github.io/assets/img/og/cinematch.png">
@@ -48,11 +48,11 @@
   <header class="case-head">
     <div class="wrap">
       <a class="back" href="../index.html#projects"><span aria-hidden="true">←</span> <span data-i18n="c.all">All projects</span></a>
-      <p class="kicker" data-i18n="kicker">Streamlit app · December 2025</p>
-      <h1 data-i18n="h1">CineMatch, a recommender that also works on films nobody has rated</h1>
-      <p class="lede" data-i18n="lede">A movie recommender that blends eight signals, from what the plot is about to how the audience rated it, with weights that adapt to each film. When a film has no ratings, the engine leans on its content instead of going blind, and every suggestion says why it is there. An offline evaluation on MovieLens measures what that is worth.</p>
+      <p class="kicker" data-i18n="kicker">CineMatch AI · Streamlit app · December 2025</p>
+      <h1 data-i18n="h1">A hybrid film recommendation engine</h1>
+      <p class="lede" data-i18n="lede">CineMatch AI brings together two recommendation architectures that usually work apart. <strong>Content-based filtering</strong> compares films by what they are: Sentence-BERT embeddings of the plot and mood, plus similarities on topics, genre, cast and crew, origin and era. <strong>Collaborative filtering</strong> compares them by who liked them, from MovieLens ratings. The engine blends these eight signals with weights that adapt to each film, and this is what solves the <strong>cold-start problem</strong>: when a film has no ratings, the collaborative weight shifts to its content, so new and niche films are still recommended. Every suggestion explains why it is there, and an offline evaluation on MovieLens measures the gain.</p>
       <ul class="kpis">
-        <li><span class="big">×5.6</span><span class="cap" data-i18n="k1">hits on films with no ratings, against collaborative filtering alone (19.1% vs 3.4%, tuned weights)</span></li>
+        <li><span class="big" data-i18n="k1b">×5.6</span><span class="cap" data-i18n="k1">hits on films with no ratings, against collaborative filtering alone (19.1% vs 3.4%, tuned weights)</span></li>
         <li><span class="big" data-i18n="k2b">12.2 MB</span><span class="cap" data-i18n="k2">of artifacts instead of 618 MB, for exactly the same similarities</span></li>
         <li><span class="big" data-i18n="k3b">1.4 ms</span><span class="cap" data-i18n="k3">per query (median) on a laptop</span></li>
         <li><span class="big" data-i18n="k4b">6,195</span><span class="cap" data-i18n="k4">films, 43% of them with no audience ratings</span></li>
@@ -83,7 +83,7 @@
         </div>
         <div class="proof">
           <p class="label" data-i18n="c.proof">The proof</p>
-          <span class="big">×5.6</span>
+          <span class="big" data-i18n="k1b">×5.6</span>
           <p data-i18n="e.proof">On 2,330 test queries where the source film’s ratings are hidden, collaborative filtering alone puts a film the user really liked next in its top 10 in <strong>3.4%</strong> of cases. The hybrid with tuned weights: <strong>19.1%</strong>. With the handcrafted rules the app uses by default: 9.1% (×2.7). Example: <em>Parasite</em> has no MovieLens rating, and CineMatch suggests <em>The Host</em> and <em>Snowpiercer</em>: same director, same tone.</p>
         </div>
         <p><strong data-i18n="c.notdo">What it does not do.</strong> <span data-i18n="e.notdo">A plain list of the most-rated films still scores higher on this test (35.4%), with or without ratings. But it recommends the same few films to everyone, 1.4% of the catalogue, whatever the starting film; the hybrid’s suggestions reach about half of it.</span></p>
@@ -353,7 +353,7 @@ pip install -e ".[eval]" &amp;&amp; python -m evaluation.run</code></pre></div>
 
   <nav class="case-nav" aria-label="Other projects" data-i18n-aria="c.others">
     <div class="wrap">
-      <a class="prev" href="parkinson.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name" data-i18n="nav.prev">Parkinson’s motor scores</span></a>
+      <a class="prev" href="parkinson.html"><span class="dir" data-i18n="c.prev">← Previous project</span><span class="name" data-i18n="nav.prev">Parkinson’s, IBM hackathon</span></a>
       <a class="next" href="brain-tumor.html"><span class="dir" data-i18n="c.next">Next project →</span><span class="name" data-i18n="nav.next">Brain tumor MRI</span></a>
     </div>
   </nav>
@@ -368,10 +368,11 @@ pip install -e ".[eval]" &amp;&amp; python -m evaluation.run</code></pre></div>
 
 <script>
 window.I18N_FR = {
-  "title": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés | Victor Michelon`,
-  "kicker": `Application Streamlit · décembre 2025`,
-  "h1": `CineMatch, un recommandeur qui marche aussi sur les films que personne n’a notés`,
-  "lede": `Un recommandeur de films qui combine huit signaux, du sens du synopsis aux notes du public, avec des poids qui s’adaptent à chaque film. Quand un film n’a aucune note, le moteur s’appuie sur son contenu au lieu de tourner à vide, et chaque suggestion dit pourquoi elle est là. Une évaluation hors ligne sur MovieLens mesure ce que ça vaut.`,
+  "title": `CineMatch AI, moteur de recommandation hybride de films | Victor Michelon`,
+  "kicker": `CineMatch AI · application Streamlit · décembre 2025`,
+  "h1": `Moteur de recommandation hybride de films`,
+  "lede": `CineMatch AI réunit deux architectures de recommandation qui fonctionnent d’habitude séparément. Le <strong>filtrage par contenu</strong> compare les films sur ce qu’ils sont : embeddings Sentence-BERT du synopsis et de l’ambiance, et similarités sur les thèmes, le genre, l’équipe, l’origine et l’époque. Le <strong>filtrage collaboratif</strong> les compare sur qui les a aimés, à partir des notes MovieLens. Le moteur combine ces huit signaux avec des poids qui s’adaptent à chaque film, et c’est ce qui résout le <strong>problème du cold start</strong> : quand un film n’a aucune note, le poids du collaboratif passe à son contenu, si bien que les nouveautés et les films de niche sont quand même recommandés. Chaque suggestion explique pourquoi elle est là, et une évaluation hors ligne sur MovieLens mesure le gain.`,
+  "k1b": `×5,6`,
   "k1": `de recommandations pertinentes sur les films sans note, face au filtrage collaboratif seul (19,1 % contre 3,4 %, poids optimisés)`,
   "k2b": `12,2 Mo`,
   "k2": `d’artefacts au lieu de 618 Mo, pour exactement les mêmes similarités`,
@@ -505,7 +506,7 @@ window.I18N_FR = {
   "lm4": `Déjà fait, sur la liste de la première version : l’évaluation hors ligne, les quatre règles actives, un pipeline complet, l’optimisation des poids, le re-classement pour la diversité (MMR) et le choix anglais/français.`,
   "rp1": `Tests : <code>pytest</code> (<code>pytest -m "not slow"</code> sans les artefacts en local). Un Dev Container est fourni pour GitHub Codespaces.`,
   "rp2": `Données : <a href="https://www.themoviedb.org/">TMDB</a> (ce produit utilise l’API TMDB mais n’est ni approuvé ni certifié par TMDB), <a href="https://grouplens.org/datasets/movielens/">MovieLens</a> (Harper &amp; Konstan, 2015), <a href="https://www.sbert.net/">Sentence-Transformers</a> (Reimers &amp; Gurevych, 2019).`,
-  "nav.prev": `Scores moteurs de Parkinson`,
+  "nav.prev": `Parkinson, hackathon IBM`,
   "nav.next": `IRM et tumeurs cérébrales`
 };
 </script>
